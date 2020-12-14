@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/assets.dart';
+import 'package:phone_blocker/core/models/collection.dart';
+import 'package:phone_blocker/core/models/responses/collections_response.dart';
 
 class AddToCollectionReport extends StatefulWidget {
   Function(bool) onOptionChanged;
@@ -11,11 +14,33 @@ class AddToCollectionReport extends StatefulWidget {
 
 class _AddToCollectionReportState extends State<AddToCollectionReport> {
 
+  CollectionsResponse collectionsResponse;
+  
   Function(bool) onOptionChanged;
 
   _AddToCollectionReportState({this.onOptionChanged});
 
-  String _option;
+   @override
+  void initState() {
+    super.initState();
+    _getCollections();
+  }
+
+  _getCollections() {
+    Api().getCollections(
+      onSuccess: (collectionsData) => {
+        this.setState(() {
+          _option = collectionsData.data.first;
+          this.collectionsResponse = collectionsData;
+        })
+      },
+      onError: (_) => {
+
+      }
+    );
+  }
+
+  Collection _option;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,7 +53,7 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
           ),
         ),
         Column(
-          children: ["option1", "option 2", "option 3"]
+          children: collectionsResponse == null ? [] : collectionsResponse.data
               .map(
                 (e) => Padding(
                   padding: const EdgeInsets.only(right : 16.0),
@@ -37,11 +62,11 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      title: Text(e),
+                      title: Text(e.name),
                       leading: Radio(
                         value: e,
                         groupValue: _option,
-                        onChanged: (String value) {
+                        onChanged: (Collection value) {
                           setState(() {
                             _option = value;
                             onOptionChanged.call(_option != null);
