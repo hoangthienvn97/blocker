@@ -25,11 +25,15 @@ class Assets {
       './assets/intro/image_open_setting_intro.png';
   static const String ICON_MORE = './assets/community/ic_more.png';
   static const String IMAGE_GOTIT = './assets/policy/image_gotit.png';
-  static const String IMAGE_REPORT_LIGHT = './assets/report/image_report_light.png';
-  static const String IMAGE_REPORT_DARK = './assets/report/image_report_dart.png';
+  static const String IMAGE_REPORT_LIGHT =
+      './assets/report/image_report_light.png';
+  static const String IMAGE_REPORT_DARK =
+      './assets/report/image_report_dart.png';
   static const String ICON_AVA = './assets/report/ic_ava.png';
-  static const String IMAGE_LOGO_SUCCESS = './assets/report/image_logo_success.png';
-static const String IMAGE_REPORT_OTHER_PHONE = './assets/report/image_report_other_phone.png';
-static const String IMAGE_BACK_HOME = './assets/report/image_back_home.png';
-
+  static const String IMAGE_LOGO_SUCCESS =
+      './assets/report/image_logo_success.png';
+  static const String IMAGE_REPORT_OTHER_PHONE =
+      './assets/report/image_report_other_phone.png';
+  static const String IMAGE_BACK_HOME = './assets/report/image_back_home.png';
+  static const String ICON_EXCLUDE = './assets/report/icon_exclude.png';
 }

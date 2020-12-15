@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/screens/community/community.dart';
+import 'package:phone_blocker/screens/report/success_report.dart';
 import '../../widgets/report_widgets/reports_widget.dart';
 import '../../core/common/commons.dart';
 
@@ -13,14 +15,29 @@ class _ReportState extends State<Report> {
 
   bool isPhoneValid = false;
 
+  String phone = "";
+
   bool isDescriptionValid = false;
 
+  String description = "";
+
   bool hasOption = false;
+
+  int id;
 
   _update() {
     setState(() {
       isAllValid = isPhoneValid && isDescriptionValid && hasOption;
     });
+  }
+
+  _report() {
+    Api().postReport(phone, description, id,
+        onSuccess: (numberRespone) => {
+          navigatorPush(context, SuccessReport())
+        }, onError: (errorResponse) => {
+          Utils.showToast(context, errorResponse.data.message)
+        });
   }
 
   @override
@@ -101,8 +118,11 @@ class _ReportState extends State<Report> {
                     padding: const EdgeInsets.all(16),
                     sliver: SliverToBoxAdapter(
                       child: PhoneNumberReport(
-                        onPhoneChanged: (value) =>
-                            {isPhoneValid = value, _update()},
+                        onPhoneChanged: (isValid, phoneNumber) => {
+                          isPhoneValid = isValid,
+                          _update(),
+                          phone = phoneNumber
+                        },
                       ),
                     ),
                   ),
@@ -110,8 +130,11 @@ class _ReportState extends State<Report> {
                     padding: const EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 5.0),
                     sliver: SliverToBoxAdapter(
                       child: DescriptionReport(
-                        onDescriptionChaned: (value) =>
-                            {isDescriptionValid = value, _update()},
+                        onDescriptionChaned: (isValid, des) => {
+                          isDescriptionValid = isValid,
+                          _update(),
+                          description = des
+                        },
                       ),
                     ),
                   ),
@@ -119,8 +142,8 @@ class _ReportState extends State<Report> {
                     padding: const EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 5.0),
                     sliver: SliverToBoxAdapter(
                       child: AddToCollectionReport(
-                        onOptionChanged: (value) =>
-                            {hasOption = value, _update()},
+                        onOptionChanged: (isValid, collectionId) =>
+                            {hasOption = isValid, _update(), id = collectionId},
                       ),
                     ),
                   ),
@@ -130,6 +153,7 @@ class _ReportState extends State<Report> {
             Expanded(
               flex: 2,
               child: GestureDetector(
+                onTap: () => _report(),
                 child: Image.asset(this.isAllValid
                     ? Assets.IMAGE_REPORT_LIGHT
                     : Assets.IMAGE_REPORT_DARK),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:phone_blocker/core/api/api.dart';
-import 'package:phone_blocker/core/models/responses/collections_response.dart';
-import 'package:phone_blocker/screens/report/report.dart';
+import '../../core/api/api.dart';
+import '../../core/models/model_common.dart';
+import '../../screens/report/report.dart';
 import '../../widgets/community_widgets/communities_widget.dart';
 import '../../core/common/commons.dart';
 

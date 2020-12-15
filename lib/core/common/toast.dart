@@ -8,7 +8,7 @@ class Utils {
     FToast fToast = FToast();
     fToast.init(context);
     Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
+      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 50.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
         color: Color(0xffFFECD6),

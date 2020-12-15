@@ -25,7 +25,6 @@ class _LoginState extends State<Login> {
     try {
       _googleSignIn.signIn().then((result) {
         result.authentication.then((googleKey) {
-          print(googleKey.idToken);
           _login(googleKey.idToken);
         }).catchError((err) {
           print('inner error');
@@ -41,6 +40,7 @@ class _LoginState extends State<Login> {
   Future<void> _login(String googleIdToken) async {
     Api().login(googleIdToken,
         onSuccess: (authResponse) => {
+          print(1),
               saveString(
                   key: PreferencesKeys.AccessToken,
                   value: authResponse.data.accessToken),

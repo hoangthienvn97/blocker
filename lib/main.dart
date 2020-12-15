@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/screens/intro/intro.dart';
 import 'package:phone_blocker/screens/login/login.dart';
 
 void main() {
@@ -15,6 +16,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Login());
+        home: IntroBlock());
   }
 }

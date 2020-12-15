@@ -5,7 +5,7 @@ import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/core/models/responses/collections_response.dart';
 
 class AddToCollectionReport extends StatefulWidget {
-  Function(bool) onOptionChanged;
+  Function(bool, int) onOptionChanged;
 
   AddToCollectionReport({this.onOptionChanged});
   @override
@@ -16,7 +16,7 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
 
   CollectionsResponse collectionsResponse;
   
-  Function(bool) onOptionChanged;
+  Function(bool, int) onOptionChanged;
 
   _AddToCollectionReportState({this.onOptionChanged});
 
@@ -30,7 +30,6 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
     Api().getCollections(
       onSuccess: (collectionsData) => {
         this.setState(() {
-          _option = collectionsData.data.first;
           this.collectionsResponse = collectionsData;
         })
       },
@@ -69,7 +68,7 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
                         onChanged: (Collection value) {
                           setState(() {
                             _option = value;
-                            onOptionChanged.call(_option != null);
+                            onOptionChanged.call(_option != null, _option.id);
                           });
                         },
                       ),

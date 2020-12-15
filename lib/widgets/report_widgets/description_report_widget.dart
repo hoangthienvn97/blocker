@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/common/commons.dart';
 
 class DescriptionReport extends StatefulWidget {
-  Function(bool) onDescriptionChaned;
+  Function(bool, String) onDescriptionChaned;
 
   DescriptionReport({this.onDescriptionChaned});
   @override
@@ -13,12 +13,12 @@ class _DescriptionReportState extends State<DescriptionReport> {
   final textController = TextEditingController();
   int charLength = 0;
 
-  Function(bool) onDescriptionChaned;
+  Function(bool, String) onDescriptionChaned;
 
   _DescriptionReportState({this.onDescriptionChaned});
 
   _onChanged(String value) {
-    onDescriptionChaned.call(value.length > 0);
+    onDescriptionChaned.call(value.length > 0, value);
     setState(() {
       charLength = value.length;
     });
