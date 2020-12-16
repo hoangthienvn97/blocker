@@ -36,4 +36,6 @@ class Assets {
       './assets/report/image_report_other_phone.png';
   static const String IMAGE_BACK_HOME = './assets/report/image_back_home.png';
   static const String ICON_EXCLUDE = './assets/report/icon_exclude.png';
+  static const String ICON_LIST_VIEW = './assets/my_list/list_view.png';
+  static const String ICON_TRASH = './assets/my_list/trash.png';
 }

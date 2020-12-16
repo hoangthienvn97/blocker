@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/text_styles.dart';
 import '../../core/common/commons.dart';
 
 class DescriptionReport extends StatefulWidget {
@@ -34,7 +36,7 @@ class _DescriptionReportState extends State<DescriptionReport> {
               flex: 1,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: TextStyleText("Description" , 14 , FontWeight.w500 , 0.1, Color(0xff484848)),
+                child: Text("Description", style: TextStyles.Subtitle2),
               ),
             ),
             Expanded(
@@ -43,9 +45,7 @@ class _DescriptionReportState extends State<DescriptionReport> {
                 alignment: Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 25),
-                  child: 
-                  TextStyleText("$charLength/100 characters" , 12 , FontWeight.normal , 0.4, Color(0xff828282),
-                ),
+                  child: Text("$charLength/100 characters", style: TextStyles.Caption.apply(color : AppColors.PLACE_HOLDER),)
               ),
             ),
             )],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/common/commons.dart';
+import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/community/community.dart';
 import 'package:phone_blocker/screens/report/report.dart';
 
@@ -38,13 +39,7 @@ class _SuccessReportState extends State<SuccessReport> {
                           children: <InlineSpan>[
                             TextSpan(
                               text: 'Thanks for reporting',
-                              style: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16,
-                                letterSpacing: 0.5,
-                                color: Color(0xff000000),
-                              ),
+                              style: TextStyles.Body1,
                             ),
                           ],
                         ),
@@ -57,13 +52,7 @@ class _SuccessReportState extends State<SuccessReport> {
                             children: <InlineSpan>[
                               TextSpan(
                                 text: 'a spam phone number',
-                                style: TextStyle(
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16,
-                                  letterSpacing: 0.5,
-                                  color: Color(0xff000000),
-                                ),
+                                style: TextStyles.Body1,
                               ),
                             ],
                           ),

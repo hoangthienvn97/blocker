@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/text_styles.dart';
 import '../../core/api/api.dart';
 import '../../core/models/model_common.dart';
-import '../../screens/report/report.dart';
 import '../../widgets/community_widgets/communities_widget.dart';
-import '../../core/common/commons.dart';
 
 class Community extends StatefulWidget {
   @override
@@ -40,24 +40,6 @@ class _CommunityState extends State<Community> {
             });
   }
 
-  int _selectedTabIndex = 0;
-  _changeIndex(int index) {
-    if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Report(),
-        ),
-      );
-    } else {
-      setState(
-        () {
-          _selectedTabIndex = index;
-        },
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     var progressWidget = new Container(
@@ -73,7 +55,7 @@ class _CommunityState extends State<Community> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         brightness: Brightness.light,
-        backgroundColor: ConfigColor.APPBAR,
+        backgroundColor: AppColors.PRIMARY_LIGHT,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(32),
@@ -81,8 +63,7 @@ class _CommunityState extends State<Community> {
         ),
         title: Align(
           alignment: Alignment.centerLeft,
-          child: TextStyleText("Search".toUpperCase(), 24.0, FontWeight.w500, 2,
-              ConfigColor.TEXT),
+          child: Text("Search".toUpperCase(),style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),),
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(70.0),
@@ -111,13 +92,7 @@ class _CommunityState extends State<Community> {
                       border: InputBorder.none,
                       suffixIcon: Icon(Icons.search, color: Colors.black38),
                       hintText: "Enter phone or name",
-                      hintStyle: new TextStyle(
-                        color: Color(0xff828282),
-                        fontFamily: 'RobotoMono',
-                        fontSize: 12,
-                        fontStyle: FontStyle.normal,
-                        letterSpacing: 0.4,
-                      ),
+                      hintStyle: TextStyles.Caption.apply(color : AppColors.PLACE_HOLDER)
                     ),
                   ),
                 ),
@@ -171,33 +146,6 @@ class _CommunityState extends State<Community> {
                 },
               ),
             ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedTabIndex,
-        onTap: _changeIndex,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Image.asset(Assets.ICON_COMMUNITY, color: ConfigColor.TEXT),
-            title: TextStyleText(
-                "Community", 14, FontWeight.normal, 0.25, ConfigColor.TEXT),
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(Assets.ICON_REPORT, color: Color(0xff828282)),
-            title: TextStyleText(
-                "Report", 14, FontWeight.normal, 0.25, Color(0xff828282)),
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(Assets.ICON_LIST, color: Color(0xff828282)),
-            title: TextStyleText(
-                "My list", 14, FontWeight.normal, 0.25, Color(0xff828282)),
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(Assets.ICON_MORE, color: Color(0xff828282)),
-            title: TextStyleText(
-                "More", 14, FontWeight.normal, 0.25, Color(0xff828282)),
           ),
         ],
       ),

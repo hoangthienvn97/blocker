@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/assets.dart';
-import 'package:phone_blocker/core/common/text_style.dart';
+import 'package:phone_blocker/resources/text_styles.dart';
 
 class PhoneNumberReport extends StatefulWidget {
   Function(bool, String) onPhoneChanged;
@@ -125,17 +125,15 @@ class _PhoneNumberReportState extends State<PhoneNumberReport> {
                                   ? Image.asset(Assets.ICON_EXCLUDE)
                                   : null,
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: TextStyleText(
-                                  "FE Credit Collection - $reportsCount people has report",
-                                  12,
-                                  FontWeight.normal,
-                                  0.4,
-                                  Color(reportsCount > 5
-                                      ? 0xffDF6900
-                                      : 0xff0F58BA),
-                                ),
-                              ),
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text(
+                                    "FE Credit Collection - $reportsCount people has report",
+                                    style: TextStyles.Caption.apply(
+                                      color: Color(reportsCount > 5
+                                          ? 0xffDF6900
+                                          : 0xff0F58BA),
+                                    ),
+                                  )),
                             ].where((element) => element != null).toList(),
                           )),
                     )

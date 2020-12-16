@@ -39,5 +39,6 @@ flutter:
     - assets/report/
     - assets/policy/
     - assets/flags/
+    - assets/my_list/
     
 

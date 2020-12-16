@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/api/api.dart';
-import 'package:phone_blocker/screens/community/community.dart';
+import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/report/success_report.dart';
 import '../../widgets/report_widgets/reports_widget.dart';
 import '../../core/common/commons.dart';
+import '../home.dart';
 
 class Report extends StatefulWidget {
   @override
@@ -33,11 +35,9 @@ class _ReportState extends State<Report> {
 
   _report() {
     Api().postReport(phone, description, id,
-        onSuccess: (numberRespone) => {
-          navigatorPush(context, SuccessReport())
-        }, onError: (errorResponse) => {
-          Utils.showToast(context, errorResponse.data.message)
-        });
+        onSuccess: (numberRespone) => {navigatorPush(context, SuccessReport())},
+        onError: (errorResponse) =>
+            {Utils.showToast(context, errorResponse.data.message)});
   }
 
   @override
@@ -48,8 +48,8 @@ class _ReportState extends State<Report> {
           leading: Transform.translate(
             offset: Offset(-5, 0),
             child: IconButton(
-                icon:
-                    Image.asset(Assets.ICON_DISCARD, color: Color(0xff828282)),
+                icon: Image.asset(Assets.ICON_DISCARD,
+                    color: AppColors.PLACE_HOLDER),
                 onPressed: () => showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -57,12 +57,10 @@ class _ReportState extends State<Report> {
                           backgroundColor: Colors.white,
                           title: Align(
                               alignment: Alignment.center,
-                              child: TextStyleText(
-                                  "Data will not be saved if you want to leave, please confirm",
-                                  16,
-                                  FontWeight.w500,
-                                  0.15,
-                                  Color(0xff484848))),
+                              child: Text(
+                                "Data will not be saved if you want to leave, please confirm",
+                                style: TextStyles.Subtitle1,
+                              )),
                           actions: <Widget>[
                             FlatButton(
                               onPressed: () {
@@ -76,7 +74,7 @@ class _ReportState extends State<Report> {
                             ),
                             FlatButton(
                               onPressed: () {
-                                navigatorPush(context, Community());
+                                navigatorPush(context, Home());
                               },
                               child: Text(
                                 "LEAVE",
@@ -89,8 +87,7 @@ class _ReportState extends State<Report> {
           ),
           titleSpacing: -10,
           centerTitle: false,
-          title: TextStyleText(
-              "Discard", 15, FontWeight.w500, 0.1, Color(0xff484848)),
+          title: Text("Discard", style: TextStyles.Subtitle2,),
           backgroundColor: Colors.white,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),
@@ -101,8 +98,7 @@ class _ReportState extends State<Report> {
                 child: Container(
                   height: 30,
                   alignment: Alignment.centerLeft,
-                  child: TextStyleText("Report a New Phone Number", 24,
-                      FontWeight.w500, 0.18, ConfigColor.TEXT),
+                  child: Text("Report a New Phone Number", style: TextStyles.Headline2.apply(color: AppColors.PRIMARY), )
                 ),
               ),
             ),

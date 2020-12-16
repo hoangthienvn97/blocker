@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/preferences_keys.dart';
 import 'package:phone_blocker/core/common/preferences_util.dart';
+import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/community/community.dart';
 import '../../core/common/commons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -54,7 +56,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE2EFFA),
+      backgroundColor: AppColors.PRIMARY_LIGHT,
       body: Column(
         children: [
           Expanded(
@@ -72,8 +74,7 @@ class _LoginState extends State<Login> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: TextStyleText("Project Your Phone Call".toUpperCase(),
-                      14, FontWeight.w500, 0, ConfigColor.TEXT),
+                  child: Text("Project Your Phone Call".toUpperCase(), style: TextStyles.Button.apply(color :AppColors.PRIMARY),) 
                 ),
               ],
             ),
@@ -95,8 +96,7 @@ class _LoginState extends State<Login> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        TextStyleText("login".toUpperCase(), 32,
-                            FontWeight.w500, 0, ConfigColor.TEXT),
+                        Text("Login".toUpperCase() , style: TextStyles.Headline1.apply(color: AppColors.PRIMARY),),
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
                           child: Center(
@@ -109,56 +109,35 @@ class _LoginState extends State<Login> {
                                   children: <InlineSpan>[
                                     TextSpan(
                                       text: 'By logging in, you agree with',
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 16,
-                                        letterSpacing: 0.5,
-                                        color: Color(0xff000000),
-                                      ),
+                                      style: TextStyles.Subtitle1.apply(color: AppColors.COLOR0),
                                     ),
                                   ],
                                 ),
                               ),
-                              RichText(
-                                textAlign: TextAlign.center,
-                                text: TextSpan(
-                                  children: <InlineSpan>[
-                                    TextSpan(
-                                      text: 'our',
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 16,
-                                        letterSpacing: 0.5,
-                                        color: Color(0xff000000),
+                              Padding(
+                                padding: const EdgeInsets.only(top : 10.0),
+                                child: RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    children: <InlineSpan>[
+                                      TextSpan(
+                                        text: 'our',
+                                        style:TextStyles.Subtitle1.apply(color: AppColors.COLOR0),
                                       ),
-                                    ),
-                                    TextSpan(
-                                      text: ' Term of Service',
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                        letterSpacing: 0.5,
-                                        color: ConfigColor.TEXT,
+                                      TextSpan(
+                                        text: ' Term of Service',
+                                         style:TextStyles.Subtitle1.apply(color: AppColors.PRIMARY),
                                       ),
-                                    ),
-                                    TextSpan(
-                                      text: ' and',
-                                      style: TextStyle(color: Colors.black87),
-                                    ),
-                                    TextSpan(
-                                      text: ' Privacy Policy',
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                        letterSpacing: 0.5,
-                                        color: ConfigColor.TEXT,
+                                      TextSpan(
+                                        text: ' and',
+                                         style:TextStyles.Subtitle1.apply(color: AppColors.COLOR0),
                                       ),
-                                    ),
-                                  ],
+                                      TextSpan(
+                                        text: ' Privacy Policy',
+                                        style:TextStyles.Subtitle1.apply(color: AppColors.PRIMARY),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               )
                             ],

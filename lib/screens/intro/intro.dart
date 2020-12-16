@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/login/login.dart';
 import 'package:phone_blocker/widgets/intro_widgets.dart/intro_setting_widget.dart';
 import '../../core/common/commons.dart';
@@ -23,20 +25,14 @@ class _IntroBlockState extends State<IntroBlock> {
                   flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 84.0),
-                    child: TextStyleText("Turn On Spam Protection", 24,
-                        FontWeight.w500, 0, ConfigColor.TEXT),
+                    child: Text("Turn on Spam Protection" , style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),)
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
-                    child: TextStyleText(
-                        "This will block numbers in your blocking list",
-                        14,
-                        FontWeight.normal,
-                        0.25,
-                        Color(0xff484848)),
+                    child: Text("This will block numbers in your blocking list", style: TextStyles.Body2,)
                   ),
                 ),
               ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:phone_blocker/resources/app_colors.dart';
 
 import 'assets.dart';
 
@@ -11,12 +12,12 @@ class Utils {
       padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 50.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: Color(0xffFFECD6),
+        color: AppColors.TOAST,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(Assets.ICON_TICK_BLACK, color: Color(0xff828282)),
+          Image.asset(Assets.ICON_TICK_BLACK, color: AppColors.PLACE_HOLDER),
           SizedBox(
             width: 14.0,
           ),
