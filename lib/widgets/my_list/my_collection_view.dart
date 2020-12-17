@@ -5,6 +5,10 @@ import 'package:phone_blocker/widgets/collections/collection_actions_view.dart';
 import 'package:phone_blocker/widgets/collections/collection_info_view.dart';
 
 class MyCollectionView extends StatefulWidget {
+  final DateTime lastUpdateTime;
+
+  MyCollectionView({this.lastUpdateTime});
+
   @override
   _MyCollectionViewState createState() => _MyCollectionViewState();
 }
@@ -15,7 +19,7 @@ class _MyCollectionViewState extends State<MyCollectionView> {
     var collection = Collection(
         name: 'My Collection',
         description: 'This is a list of your reported spam phone numbers',
-        updatedAt: DateTime.now());
+        updatedAt: widget.lastUpdateTime);
     return Container(
       color: AppColors.TOAST,
       child: Column(

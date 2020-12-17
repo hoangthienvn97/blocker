@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/core/api/api.dart';
+import 'package:phone_blocker/core/models/responses/reported_phone_numbers_response.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/widgets/my_list/collections_view.dart';
@@ -10,6 +12,30 @@ class MyList extends StatefulWidget {
 }
 
 class _MyListState extends State<MyList> {
+
+  ReportedPhoneNumbersResponse reportedPhoneNumbersResponse;
+  @override
+  void initState() {
+    super.initState();
+    Api().getMyCollection(
+      onSuccess: (reportedPhoneNumbers) => {
+        this.setState(() {
+          reportedPhoneNumbersResponse = reportedPhoneNumbers;
+        })
+      },onError: (errorResponse) =>{
+        print(errorResponse)
+      }
+    );
+  }
+
+  DateTime _lastUpdateTime() {
+    if (reportedPhoneNumbersResponse != null) {
+      return reportedPhoneNumbersResponse.data.last.updatedAt; 
+    }
+
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +91,7 @@ class _MyListState extends State<MyList> {
         padding: const EdgeInsets.only(top : 8.0),
         child: Column(
           children: [
-            MyCollectionView(),
+            MyCollectionView(lastUpdateTime: _lastUpdateTime(),),
             Padding(
               padding: const EdgeInsets.only(top: 5.0),
               child: CollectionsView(),

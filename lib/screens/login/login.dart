@@ -4,9 +4,10 @@ import 'package:phone_blocker/core/common/preferences_keys.dart';
 import 'package:phone_blocker/core/common/preferences_util.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
-import 'package:phone_blocker/screens/community/community.dart';
 import '../../core/common/commons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../home.dart';
 
 final GoogleSignIn gSignIn = GoogleSignIn();
 
@@ -27,6 +28,7 @@ class _LoginState extends State<Login> {
     try {
       _googleSignIn.signIn().then((result) {
         result.authentication.then((googleKey) {
+          print(googleKey.idToken);
           _login(googleKey.idToken);
         }).catchError((err) {
           print('inner error');
@@ -46,7 +48,7 @@ class _LoginState extends State<Login> {
               saveString(
                   key: PreferencesKeys.AccessToken,
                   value: authResponse.data.accessToken),
-              navigatorPush(context, Community())
+              navigatorPush(context, Home())
             },
         onError: (errorResponse) => {
           print(errorResponse.data.message)

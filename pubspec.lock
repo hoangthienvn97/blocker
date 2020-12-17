@@ -162,6 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  dalocale:
+    dependency: "direct dev"
+    description:
+      name: dalocale
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.9.0"
   dart_style:
     dependency: transitive
     description:
@@ -205,6 +212,11 @@ packages:
     source: hosted
     version: "0.10.11"
   flutter:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_localizations:
     dependency: "direct main"
     description: flutter
     source: sdk

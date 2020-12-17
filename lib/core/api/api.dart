@@ -8,13 +8,14 @@ import 'package:phone_blocker/core/models/responses/collection_response.dart';
 import 'package:phone_blocker/core/models/responses/collections_response.dart';
 import 'package:phone_blocker/core/models/responses/error_response.dart';
 import 'package:phone_blocker/core/models/responses/number_response.dart';
+import 'package:phone_blocker/core/models/responses/reported_phone_numbers_response.dart';
 
 class Api {
   var client = http.Client();
   void close() => client.close();
   openClient() => client = http.Client();
 
-  static const String BaseApiUrl = "https://66de223ceae1.ngrok.io/api/v1";
+  static const String BaseApiUrl = "https://6689c763ee13.ngrok.io/api/v1";
 
   static final Api _instacne = Api._internal();
   Api._internal() {
@@ -134,6 +135,20 @@ class Api {
     var json = jsonDecode(response.body);
     if (response.statusCode == 201) {
       onSuccess.call(NumberResponse.fromJson(json));
+    } else {
+      onError.call(ErrorResponse.fromJson(json));
+    }
+  }
+  Future<void> getMyCollection(
+      {Function(ReportedPhoneNumbersResponse) onSuccess,
+      Function(ErrorResponse) onError}) async {
+    var url = "$BaseApiUrl/client/collections/me";
+    headers["authorization"] =
+        "Bearer ${await readString(PreferencesKeys.AccessToken)}";
+    var response = await client.get(url, headers: headers);
+    var json = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      onSuccess.call(ReportedPhoneNumbersResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
     }
