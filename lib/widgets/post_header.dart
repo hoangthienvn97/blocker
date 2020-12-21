@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';

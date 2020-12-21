@@ -38,4 +38,7 @@ class Assets {
   static const String ICON_EXCLUDE = './assets/report/icon_exclude.png';
   static const String ICON_LIST_VIEW = './assets/my_list/list_view.png';
   static const String ICON_TRASH = './assets/my_list/trash.png';
+  static const String ICON_COMMUNITY_PEOPLE = './assets/my_list/ic_community.png';
+  static const String IMAGE_BROWSER = './assets/my_list/image_browser.png';
+  static const String IMAGE_CHECK_LIST = './assets/my_list/image_check_list.png';
 }

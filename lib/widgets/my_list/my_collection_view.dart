@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/core/common/navigator_push.dart';
 import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/screens/my_list/my_collection.dart';
 import 'package:phone_blocker/widgets/collections/collection_actions_view.dart';
 import 'package:phone_blocker/widgets/collections/collection_info_view.dart';
 
@@ -28,7 +30,9 @@ class _MyCollectionViewState extends State<MyCollectionView> {
           Divider(
             color: Colors.white,
           ),
-          CollectionActionsView(true)
+          CollectionActionsView(true, onviewDetail: () => {
+              navigatorPush(context, MyCollection()),
+          },)
         ],
       ),
     );

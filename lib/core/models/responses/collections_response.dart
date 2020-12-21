@@ -6,7 +6,7 @@ part 'collections_response.g.dart';
 class CollectionsResponse {
   final bool success;
 
-  final List<Collection> data;
+  List<Collection> data;
 
   CollectionsResponse({
     this.success,

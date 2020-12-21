@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/screens/login/login.dart';
+import 'package:phone_blocker/screens/my_list/my_collection.dart';
 
 void main() {
   runApp(MyApp());

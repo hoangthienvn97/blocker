@@ -10,7 +10,7 @@ class CollectionInfoView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    var lastUpdateTime = collection.updatedAt != null ? "Update ${this.collection.updatedAt.hour - DateTime.now().hour} hours ago" : "";
+    var lastUpdateTime = collection.updatedAt != null ? "Update ${DateTime.now().hour - this.collection.updatedAt.hour } hours ago" : "";
     return Row(
       children: [
         Expanded(
@@ -32,11 +32,11 @@ class CollectionInfoView extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: Text(this.collection.name,style: TextStyles.Subtitle1.apply(color: AppColors.Secondary),),
+                    child: Text(this.collection.name, style: TextStyles.Subtitle1.apply(color: AppColors.Secondary),),
                   ),
                   Expanded(
                     flex: 1,
-                    child: Text(lastUpdateTime, style: TextStyles.Caption.apply(color: AppColors.PLACE_HOLDER),),
+                    child: Align(alignment: Alignment.centerLeft ,child: Text(lastUpdateTime, style: TextStyles.Caption.apply(color: AppColors.PLACE_HOLDER),)),
                   ),
                 ],
               ),

@@ -10,4 +10,6 @@ class AppColors{
   static const Color COLOR0 = Color(0xff000000);
   static const Color TOAST = Color(0xffFFECD6);
   static const Color Secondary = Color(0xffDF6900);
+  static const Color Grey = Color(0xff4f4f4f);
+  static const Color Orange = Color(0xffEC6F00);
 }

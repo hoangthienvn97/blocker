@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/widgets/post_button.dart';
@@ -6,18 +7,50 @@ import '../../core/common/commons.dart';
 import '../post_header.dart';
 
 class PostCommunity extends StatefulWidget {
-  final Collection collection;
+  Collection collection;
   PostCommunity(this.collection);
-
-  Function onBlockClick;
-
-  Function onLikeClick;
 
   @override
   _PostCommunityState createState() => _PostCommunityState();
 }
 
 class _PostCommunityState extends State<PostCommunity> {
+  void _like() {
+    if (!widget.collection.favorited) {
+      Api().postFavorite(
+        widget.collection.id,
+        onSuccess: (response) => {
+          this.setState(() {
+            widget.collection = response.data;
+          })
+        },
+        onError: (_) => {},
+      );
+    } else {
+      Api().deleteFavorite(
+        widget.collection.id,
+        onSuccess: (response) => {
+          this.setState(() {
+            widget.collection = response.data;
+          })
+        },
+        onError: (_) => {},
+      );
+    }
+  }
+
+  void _add() {
+    if (!widget.collection.collected) {
+      Api().postCollected(widget.collection.id,
+          onSuccess: (response) => {
+                this.setState(() {
+            widget.collection = response.data;
+          })
+              },
+          onError: (errorResponse) => {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,10 +62,8 @@ class _PostCommunityState extends State<PostCommunity> {
           const Divider(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
-            child: _getPostStats(
-                widget.collection,
-                () => {widget.onBlockClick.call()},
-                () => {widget.onLikeClick.call()}),
+            child: _getPostStats(widget.collection,
+                () => _add(), () => _like()),
           ),
         ],
       ),

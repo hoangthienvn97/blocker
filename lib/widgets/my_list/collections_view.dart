@@ -1,26 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:phone_blocker/core/models/collection.dart';
-import 'package:phone_blocker/widgets/collections/collection_actions_view.dart';
-import 'package:phone_blocker/widgets/collections/collection_info_view.dart';
+import 'package:phone_blocker/core/models/model_common.dart';
+import 'package:phone_blocker/widgets/my_list/collection_item.dart';
 
-class CollectionsView extends StatefulWidget {
+class  CollectionsView extends StatefulWidget {
+  CollectionsResponse collectedCollections;
+  Function onItemCountChanged;
+
+  CollectionsView(this.collectedCollections , { this.onItemCountChanged});
+
+
   @override
-  _CollectionsViewState createState() => _CollectionsViewState();
+  _CollectionsViewState createState() =>
+      _CollectionsViewState();
 }
 
 class _CollectionsViewState extends State<CollectionsView> {
-  List<Collection> collections = [];
+
+  _onCollectionUnblocked(Collection collection) {
+    var index = widget.collectedCollections.data.indexWhere((item) => item.id == collection.id);
+    setState(() {
+      widget.collectedCollections.data.removeAt(index);
+      if (widget.onItemCountChanged != null) {
+        widget.onItemCountChanged.call();
+      }
+    });
+  }  
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: collections.length,
-        itemBuilder: (context, index) => Column(
-          children: [
-            CollectionInfoView(this.collections[index]),
-            CollectionActionsView(false),
-          ],
+    return ListView.builder(
+      physics: BouncingScrollPhysics(),
+      shrinkWrap: true,
+      itemCount:
+          widget.collectedCollections == null ? 0 : widget.collectedCollections.data.length,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.only(top :8.0),
+        child: Container(
+          color: Colors.white,
+          child: CollectionItem(
+            key: ValueKey(widget.collectedCollections.data[index].id),
+            collection: widget.collectedCollections.data[index],
+            onCollectionUnblocked: _onCollectionUnblocked,
+          ),
         ),
       ),
     );

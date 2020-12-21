@@ -25,6 +25,7 @@ Collection _$CollectionFromJson(Map<String, dynamic> json) {
     favoritedCount: json['favoritedCount'] as int,
     collected: json['collected'] as bool,
     name: json['name'] as String,
+    phoneNumbersCount: json['phoneNumbersCount'] as int,
   );
 }
 
@@ -40,4 +41,5 @@ Map<String, dynamic> _$CollectionToJson(Collection instance) =>
       'favorited': instance.favorited,
       'favoritedCount': instance.favoritedCount,
       'collected': instance.collected,
+      'phoneNumbersCount': instance.phoneNumbersCount,
     };
