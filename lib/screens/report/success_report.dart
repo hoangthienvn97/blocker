@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
-import 'package:phone_blocker/screens/community/community.dart';
+import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/report/report.dart';
 
 class SuccessReport extends StatefulWidget {
@@ -79,7 +79,7 @@ class _SuccessReportState extends State<SuccessReport> {
                     Padding(
                       padding: const EdgeInsets.only(top : 16.0),
                       child: GestureDetector(
-                        onTap: () => navigatorPush(context, Community()),
+                        onTap: () => navigatorPush(context, Home()),
                         child: Image.asset(Assets.IMAGE_BACK_HOME),
                       ),
                     ),

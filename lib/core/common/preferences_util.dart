@@ -9,3 +9,8 @@ Future<String> readString(String key) async {
   SharedPreferences _shareP = await SharedPreferences.getInstance();
   return _shareP.getString(key);
 }
+
+Future<void> removeKey(String key) async {
+  SharedPreferences _shareP = await SharedPreferences.getInstance();
+  return _shareP.remove(key);
+}

@@ -130,7 +130,7 @@ class Api {
       "description": description,
       "collectionId": collectionId
     };
-    var url = "$BaseApiUrl/spam-numbers/report";
+    var url = "$BaseApiUrl/spam-numbers/reports";
     headers["authorization"] =
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response =

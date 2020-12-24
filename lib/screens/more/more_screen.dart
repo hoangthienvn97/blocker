@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
+import 'package:phone_blocker/screens/login/login.dart';
 import 'package:phone_blocker/screens/more/about_us.dart';
 import 'package:phone_blocker/screens/more/feed_back.dart';
 import 'package:phone_blocker/widgets/more_widgets/more_widget.dart';
@@ -12,6 +13,13 @@ class More extends StatefulWidget {
 }
 
 class _MoreState extends State<More> {
+  
+  void logoutUser() async {
+    await removeKey(PreferencesKeys.AccessToken);
+    await popToRootAndPushReplacement(context, Login());
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,16 +64,13 @@ class _MoreState extends State<More> {
                 MoreWidget(
                   image: Image.asset(Assets.ICON_ABOUT_US),
                   name: "about us",
-                  onPress: ()=>
-                    navigatorPush(context, AboutUs()),
-                  
+                  onPress: () => navigatorPush(context, AboutUs()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(
                   image: Image.asset(Assets.ICON_FEEDBACK),
                   name: "feedback",
-                  onPress: ()=>
-                    navigatorPush(context, FeedBack()),
+                  onPress: () => navigatorPush(context, FeedBack()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(
@@ -77,13 +82,13 @@ class _MoreState extends State<More> {
                 MoreWidget(
                   image: Image.asset(Assets.ICON_LOGOUT),
                   name: "log out",
-                  onPress: null,
+                  onPress: () => logoutUser(),
                 ),
               ]),
             ),
             Container(
               child: Padding(
-                padding: const EdgeInsets.only(bottom : 32.0),
+                padding: const EdgeInsets.only(bottom: 32.0),
                 child: Column(
                   children: [
                     RichText(
@@ -109,11 +114,11 @@ class _MoreState extends State<More> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top : 8.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         "Version 1.0",
-                        style:
-                            TextStyles.Body2.apply(color: AppColors.PLACE_HOLDER),
+                        style: TextStyles.Body2.apply(
+                            color: AppColors.PLACE_HOLDER),
                       ),
                     ),
                   ],
