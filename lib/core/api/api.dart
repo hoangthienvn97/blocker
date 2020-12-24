@@ -17,9 +17,10 @@ class Api {
   void close() => client.close();
   openClient() => client = http.Client();
 
-  static const String BaseApiUrl = "https://3656a4d7ebd0.ngrok.io/api/v1";
+  static const String BaseApiUrl = "https://0b10a49691a6.ngrok.io/api/v1";
 
   static final Api _instacne = Api._internal();
+  
   Api._internal() {
     client = http.Client();
   }

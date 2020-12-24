@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/login/login.dart';
-import 'package:phone_blocker/widgets/intro_widgets.dart/intro_setting_widget.dart';
+import 'package:phone_blocker/widgets/intro_widgets/intro_setting_widget.dart';
 import '../../core/common/commons.dart';
 
 class IntroBlock extends StatefulWidget {

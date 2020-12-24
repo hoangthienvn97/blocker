@@ -41,4 +41,9 @@ class Assets {
   static const String ICON_COMMUNITY_PEOPLE = './assets/my_list/ic_community.png';
   static const String IMAGE_BROWSER = './assets/my_list/image_browser.png';
   static const String IMAGE_CHECK_LIST = './assets/my_list/image_check_list.png';
+  static const String IMAGE_AVATAR = './assets/more/avatar.png';
+  static const String ICON_ABOUT_US = './assets/more/icon_about_us.png';
+  static const String ICON_FEEDBACK = './assets/more/ic_feedback.png';
+  static const String ICON_RATE = './assets/more/ic_rate.png';
+  static const String ICON_LOGOUT = './assets/more/ic_logout.png';
 }

@@ -6,6 +6,7 @@ import 'package:phone_blocker/core/models/responses/reported_phone_numbers_respo
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/home.dart';
+import 'package:phone_blocker/screens/my_list/my_collection.dart';
 import 'package:phone_blocker/widgets/my_list/collections_view.dart';
 import 'package:phone_blocker/widgets/my_list/my_collection_view.dart';
 
@@ -18,10 +19,18 @@ class _MyListState extends State<MyList> {
   ReportedPhoneNumbersResponse reportedPhoneNumbersResponse;
 
   CollectionsResponse collectedCollections;
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
+    _refresh();
+  }
+
+  void _refresh() {
+    setState(() {
+      isLoading = true;
+    });
     _getCollectedCollections();
     _getMyCollection();
   }
@@ -35,6 +44,7 @@ class _MyListState extends State<MyList> {
   _onGetMyCollectionSuccess(ReportedPhoneNumbersResponse reportedPhoneNumbers) {
     try {
       this.setState(() {
+        isLoading = false;
         reportedPhoneNumbersResponse = reportedPhoneNumbers;
       });
     } catch (exception) {}
@@ -48,6 +58,10 @@ class _MyListState extends State<MyList> {
     } catch (exception) {}
   }
 
+  bool _hasMyCollection() {
+    return reportedPhoneNumbersResponse != null && reportedPhoneNumbersResponse.data.isNotEmpty;
+  }
+
   void _getCollectedCollections() {
     Api().getCollectedCollections(
         onSuccess: _onGetCollectedCollectionSuccess,
@@ -55,7 +69,7 @@ class _MyListState extends State<MyList> {
   }
 
   DateTime _lastUpdateTime() {
-    if (reportedPhoneNumbersResponse != null) {
+    if (_hasMyCollection()) {
       return reportedPhoneNumbersResponse.data.last.updatedAt;
     }
 
@@ -74,6 +88,15 @@ class _MyListState extends State<MyList> {
     var title = collectedCollections != null
         ? "My List (${this.collectedCollections.data.length})"
         : "My List";
+    var progressWidget = new Container(
+      child: Center(
+        child: CircularProgressIndicator(strokeWidth: 5),
+      ),
+    );
+
+    if (isLoading) {
+      return progressWidget;
+    }
     return Scaffold(
       appBar: AppBar(
         brightness: Brightness.light,
@@ -163,9 +186,14 @@ class _MyListState extends State<MyList> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Column(
                 children: [
-                  MyCollectionView(
+                  _hasMyCollection() ? MyCollectionView(
                     lastUpdateTime: _lastUpdateTime(),
-                  ),
+                    onViewDetailsClick: () => {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MyCollection())).then((value) => {
+                        _refresh()
+                      })
+                    },
+                  ) : null,
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: CollectionsView(
@@ -173,7 +201,7 @@ class _MyListState extends State<MyList> {
                       onItemCountChanged: () => {this.setState(() {})},
                     ),
                   )
-                ],
+                ].where((element) => element != null).toList(),
               ),
             ),
     );

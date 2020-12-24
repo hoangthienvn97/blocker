@@ -10,7 +10,7 @@ class CollectionInfoView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    var lastUpdateTime = collection.updatedAt != null ? "Update ${DateTime.now().hour - this.collection.updatedAt.hour } hours ago" : "";
+    var lastUpdateTime = collection.updatedAt != null ? "Update ${DateTime.now().hour - this.collection.updatedAt.hour} hours ago" : "";
     return Row(
       children: [
         Expanded(

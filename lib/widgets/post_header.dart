@@ -36,7 +36,7 @@ class PostHeader extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 1,
-                    child: Text("Update ${this.collection.updatedAt.hour - this.collection.createdAt.hour} hours ago",style: TextStyles.Caption.apply(color : AppColors.PLACE_HOLDER),),
+                    child: Text("Update ${this.collection.updatedAt.hour - DateTime.now().hour} hours ago",style: TextStyles.Caption.apply(color : AppColors.PLACE_HOLDER),),
                   ),
                 ],
               ),

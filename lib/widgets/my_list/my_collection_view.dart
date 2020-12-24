@@ -9,7 +9,9 @@ import 'package:phone_blocker/widgets/collections/collection_info_view.dart';
 class MyCollectionView extends StatefulWidget {
   final DateTime lastUpdateTime;
 
-  MyCollectionView({this.lastUpdateTime});
+  Function onViewDetailsClick;
+
+  MyCollectionView({this.lastUpdateTime, this.onViewDetailsClick});
 
   @override
   _MyCollectionViewState createState() => _MyCollectionViewState();
@@ -30,9 +32,8 @@ class _MyCollectionViewState extends State<MyCollectionView> {
           Divider(
             color: Colors.white,
           ),
-          CollectionActionsView(true, onviewDetail: () => {
-              navigatorPush(context, MyCollection()),
-          },)
+          CollectionActionsView(true, onviewDetail: widget.onViewDetailsClick,
+          )
         ],
       ),
     );

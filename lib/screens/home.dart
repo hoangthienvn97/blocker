@@ -4,6 +4,7 @@ import 'package:phone_blocker/core/models/model_common.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/community/community.dart';
+import 'package:phone_blocker/screens/more/more_screen.dart';
 import 'package:phone_blocker/screens/my_list/my_list.dart';
 
 import 'report/report.dart';
@@ -18,7 +19,7 @@ class _HomeState extends State<Home> {
     Community(),
     Container(),
     MyList(),
-    Container()
+    More()
   ];
 
   
