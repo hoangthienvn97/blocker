@@ -131,7 +131,7 @@ class _FeedBackState extends State<FeedBack> {
                       Padding(
                         padding: const EdgeInsets.only(top: 17.0),
                         child: TextField(
-                          maxLines: 20,
+                          maxLines: 13,
                           autocorrect: true,
                           decoration: InputDecoration(
                             hintText: 'Type to add feedback',

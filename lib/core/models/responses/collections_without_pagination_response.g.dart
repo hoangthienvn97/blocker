@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'collections_response_v2.dart';
+part of 'collections_without_pagination_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CollectionsResponseV2 _$CollectionsResponseV2FromJson(
-    Map<String, dynamic> json) {
-  return CollectionsResponseV2(
+CollectionsWithoutPaginationResponse
+    _$CollectionsWithoutPaginationResponseFromJson(Map<String, dynamic> json) {
+  return CollectionsWithoutPaginationResponse(
     success: json['success'] as bool,
     data: (json['data'] as List)
         ?.map((e) =>
@@ -17,8 +17,8 @@ CollectionsResponseV2 _$CollectionsResponseV2FromJson(
   );
 }
 
-Map<String, dynamic> _$CollectionsResponseV2ToJson(
-        CollectionsResponseV2 instance) =>
+Map<String, dynamic> _$CollectionsWithoutPaginationResponseToJson(
+        CollectionsWithoutPaginationResponse instance) =>
     <String, dynamic>{
       'success': instance.success,
       'data': instance.data,
