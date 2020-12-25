@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
-import '../../core/common/commons.dart';
 
 class DescriptionReport extends StatefulWidget {
   Function(bool, String) onDescriptionChaned;
 
   DescriptionReport({this.onDescriptionChaned});
   @override
-  _DescriptionReportState createState() => _DescriptionReportState(onDescriptionChaned: onDescriptionChaned);
+  _DescriptionReportState createState() =>
+      _DescriptionReportState(onDescriptionChaned: onDescriptionChaned);
 }
 
 class _DescriptionReportState extends State<DescriptionReport> {
@@ -44,11 +44,15 @@ class _DescriptionReportState extends State<DescriptionReport> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 25),
-                  child: Text("$charLength/100 characters", style: TextStyles.Caption.apply(color : AppColors.PLACE_HOLDER),)
+                    padding: const EdgeInsets.only(right: 25),
+                    child: Text(
+                      "$charLength/100 characters",
+                      style: TextStyles.Caption.apply(
+                          color: AppColors.PLACE_HOLDER),
+                    )),
               ),
-            ),
-            )],
+            )
+          ],
         ),
         SizedBox(
           height: 10,

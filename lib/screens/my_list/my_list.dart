@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/core/models/responses/collections_response.dart';
+import 'package:phone_blocker/core/models/responses/collections_without_pagination_response.dart';
 import 'package:phone_blocker/core/models/responses/reported_phone_numbers_response.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
@@ -9,6 +10,9 @@ import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/my_list/my_collection.dart';
 import 'package:phone_blocker/widgets/my_list/collections_view.dart';
 import 'package:phone_blocker/widgets/my_list/my_collection_view.dart';
+
+import '../../core/models/collections_with_pagination.dart';
+import '../../core/models/model_common.dart';
 
 class MyList extends StatefulWidget {
   @override
@@ -18,7 +22,7 @@ class MyList extends StatefulWidget {
 class _MyListState extends State<MyList> {
   ReportedPhoneNumbersResponse reportedPhoneNumbersResponse;
 
-  CollectionsResponse collectedCollections;
+  CollectionsWithoutPaginationResponse collectedCollections;
   bool isLoading = true;
 
   @override
@@ -50,7 +54,8 @@ class _MyListState extends State<MyList> {
     } catch (exception) {}
   }
 
-  _onGetCollectedCollectionSuccess(CollectionsResponse collectionsResponse) {
+  _onGetCollectedCollectionSuccess(
+      CollectionsWithoutPaginationResponse collectionsResponse) {
     try {
       this.setState(() {
         collectedCollections = collectionsResponse;
@@ -59,7 +64,8 @@ class _MyListState extends State<MyList> {
   }
 
   bool _hasMyCollection() {
-    return reportedPhoneNumbersResponse != null && reportedPhoneNumbersResponse.data.isNotEmpty;
+    return reportedPhoneNumbersResponse != null &&
+        reportedPhoneNumbersResponse.data.isNotEmpty;
   }
 
   void _getCollectedCollections() {
@@ -186,18 +192,25 @@ class _MyListState extends State<MyList> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Column(
                 children: [
-                  _hasMyCollection() ? MyCollectionView(
-                    lastUpdateTime: _lastUpdateTime(),
-                    onViewDetailsClick: () => {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => MyCollection())).then((value) => {
-                        _refresh()
-                      })
-                    },
-                  ) : null,
+                  _hasMyCollection()
+                      ? MyCollectionView(
+                          lastUpdateTime: _lastUpdateTime(),
+                          onViewDetailsClick: () => {
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MyCollection()))
+                                .then((value) => {_refresh()})
+                          },
+                        )
+                      : null,
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: CollectionsView(
-                      collectedCollections,
+                      CollectionsResponse(
+                          success: true,
+                          data: CollectionWithPagination(
+                              items: collectedCollections.data)),
                       onItemCountChanged: () => {this.setState(() {})},
                     ),
                   )

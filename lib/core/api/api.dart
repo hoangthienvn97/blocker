@@ -7,11 +7,15 @@ import 'package:phone_blocker/core/models/responses/auth_response.dart';
 import 'package:phone_blocker/core/models/responses/collection_response.dart';
 import 'package:phone_blocker/core/models/responses/collections_response.dart';
 import 'package:phone_blocker/core/models/responses/collections_response_v2.dart';
+import 'package:phone_blocker/core/models/responses/collections_without_pagination_response.dart';
 import 'package:phone_blocker/core/models/responses/error_response.dart';
 import 'package:phone_blocker/core/models/responses/number_response.dart';
 import 'package:phone_blocker/core/models/responses/phone_detail_response.dart';
 import 'package:phone_blocker/core/models/responses/reported_phone_numbers_response.dart';
 import 'package:phone_blocker/core/models/responses/spam_number_response.dart';
+
+import '../models/model_common.dart';
+import '../models/responses/collections_response.dart';
 
 class Api {
   var client = http.Client();
@@ -21,7 +25,7 @@ class Api {
   static const String BaseApiUrl = "https://6f3fb596b57c.ngrok.io/api/v1";
 
   static final Api _instacne = Api._internal();
-  
+
   Api._internal() {
     client = http.Client();
   }
@@ -160,7 +164,7 @@ class Api {
   }
 
   Future<void> getCollectedCollections(
-      {Function(CollectionsResponseV2) onSuccess,
+      {Function(CollectionsWithoutPaginationResponse) onSuccess,
       Function(ErrorResponse) onError}) async {
     var url = "$BaseApiUrl/client/collections/my-list";
     headers["authorization"] =
@@ -168,7 +172,7 @@ class Api {
     var response = await client.get(url, headers: headers);
     var json = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      onSuccess.call(CollectionsResponseV2.fromJson(json));
+      onSuccess.call(CollectionsWithoutPaginationResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
     }
@@ -191,7 +195,7 @@ class Api {
     }
   }
 
-   Future<void> getDetails(
+  Future<void> getDetails(
       {Function(PhoneDetailResponse) onSuccess,
       Function(ErrorResponse) onError}) async {
     var url = "$BaseApiUrl/client/collections/me/details";
@@ -221,5 +225,5 @@ class Api {
     } else {
       onError.call(ErrorResponse.fromJson(json));
     }
-  }    
+  }
 }

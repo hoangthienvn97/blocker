@@ -4,6 +4,7 @@ import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/assets.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 
+// ignore: must_be_immutable
 class PhoneNumberReport extends StatefulWidget {
   Function(bool, String) onPhoneChanged;
   PhoneNumberReport({this.onPhoneChanged});
@@ -95,11 +96,9 @@ class _PhoneNumberReportState extends State<PhoneNumberReport> {
                         },
                         selectorConfig: SelectorConfig(
                           selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                          backgroundColor: Colors.white,
                         ),
                         ignoreBlank: false,
                         maxLength: 15,
-                        autoValidateMode: AutovalidateMode.disabled,
                         selectorTextStyle: TextStyle(color: Colors.black),
                         initialValue: number,
                         inputDecoration: InputDecoration(
