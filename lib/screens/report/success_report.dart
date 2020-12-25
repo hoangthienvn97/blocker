@@ -3,6 +3,7 @@ import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/report/report.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 
 class SuccessReport extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class SuccessReport extends StatefulWidget {
 }
 
 class _SuccessReportState extends State<SuccessReport> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +80,7 @@ class _SuccessReportState extends State<SuccessReport> {
                       child: Image.asset(Assets.IMAGE_REPORT_OTHER_PHONE),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top : 16.0),
+                      padding: const EdgeInsets.only(top: 16.0),
                       child: GestureDetector(
                         onTap: () => navigatorPush(context, Home()),
                         child: Image.asset(Assets.IMAGE_BACK_HOME),

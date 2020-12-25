@@ -52,7 +52,7 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
           ),
         ),
         Column(
-          children: collectionsResponse == null ? [] : collectionsResponse.data
+          children: collectionsResponse == null ? [] : collectionsResponse.data.items
               .map(
                 (e) => Padding(
                   padding: const EdgeInsets.only(right : 16.0),

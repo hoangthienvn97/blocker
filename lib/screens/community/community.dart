@@ -116,9 +116,9 @@ class _CommunityState extends State<Community> {
             child: Scrollbar(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
-                itemCount: collectionsResponse.data.length,
+                itemCount: collectionsResponse.data.items.length,
                 itemBuilder: (context, index) =>
-                    PostCommunity(collectionsResponse.data[index]),
+                    PostCommunity(collectionsResponse.data.items[index]),
               ),
             ),
           ),

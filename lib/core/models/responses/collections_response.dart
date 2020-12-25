@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:phone_blocker/core/models/collection.dart';
+import 'package:phone_blocker/core/models/collections_with_pagination.dart';
 part 'collections_response.g.dart';
 
 @JsonSerializable()
 class CollectionsResponse {
   final bool success;
 
-  List<Collection> data;
+  final CollectionWithPagination data;
 
   CollectionsResponse({
     this.success,

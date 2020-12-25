@@ -27,6 +27,8 @@ PODS:
     - Flutter
     - libPhoneNumber-iOS
   - libPhoneNumber-iOS (0.9.15)
+  - rate_my_app (0.7.1):
+    - Flutter
   - Realm (10.1.4):
     - Realm/Headers (= 10.1.4)
   - Realm/Headers (10.1.4)
@@ -41,6 +43,7 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - libphonenumber (from `.symlinks/plugins/libphonenumber/ios`)
+  - rate_my_app (from `.symlinks/plugins/rate_my_app/ios`)
   - RealmSwift
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
@@ -64,6 +67,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_sign_in/ios"
   libphonenumber:
     :path: ".symlinks/plugins/libphonenumber/ios"
+  rate_my_app:
+    :path: ".symlinks/plugins/rate_my_app/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
@@ -77,6 +82,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   libphonenumber: bd14d5abfc5939ab0b0767234e2d8e2593af258e
   libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
+  rate_my_app: 3b64dd0876bd286001595ee2e69193e757c4d77c
   Realm: 80f4fb2971ccb9adc27a47d0955ae8e533a7030b
   RealmSwift: 0e566ca714edb377bba8ea0811eafcea0b93734e
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d

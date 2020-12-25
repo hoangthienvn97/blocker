@@ -9,10 +9,10 @@ part of 'collections_response.dart';
 CollectionsResponse _$CollectionsResponseFromJson(Map<String, dynamic> json) {
   return CollectionsResponse(
     success: json['success'] as bool,
-    data: (json['data'] as List)
-        ?.map((e) =>
-            e == null ? null : Collection.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    data: json['data'] == null
+        ? null
+        : CollectionWithPagination.fromJson(
+            json['data'] as Map<String, dynamic>),
   );
 }
 

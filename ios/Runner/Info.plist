@@ -41,8 +41,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    	<string>itms</string>
+	</array>
 	<key>CFBundleURLTypes</key>
-<array>
+	<array>
 	<dict>
 		<key>CFBundleTypeRole</key>
 		<string>Editor</string>

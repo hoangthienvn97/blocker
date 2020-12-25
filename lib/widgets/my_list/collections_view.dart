@@ -17,9 +17,9 @@ class  CollectionsView extends StatefulWidget {
 class _CollectionsViewState extends State<CollectionsView> {
 
   _onCollectionUnblocked(Collection collection) {
-    var index = widget.collectedCollections.data.indexWhere((item) => item.id == collection.id);
+    var index = widget.collectedCollections.data.items.indexWhere((item) => item.id == collection.id);
     setState(() {
-      widget.collectedCollections.data.removeAt(index);
+      widget.collectedCollections.data.items.removeAt(index);
       if (widget.onItemCountChanged != null) {
         widget.onItemCountChanged.call();
       }
@@ -32,14 +32,14 @@ class _CollectionsViewState extends State<CollectionsView> {
       physics: BouncingScrollPhysics(),
       shrinkWrap: true,
       itemCount:
-          widget.collectedCollections == null ? 0 : widget.collectedCollections.data.length,
+          widget.collectedCollections == null ? 0 : widget.collectedCollections.data.items.length,
       itemBuilder: (context, index) => Padding(
         padding: const EdgeInsets.only(top :8.0),
         child: Container(
           color: Colors.white,
           child: CollectionItem(
-            key: ValueKey(widget.collectedCollections.data[index].id),
-            collection: widget.collectedCollections.data[index],
+            key: ValueKey(widget.collectedCollections.data.items[index].id),
+            collection: widget.collectedCollections.data.items[index],
             onCollectionUnblocked: _onCollectionUnblocked,
           ),
         ),
