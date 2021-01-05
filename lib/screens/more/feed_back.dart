@@ -173,10 +173,9 @@ class _FeedBackState extends State<FeedBack> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Center(
-                                  child: Text(
-                                    "Send Feedback".toUpperCase(),
-                                    style: TextStyles.Button.apply(color: Colors.white)
-                                  ),
+                                  child: Text("Send Feedback".toUpperCase(),
+                                      style: TextStyles.Button.apply(
+                                          color: Colors.white)),
                                 )
                               ],
                             ),

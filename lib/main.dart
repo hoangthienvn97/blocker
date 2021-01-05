@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/screens/splash/splash.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -19,7 +18,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-   return MaterialApp(
+    return MaterialApp(
         color: Colors.white,
         title: 'Flutter Demo',
         theme: ThemeData(

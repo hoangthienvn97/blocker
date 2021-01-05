@@ -2,7 +2,7 @@
 
 // class CommunityDataController {
 //   final List<CommunityModel> communities = [
-    
+
 //   ];
 
 //   CommunityDataController._privateContructor();
@@ -24,7 +24,7 @@
 
 //   void like(int index) {
 //     communities[index].hasLiked = !communities[index].hasLiked;
-//     communities[index].likes += communities[index].hasLiked ? 1 : -1; 
+//     communities[index].likes += communities[index].hasLiked ? 1 : -1;
 //   }
 
 //   CommunityModel getItem(int index) {

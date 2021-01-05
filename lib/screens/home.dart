@@ -15,14 +15,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var tabs = [
-    Community(),
-    Container(),
-    MyList(),
-    More()
-  ];
+  var tabs = [Community(), Container(), MyList(), More()];
 
-  
   bool isLoading = false;
 
   CollectionsResponse collectionsResponse;
@@ -36,8 +30,7 @@ class _HomeState extends State<Home> {
           builder: (context) => Report(),
         ),
       );
-    }
-     else {
+    } else {
       setState(
         () {
           _selectedTabIndex = index;
@@ -59,19 +52,31 @@ class _HomeState extends State<Home> {
         items: [
           BottomNavigationBarItem(
             icon: Image.asset(Assets.ICON_COMMUNITY),
-            title: Text("Community" , style: TextStyles.Body2,),
+            title: Text(
+              "Community",
+              style: TextStyles.Body2,
+            ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(Assets.ICON_REPORT),
-            title: Text("Report" , style: TextStyles.Body2,),
+            title: Text(
+              "Report",
+              style: TextStyles.Body2,
+            ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(Assets.ICON_LIST),
-            title: Text("My List" , style: TextStyles.Body2,),
+            title: Text(
+              "My List",
+              style: TextStyles.Body2,
+            ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(Assets.ICON_MORE),
-            title: Text("More" , style: TextStyles.Body2,),
+            title: Text(
+              "More",
+              style: TextStyles.Body2,
+            ),
           ),
         ],
       ),

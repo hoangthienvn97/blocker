@@ -9,18 +9,18 @@ class AddToCollectionReport extends StatefulWidget {
 
   AddToCollectionReport({this.onOptionChanged});
   @override
-  _AddToCollectionReportState createState() => _AddToCollectionReportState(onOptionChanged: onOptionChanged);
+  _AddToCollectionReportState createState() =>
+      _AddToCollectionReportState(onOptionChanged: onOptionChanged);
 }
 
 class _AddToCollectionReportState extends State<AddToCollectionReport> {
-
   CollectionsResponse collectionsResponse;
-  
+
   Function(bool, int) onOptionChanged;
 
   _AddToCollectionReportState({this.onOptionChanged});
 
-   @override
+  @override
   void initState() {
     super.initState();
     _getCollections();
@@ -28,15 +28,12 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
 
   _getCollections() {
     Api().getCollections(
-      onSuccess: (collectionsData) => {
-        this.setState(() {
-          this.collectionsResponse = collectionsData;
-        })
-      },
-      onError: (_) => {
-
-      }
-    );
+        onSuccess: (collectionsData) => {
+              this.setState(() {
+                this.collectionsResponse = collectionsData;
+              })
+            },
+        onError: (_) => {});
   }
 
   Collection _option;
@@ -52,32 +49,35 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
           ),
         ),
         Column(
-          children: collectionsResponse == null ? [] : collectionsResponse.data.items
-              .map(
-                (e) => Padding(
-                  padding: const EdgeInsets.only(right : 16.0),
-                  child: Card(
-                    child: ListTile(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+          children: collectionsResponse == null
+              ? []
+              : collectionsResponse.data.items
+                  .map(
+                    (e) => Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Card(
+                        child: ListTile(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          title: Text(e.name),
+                          leading: Radio(
+                            value: e,
+                            groupValue: _option,
+                            onChanged: (Collection value) {
+                              setState(() {
+                                _option = value;
+                                onOptionChanged.call(
+                                    _option != null, _option.id);
+                              });
+                            },
+                          ),
+                          trailing: Image.asset(Assets.ICON_AVA),
+                        ),
                       ),
-                      title: Text(e.name),
-                      leading: Radio(
-                        value: e,
-                        groupValue: _option,
-                        onChanged: (Collection value) {
-                          setState(() {
-                            _option = value;
-                            onOptionChanged.call(_option != null, _option.id);
-                          });
-                        },
-                      ),
-                      trailing: Image.asset(Assets.ICON_AVA),
                     ),
-                  ),
-                ),
-              )
-              .toList(),
+                  )
+                  .toList(),
         ),
       ],
     );

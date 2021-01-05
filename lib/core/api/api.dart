@@ -18,10 +18,10 @@ class Api {
   void close() => client.close();
   openClient() => client = http.Client();
 
-  static const String BaseApiUrl = "https://6f3fb596b57c.ngrok.io/api/v1";
+  static const String BaseApiUrl = "http://callblocker.novahub.vn/api/v1";
 
   static final Api _instacne = Api._internal();
-  
+
   Api._internal() {
     client = http.Client();
   }
@@ -191,7 +191,7 @@ class Api {
     }
   }
 
-   Future<void> getDetails(
+  Future<void> getDetails(
       {Function(PhoneDetailResponse) onSuccess,
       Function(ErrorResponse) onError}) async {
     var url = "$BaseApiUrl/client/collections/me/details";
@@ -221,5 +221,5 @@ class Api {
     } else {
       onError.call(ErrorResponse.fromJson(json));
     }
-  }    
+  }
 }

@@ -44,15 +44,13 @@ class _LoginState extends State<Login> {
   Future<void> _login(String googleIdToken) async {
     Api().login(googleIdToken,
         onSuccess: (authResponse) => {
-          print(1),
+              print(1),
               saveString(
                   key: PreferencesKeys.AccessToken,
                   value: authResponse.data.accessToken),
               navigatorPush(context, Home())
             },
-        onError: (errorResponse) => {
-          print(errorResponse.data.message)
-        });
+        onError: (errorResponse) => {print(errorResponse.data.message)});
   }
 
   @override
@@ -75,9 +73,11 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
-                  child: Text("Project Your Phone Call".toUpperCase(), style: TextStyles.Button.apply(color :AppColors.PRIMARY),) 
-                ),
+                    flex: 1,
+                    child: Text(
+                      "Project Your Phone Call".toUpperCase(),
+                      style: TextStyles.Button.apply(color: AppColors.PRIMARY),
+                    )),
               ],
             ),
           ),
@@ -98,7 +98,11 @@ class _LoginState extends State<Login> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        Text("Login".toUpperCase() , style: TextStyles.Headline1.apply(color: AppColors.PRIMARY),),
+                        Text(
+                          "Login".toUpperCase(),
+                          style: TextStyles.Headline1.apply(
+                              color: AppColors.PRIMARY),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
                           child: Center(
@@ -111,32 +115,37 @@ class _LoginState extends State<Login> {
                                   children: <InlineSpan>[
                                     TextSpan(
                                       text: 'By logging in, you agree with',
-                                      style: TextStyles.Subtitle1.apply(color: AppColors.COLOR0),
+                                      style: TextStyles.Subtitle1.apply(
+                                          color: AppColors.COLOR0),
                                     ),
                                   ],
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top : 10.0),
+                                padding: const EdgeInsets.only(top: 10.0),
                                 child: RichText(
                                   textAlign: TextAlign.center,
                                   text: TextSpan(
                                     children: <InlineSpan>[
                                       TextSpan(
                                         text: 'our',
-                                        style:TextStyles.Subtitle1.apply(color: AppColors.COLOR0),
+                                        style: TextStyles.Subtitle1.apply(
+                                            color: AppColors.COLOR0),
                                       ),
                                       TextSpan(
                                         text: ' Term of Service',
-                                         style:TextStyles.Subtitle1.apply(color: AppColors.PRIMARY),
+                                        style: TextStyles.Subtitle1.apply(
+                                            color: AppColors.PRIMARY),
                                       ),
                                       TextSpan(
                                         text: ' and',
-                                         style:TextStyles.Subtitle1.apply(color: AppColors.COLOR0),
+                                        style: TextStyles.Subtitle1.apply(
+                                            color: AppColors.COLOR0),
                                       ),
                                       TextSpan(
                                         text: ' Privacy Policy',
-                                        style:TextStyles.Subtitle1.apply(color: AppColors.PRIMARY),
+                                        style: TextStyles.Subtitle1.apply(
+                                            color: AppColors.PRIMARY),
                                       ),
                                     ],
                                   ),

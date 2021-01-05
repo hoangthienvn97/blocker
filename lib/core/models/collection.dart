@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'number.dart';
 part 'collection.g.dart';
+
 @JsonSerializable()
 class Collection {
   final int id;
@@ -25,8 +26,7 @@ class Collection {
       this.favoritedCount,
       this.collected,
       this.name,
-      this.phoneNumbersCount
-      });
+      this.phoneNumbersCount});
   factory Collection.fromJson(Map<String, dynamic> json) =>
       _$CollectionFromJson(json);
   Map<String, dynamic> toJson() => _$CollectionToJson(this);

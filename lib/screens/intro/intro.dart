@@ -24,22 +24,27 @@ class _IntroBlockState extends State<IntroBlock> {
                 Expanded(
                   flex: 3,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 84.0),
-                    child: Text("Turn on Spam Protection" , style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),)
-                  ),
+                      padding: const EdgeInsets.only(top: 84.0),
+                      child: Text(
+                        "Turn on Spam Protection",
+                        style: TextStyles.Headline2.apply(
+                            color: AppColors.PRIMARY),
+                      )),
                 ),
                 Expanded(
                   flex: 1,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text("This will block numbers in your blocking list", style: TextStyles.Body2,)
-                  ),
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        "This will block numbers in your blocking list",
+                        style: TextStyles.Body2,
+                      )),
                 ),
               ],
             ),
           ),
           Expanded(
-            flex: 4,
+            flex: 3,
             child: Column(
               children: [
                 Padding(
@@ -107,12 +112,9 @@ class _IntroBlockState extends State<IntroBlock> {
               ],
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: GestureDetector(
-              onTap: () => navigatorPush(context,Login()),
-              child: Image.asset(Assets.IMAGE_OPEN_SETTING_INTRO),
-            ),
+          GestureDetector(
+            onTap: () => navigatorPush(context, Login()),
+            child: Image.asset(Assets.IMAGE_OPEN_SETTING_INTRO),
           ),
         ],
       ),

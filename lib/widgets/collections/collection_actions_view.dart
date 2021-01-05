@@ -10,12 +10,15 @@ class CollectionActionsView extends StatelessWidget {
   Function(Collection) onLikeClick;
   Function(Collection) onUnBlock;
   Function onviewDetail;
-  
-  CollectionActionsView(this.hasViewDetailsButton, {this.collection, this.onLikeClick , this.onUnBlock, this.onviewDetail});
+
+  CollectionActionsView(this.hasViewDetailsButton,
+      {this.collection, this.onLikeClick, this.onUnBlock, this.onviewDetail});
 
   @override
   Widget build(BuildContext context) {
-    return hasViewDetailsButton ? buildWithViewDetails(context) : buildWithoutViewDetails();
+    return hasViewDetailsButton
+        ? buildWithViewDetails(context)
+        : buildWithoutViewDetails();
   }
 
   Widget buildWithViewDetails(BuildContext context) {
@@ -29,9 +32,10 @@ class CollectionActionsView extends StatelessWidget {
             label: "View Details",
             textColor: AppColors.BLACK_TEXT,
             onTap: () => {
-              if( onviewDetail != null ){
-                onviewDetail.call(),
-              }
+              if (onviewDetail != null)
+                {
+                  onviewDetail.call(),
+                }
             },
           ),
         ),
@@ -56,9 +60,10 @@ class CollectionActionsView extends StatelessWidget {
                 ? AppColors.PRIMARY
                 : AppColors.BLACK_TEXT,
             onTap: () => {
-              if(onLikeClick != null ){
-                onLikeClick.call(collection),
-              }
+              if (onLikeClick != null)
+                {
+                  onLikeClick.call(collection),
+                }
             },
           ),
         ),
@@ -70,10 +75,11 @@ class CollectionActionsView extends StatelessWidget {
             image: Image.asset(Assets.ICON_TRASH),
             label: 'UnBlock',
             textColor: AppColors.BLACK_TEXT,
-           onTap: () => {
-              if(onUnBlock != null ){
-                onUnBlock.call(collection),
-              }
+            onTap: () => {
+              if (onUnBlock != null)
+                {
+                  onUnBlock.call(collection),
+                }
             },
           ),
         ),

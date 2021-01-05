@@ -44,8 +44,8 @@ class _PostCommunityState extends State<PostCommunity> {
       Api().postCollected(widget.collection.id,
           onSuccess: (response) => {
                 this.setState(() {
-            widget.collection = response.data;
-          })
+                  widget.collection = response.data;
+                })
               },
           onError: (errorResponse) => {});
     }
@@ -62,8 +62,8 @@ class _PostCommunityState extends State<PostCommunity> {
           const Divider(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
-            child: _getPostStats(widget.collection,
-                () => _add(), () => _like()),
+            child:
+                _getPostStats(widget.collection, () => _add(), () => _like()),
           ),
         ],
       ),

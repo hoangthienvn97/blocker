@@ -32,7 +32,9 @@ class _MyCollectionViewState extends State<MyCollectionView> {
           Divider(
             color: Colors.white,
           ),
-          CollectionActionsView(true, onviewDetail: widget.onViewDetailsClick,
+          CollectionActionsView(
+            true,
+            onviewDetail: widget.onViewDetailsClick,
           )
         ],
       ),

@@ -7,7 +7,6 @@ class PostHeader extends StatelessWidget {
   final Collection collection;
 
   PostHeader(this.collection);
-  
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +31,29 @@ class PostHeader extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: Text(this.collection.name , style: TextStyles.Subtitle1.apply(color : AppColors.BLACK_TEXT),),
+                    child: Text(
+                      this.collection.name,
+                      style: TextStyles.Subtitle1.apply(
+                          color: AppColors.BLACK_TEXT),
+                    ),
                   ),
                   Expanded(
                     flex: 1,
-                    child: Text("Update ${this.collection.updatedAt.hour - DateTime.now().hour} hours ago",style: TextStyles.Caption.apply(color : AppColors.PLACE_HOLDER),),
+                    child: Text(
+                      "Update ${DateTime.now().difference(this.collection.updatedAt).inDays} days ago",
+                      style: TextStyles.Caption.apply(
+                          color: AppColors.PLACE_HOLDER),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 5),
               Align(
-                alignment: Alignment.centerLeft,
-                child: Text(this.collection.description , style: TextStyles.Body2,)
-              ),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    this.collection.description,
+                    style: TextStyles.Body2,
+                  )),
             ],
           ),
         ),

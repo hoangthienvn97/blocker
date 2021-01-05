@@ -24,11 +24,11 @@ class _AboutUsState extends State<AboutUs> {
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(40),
           child: Padding(
-            padding: const EdgeInsets.only(bottom : 24.0),
+            padding: const EdgeInsets.only(bottom: 24.0),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(left : 16.0),
+                  padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
                     "About Us",
                     style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),

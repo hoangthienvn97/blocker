@@ -10,7 +10,10 @@ class IntroSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(ordinal_number, style: TextStyle(fontSize: 16 , fontStyle: FontStyle.normal),),
+        Text(
+          ordinal_number,
+          style: TextStyle(fontSize: 16, fontStyle: FontStyle.normal),
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 15.0),
           child: RichText(

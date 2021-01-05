@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:phone_blocker/core/models/user.dart';
 part 'number.g.dart';
+
 @JsonSerializable()
 class Number {
   final int id;

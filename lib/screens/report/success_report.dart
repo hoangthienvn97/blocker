@@ -11,8 +11,6 @@ class SuccessReport extends StatefulWidget {
 }
 
 class _SuccessReportState extends State<SuccessReport> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

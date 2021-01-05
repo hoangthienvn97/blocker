@@ -5,14 +5,10 @@ part 'collections_with_pagination.g.dart';
 
 @JsonSerializable()
 class CollectionWithPagination {
-
   List<Collection> items;
-  
+
   final Meta meta;
-  CollectionWithPagination(
-      {this.items,
-      this.meta
-      });
+  CollectionWithPagination({this.items, this.meta});
   factory CollectionWithPagination.fromJson(Map<String, dynamic> json) =>
       _$CollectionWithPaginationFromJson(json);
   Map<String, dynamic> toJson() => _$CollectionWithPaginationToJson(this);

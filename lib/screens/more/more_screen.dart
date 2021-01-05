@@ -13,12 +13,10 @@ class More extends StatefulWidget {
 }
 
 class _MoreState extends State<More> {
-  
   void logoutUser() async {
     await removeKey(PreferencesKeys.AccessToken);
     await popToRootAndPushReplacement(context, Login());
   }
-
 
   @override
   Widget build(BuildContext context) {

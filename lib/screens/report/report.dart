@@ -57,9 +57,7 @@ class _ReportState extends State<Report> {
                                     : stars.round().toString()) +
                                 ' star(s) !');
                             if (stars != null && (stars == 4 || stars == 5)) {
-                            } else {
-
-                            }
+                            } else {}
                             await _rateMyApp.callEvent(
                                 RateMyAppEventType.rateButtonPressed);
                             Navigator.pop<RateMyAppDialogButton>(

@@ -29,8 +29,7 @@ class _CommunityState extends State<Community> {
 
     Api().getCollections(
       onSuccess: _onGetColletionsSuccess,
-      onError: (errorResponse) => {
-      },
+      onError: (errorResponse) => {},
     );
   }
 

@@ -2,13 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class BaseLocalized {
-  String get applicationName;
- }
+  String get introTitletext;
+}
 
 class ENLocalized extends BaseLocalized {
   @override
-  String get applicationName => 'Project Your Phone Call';
- }
+  String get introTitletext => 'Turn on Spam Protection';
+}
 
 class Localized {
   static BaseLocalized get;
