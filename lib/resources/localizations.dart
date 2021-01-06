@@ -2,12 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class BaseLocalized {
-  String get introTitletext;
+  String get textDart;
+
+  String get titleApplication;
 }
 
 class ENLocalized extends BaseLocalized {
   @override
-  String get introTitletext => 'Turn on Spam Protection';
+  String get textDart => 'abc';
+
+  @override
+  String get titleApplication => 'Callkitt';
 }
 
 class Localized {

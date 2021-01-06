@@ -31,7 +31,7 @@ dev_dependencies:
   
   build_runner: ^1.8.0
   json_serializable: ^3.3.0
-  dalocale: ^1.7.0
+  dalocale: ^2.0.0
   
 flutter:
   uses-material-design: true

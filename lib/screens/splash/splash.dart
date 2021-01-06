@@ -4,7 +4,6 @@ import 'package:phone_blocker/core/common/preferences_keys.dart';
 import 'package:phone_blocker/core/common/preferences_util.dart';
 import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/intro/intro.dart';
-import 'package:phone_blocker/screens/login/login.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
