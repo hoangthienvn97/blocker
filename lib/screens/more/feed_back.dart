@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/core/api/api.dart';
+import 'package:phone_blocker/core/common/navigator_push.dart';
+import 'package:phone_blocker/core/common/toast.dart';
+import 'package:phone_blocker/core/models/responses/feedback_response.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
+import 'package:phone_blocker/screens/more/more_screen.dart';
+
+import '../home.dart';
+
 
 class FeedBack extends StatefulWidget {
   @override
@@ -8,6 +16,35 @@ class FeedBack extends StatefulWidget {
 }
 
 class _FeedBackState extends State<FeedBack> {
+  FeedbackResponse feedbackResponse;
+
+  bool isEmailValid = false;
+
+  bool isContentValid = false;
+
+  String email = "";
+
+  String content = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _feedback();
+  }
+
+  _isAllValid() {
+    return isEmailValid && isContentValid;
+  }
+
+  _feedback() {
+    Api().postFeedBack(email, content,
+        onSuccess: (feedbackResponse) => {
+            Utils.showToast(context, "Thanks a lot for feedback! We will be in touch shortly"),
+             Navigator.pop(context)
+            },
+        onError: (errorResponse) => {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,8 +120,15 @@ class _FeedBackState extends State<FeedBack> {
                             Padding(
                               padding: const EdgeInsets.only(top: 17.0),
                               child: TextField(
+                                onChanged: (text) => {
+                                  this.setState(() {
+                                    email = text;
+                                    isEmailValid = text.isNotEmpty;
+                                  })
+                                },
                                 autocorrect: true,
                                 decoration: InputDecoration(
+                                  
                                   hintText: 'Enter Your Email ',
                                   hintStyle: TextStyle(color: Colors.grey),
                                   filled: true,
@@ -133,6 +177,12 @@ class _FeedBackState extends State<FeedBack> {
                         child: TextField(
                           maxLines: 13,
                           autocorrect: true,
+                          onChanged: (text) => {
+                            this.setState(() {
+                              content = text;
+                              isContentValid = content.isNotEmpty;
+                            })
+                          },
                           decoration: InputDecoration(
                             hintText: 'Type to add feedback',
                             hintStyle: TextStyle(color: Colors.grey),
@@ -158,15 +208,15 @@ class _FeedBackState extends State<FeedBack> {
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () => _isAllValid() ? _feedback() : null,
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: AppColors.PRIMARY,
+                                color: _isAllValid() ? AppColors.PRIMARY : AppColors.LIGHT_BLUE,
                                 style: BorderStyle.solid,
                                 width: 1.0,
                               ),
-                              color: AppColors.PRIMARY,
+                              color: _isAllValid() ? AppColors.PRIMARY : AppColors.LIGHT_BLUE,
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             child: Row(

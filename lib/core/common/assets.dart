@@ -48,4 +48,5 @@ class Assets {
   static const String ICON_FEEDBACK = './assets/more/ic_feedback.png';
   static const String ICON_RATE = './assets/more/ic_rate.png';
   static const String ICON_LOGOUT = './assets/more/ic_logout.png';
+  static const String IMAGE_FEEDBACK = './assets/feedback/feedback.png';
 }

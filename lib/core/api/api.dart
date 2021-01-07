@@ -8,6 +8,7 @@ import 'package:phone_blocker/core/models/responses/collection_response.dart';
 import 'package:phone_blocker/core/models/responses/collections_response.dart';
 import 'package:phone_blocker/core/models/responses/collections_without_pagination_response.dart';
 import 'package:phone_blocker/core/models/responses/error_response.dart';
+import 'package:phone_blocker/core/models/responses/feedback_response.dart';
 import 'package:phone_blocker/core/models/responses/number_response.dart';
 import 'package:phone_blocker/core/models/responses/phone_detail_response.dart';
 import 'package:phone_blocker/core/models/responses/reported_phone_numbers_response.dart';
@@ -18,7 +19,7 @@ class Api {
   void close() => client.close();
   openClient() => client = http.Client();
 
-  static const String BaseApiUrl = "http://callblocker.novahub.vn/api/v1";
+  static const String BaseApiUrl = "https://1a35a596a3ef.ngrok.io/api/v1";
 
   static final Api _instacne = Api._internal();
 
@@ -218,6 +219,26 @@ class Api {
       if (onSuccess != null) {
         onSuccess.call(SpamNumberResponse.fromJson(json));
       }
+    } else {
+      onError.call(ErrorResponse.fromJson(json));
+    }
+  }
+
+  Future<void> postFeedBack(String email, String content,
+      {Function(FeedbackResponse) onSuccess,
+      Function(ErrorResponse) onError}) async {
+    Map<String, dynamic> body = {
+      "email": email,
+      "content": content,
+    };
+    var url = "$BaseApiUrl/client/feedbacks";
+    headers["authorization"] =
+        "Bearer ${await readString(PreferencesKeys.AccessToken)}";
+    var response =
+        await client.post(url, headers: headers, body: jsonEncode(body));
+    var json = jsonDecode(response.body);
+    if (response.statusCode == 201) {
+      onSuccess.call(FeedbackResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
     }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
-import '../../core/common/commons.dart';
 
 class DescriptionReport extends StatefulWidget {
   Function(bool, String) onDescriptionChaned;

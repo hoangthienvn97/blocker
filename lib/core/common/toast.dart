@@ -19,7 +19,7 @@ class Utils {
         children: [
           Image.asset(Assets.ICON_TICK_BLACK, color: AppColors.PLACE_HOLDER),
           SizedBox(
-            width: 14.0,
+            width: 20.0,
           ),
           Text(message),
         ],
