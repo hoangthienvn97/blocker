@@ -25,6 +25,8 @@ class _MyListState extends State<MyList> {
   CollectionsWithoutPaginationResponse collectedCollections;
   bool isLoading = true;
 
+  TextEditingController searchController = TextEditingController();
+  List<Collection> collections = List();
   @override
   void initState() {
     super.initState();
@@ -59,6 +61,8 @@ class _MyListState extends State<MyList> {
     try {
       this.setState(() {
         collectedCollections = collectionsResponse;
+        this.collections.clear();
+        this.collections.addAll(collectionsResponse.data);
       });
     } catch (exception) {}
   }
@@ -87,6 +91,15 @@ class _MyListState extends State<MyList> {
             collectedCollections.data.length == 0) &&
         (reportedPhoneNumbersResponse == null ||
             reportedPhoneNumbersResponse.data.length == 0);
+  }
+
+  void search(String query) {
+    setState(() {
+      collections.clear();
+      var x = collectedCollections.data.where((element) =>
+          element.name.toLowerCase().contains(query.toLowerCase()));
+      collections.addAll(x);
+    });
   }
 
   @override
@@ -135,7 +148,8 @@ class _MyListState extends State<MyList> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: TextField(
-                    onSubmitted: (value) {},
+                    controller: searchController,
+                    onChanged: (value) => search(value),
                     style: new TextStyle(
                       color: Colors.black,
                     ),
@@ -152,71 +166,73 @@ class _MyListState extends State<MyList> {
           ),
         ),
       ),
-      body: _isNothingToShow()
-          ? Container(
-              child: Column(children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 64.0),
-                        child: Image.asset(Assets.IMAGE_CHECK_LIST),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 24.0),
-                        child: Text(
-                          "You don't have any collection in list",
-                          style: TextStyles.Body1,
+      body: SingleChildScrollView(
+        child: _isNothingToShow()
+            ? Container(
+                child: Column(children: [
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 64.0),
+                          child: Image.asset(Assets.IMAGE_CHECK_LIST),
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 24.0),
+                          child: Text(
+                            "You don't have any collection in list",
+                            style: TextStyles.Body1,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: GestureDetector(
-                        onTap: () => navigatorPush(context, Home()),
-                        child: Image.asset(Assets.IMAGE_BROWSER),
+                  Expanded(
+                    flex: 2,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 40.0),
+                        child: GestureDetector(
+                          onTap: () => navigatorPush(context, Home()),
+                          child: Image.asset(Assets.IMAGE_BROWSER),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ]),
-            )
-          : Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Column(
-                children: [
-                  _hasMyCollection()
-                      ? MyCollectionView(
-                          lastUpdateTime: _lastUpdateTime(),
-                          onViewDetailsClick: () => {
-                            Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyCollection()))
-                                .then((value) => {_refresh()})
-                          },
-                        )
-                      : null,
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: CollectionsView(
-                      CollectionsResponse(
+                ]),
+              )
+            : Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Column(
+                  children: [
+                    _hasMyCollection()
+                        ? MyCollectionView(
+                            lastUpdateTime: _lastUpdateTime(),
+                            onViewDetailsClick: () => {
+                              Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MyCollection()))
+                                  .then((value) => {_refresh()})
+                            },
+                          )
+                        : null,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: CollectionsView(
+                        CollectionsResponse(
                           success: true,
-                          data: CollectionWithPagination(
-                              items: collectedCollections.data)),
-                      onItemCountChanged: () => {this.setState(() {})},
-                    ),
-                  )
-                ].where((element) => element != null).toList(),
+                          data: CollectionWithPagination(items: collections),
+                        ),
+                        onItemCountChanged: () => {this.setState(() {})},
+                      ),
+                    )
+                  ].where((element) => element != null).toList(),
+                ),
               ),
-            ),
+      ),
     );
   }
 }

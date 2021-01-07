@@ -12,7 +12,12 @@ class MyCollection extends StatefulWidget {
 }
 
 class _MyCollectionState extends State<MyCollection> {
+  
   PhoneDetailResponse phoneDetailResponse;
+
+  TextEditingController searchController = TextEditingController();
+
+  List<PhoneDataDetail> phoneDetail = List();
 
   @override
   void initState() {
@@ -30,6 +35,14 @@ class _MyCollectionState extends State<MyCollection> {
     setState(() {
       phoneDetailResponse.data
           .removeWhere((element) => element.id == phoneDataDetail.id);
+    });
+  }
+
+  void search(String query) {
+    setState(() {
+      phoneDetail.clear();
+      var x = phoneDetail.where((element) => element.phone.toString().contains(query.toLowerCase()));
+      phoneDetail.addAll(x);
     });
   }
 
@@ -70,7 +83,8 @@ class _MyCollectionState extends State<MyCollection> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: TextField(
-                    onSubmitted: (value) {},
+                    onChanged: (value) => search(value),
+                    controller: searchController,
                     style: new TextStyle(
                       color: Colors.black,
                     ),

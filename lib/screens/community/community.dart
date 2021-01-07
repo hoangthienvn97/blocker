@@ -14,8 +14,11 @@ class Community extends StatefulWidget {
 class _CommunityState extends State<Community> {
   bool isLoading = false;
 
+  TextEditingController searchController = TextEditingController();
+
   CollectionsResponse collectionsResponse;
 
+  List<Collection> collections = List();
   @override
   void initState() {
     super.initState();
@@ -33,15 +36,25 @@ class _CommunityState extends State<Community> {
     );
   }
 
-  _onGetColletionsSuccess(response) {
+  _onGetColletionsSuccess(CollectionsResponse response) {
     try {
       this.setState(
         () {
           this.collectionsResponse = response;
+          this.collections.clear();
+          this.collections.addAll(response.data.items);
           isLoading = false;
         },
       );
     } catch (exception) {}
+  }
+
+  void search(String query) {
+    setState(() {
+      collections.clear();
+      var x = collectionsResponse.data.items.where((element) => element.name.toLowerCase().contains(query.toLowerCase()));
+      collections.addAll(x);
+    });
   }
 
   @override
@@ -91,7 +104,8 @@ class _CommunityState extends State<Community> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: TextField(
-                    onSubmitted: (value) {},
+                    controller: searchController,
+                    onChanged: (value) => search(value),
                     style: new TextStyle(
                       color: Colors.black,
                     ),
@@ -115,9 +129,9 @@ class _CommunityState extends State<Community> {
             child: Scrollbar(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
-                itemCount: collectionsResponse.data.items.length,
+                itemCount: collections.length,
                 itemBuilder: (context, index) =>
-                    PostCommunity(collectionsResponse.data.items[index]),
+                    PostCommunity(collections[index]),
               ),
             ),
           ),
