@@ -71,8 +71,7 @@ class _PhoneNumberReportState extends State<PhoneNumberReport> {
                           this.setState(() {
                             dialCode = number.dialCode;
                             isHideNumberPeople = true;
-                            phone = "0" +
-                                number.phoneNumber.substring(dialCode.length);
+                            phone = number.phoneNumber;
                           });
                         },
                         onInputValidated: (bool value) async {
@@ -82,7 +81,7 @@ class _PhoneNumberReportState extends State<PhoneNumberReport> {
                                 onSuccess: (numberResponse) => {
                                       this.setState(() {
                                         reportsCount = numberResponse
-                                            .data.reportedBy.length;
+                                            .data.reportedBy?.length ?? 0;
                                         isHideNumberPeople = false;
                                       }),
                                     },

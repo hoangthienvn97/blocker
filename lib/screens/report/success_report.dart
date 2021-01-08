@@ -3,7 +3,6 @@ import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/report/report.dart';
-import 'package:rate_my_app/rate_my_app.dart';
 
 class SuccessReport extends StatefulWidget {
   @override

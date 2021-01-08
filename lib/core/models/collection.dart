@@ -14,7 +14,9 @@ class Collection {
   final bool favorited;
   final int favoritedCount;
   final bool collected;
+  final int collectedCount;
   final int phoneNumbersCount;
+
   Collection(
       {this.id,
       this.description,
@@ -26,7 +28,7 @@ class Collection {
       this.favoritedCount,
       this.collected,
       this.name,
-      this.phoneNumbersCount});
+      this.phoneNumbersCount, this.collectedCount});
   factory Collection.fromJson(Map<String, dynamic> json) =>
       _$CollectionFromJson(json);
   Map<String, dynamic> toJson() => _$CollectionToJson(this);

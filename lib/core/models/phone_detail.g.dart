@@ -16,8 +16,11 @@ PhoneDetail _$PhoneDetailFromJson(Map<String, dynamic> json) {
     updatedAt: json['updatedAt'] == null
         ? null
         : DateTime.parse(json['updatedAt'] as String),
-    collection: json['collection'] as String,
+    collection: json['collection'] == null
+        ? null
+        : Collection.fromJson(json['collection'] as Map<String, dynamic>),
     numberOfReporters: json['numberOfReporters'] as int,
+    reported: json['reported'] as bool,
   );
 }
 
@@ -29,4 +32,5 @@ Map<String, dynamic> _$PhoneDetailToJson(PhoneDetail instance) =>
       'phone': instance.phone,
       'numberOfReporters': instance.numberOfReporters,
       'collection': instance.collection,
+      'reported': instance.reported,
     };

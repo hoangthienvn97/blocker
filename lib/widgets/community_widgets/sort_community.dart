@@ -32,15 +32,5 @@ class SortCommunity extends StatelessWidget {
       ),
     );
   }
-
-  // static const platform = const MethodChannel('co.vacsolutions.secretbox/callBlocking');
-
-  // Future<void> _blockedNumbers() async {
-  //   try {
-  //     final result = await platform.invokeMethod('blockedNumbers');
-  //     print("Blocked numbers: " + result);
-  //   } on PlatformException catch (e) {
-  //     //batteryLevel = "Failed to get battery level: '${e.message}'.";
-  //   }
-  // }
+  
 }

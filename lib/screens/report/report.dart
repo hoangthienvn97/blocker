@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
@@ -16,6 +15,24 @@ class Report extends StatefulWidget {
 }
 
 class _ReportState extends State<Report> {
+
+  String dialCode = "84";
+  static const platform = const MethodChannel('co.vacsolutions.secretbox/callBlocking');
+
+
+  Future<void> _blockedNumbers(phoneNumber) async {
+    try {
+      final result = await platform.invokeMethod('blockNumbers', { 'numbers': [phoneNumber] });
+      if (result == true) {
+        print("Blocked " + phoneNumber.toString());
+      } else {
+        print(result);
+      }
+    } on PlatformException catch (e) {
+      //batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+  }
+  
   bool isAllValid = false;
 
   bool isPhoneValid = false;
@@ -39,9 +56,9 @@ class _ReportState extends State<Report> {
   _report() {
     Api().postReport(phone, description, id,
         onSuccess: (numberRespone) => {
+          _blockedNumbers(int.parse(numberRespone.data.phone.replaceAll("+", ""))),
               _rateMyApp.init().then((_) {
                 if (_rateMyApp.shouldOpenDialog) {
-                  //conditions check if user already rated the app
                   _rateMyApp.showStarRateDialog(
                     context,
                     title: 'What do you think about Our App?',
@@ -222,3 +239,5 @@ class _ReportState extends State<Report> {
         ));
   }
 }
+
+
