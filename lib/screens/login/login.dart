@@ -1,10 +1,13 @@
+import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/preferences_keys.dart';
 import 'package:phone_blocker/core/common/preferences_util.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
+import 'package:provider/provider.dart';
 import '../../core/common/commons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -59,21 +62,19 @@ class _LoginState extends State<Login> {
   String _message = 'Log in/out by pressing the buttons below.';
 
   Future<Null> _loginFB() async {
-    final FacebookLoginResult result =
-        await facebookSignIn.logIn(['email']);
-  print(result);
+    final FacebookLoginResult result = await facebookSignIn.logIn(['email']);
     switch (result.status) {
       case FacebookLoginStatus.loggedIn:
         final FacebookAccessToken accessToken = result.accessToken;
-       Api().loginFacebook(accessToken.token,
-        onSuccess: (authResponse) => {
-              print(1),
-              saveString(
-                  key: PreferencesKeys.AccessToken,
-                  value: authResponse.data.accessToken),
-              navigatorPush(context, Home())
-            },
-        onError: (errorResponse) => {print(errorResponse.data.message)});
+        Api().loginFacebook(accessToken.token,
+            onSuccess: (authResponse) => {
+                  print(1),
+                  saveString(
+                      key: PreferencesKeys.AccessToken,
+                      value: authResponse.data.accessToken),
+                  navigatorPush(context, Home())
+                },
+            onError: (errorResponse) => {print(errorResponse.data.message)});
         break;
       case FacebookLoginStatus.cancelledByUser:
         _showMessage('Login cancelled by the user.');
@@ -89,6 +90,41 @@ class _LoginState extends State<Login> {
     setState(() {
       _message = message;
     });
+  }
+
+  Future<void> _signInWithApple(BuildContext context) async {
+    final result = await AppleSignIn.performRequests([
+      AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
+    ]);
+    switch (result.status) {
+      case AuthorizationStatus.authorized:
+        final appleIdCredential = result.credential;
+        var identifyToken = String.fromCharCodes(appleIdCredential.identityToken);
+
+        Api().loginApple(identifyToken, appleIdCredential.fullName.familyName, appleIdCredential.fullName.givenName,
+            onSuccess: (authResponse) => {
+                  saveString(
+                      key: PreferencesKeys.AccessToken,
+                      value: authResponse.data.accessToken),
+                  navigatorPush(context, Home())
+                },
+            onError: (errorResponse) => {print(errorResponse.data.message)});
+        break;
+
+      case AuthorizationStatus.error:
+        throw PlatformException(
+          code: 'ERROR_AUTHORIZATION_DENIED',
+          message: result.error.toString(),
+        );
+
+      case AuthorizationStatus.cancelled:
+        throw PlatformException(
+          code: 'ERROR_ABORTED_BY_USER',
+          message: 'Sign in aborted by user',
+        );
+      default:
+        throw UnimplementedError();
+    }
   }
 
   @override
@@ -207,7 +243,7 @@ class _LoginState extends State<Login> {
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
                           child: GestureDetector(
-                              onTap: () => print("ccccc"),
+                              onTap: () => _signInWithApple(context),
                               child: Image.asset(Assets.ICON_APPLE_LOGIN)),
                         ),
                       ],

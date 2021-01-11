@@ -19,7 +19,7 @@ class Api {
   void close() => client.close();
   openClient() => client = http.Client();
 
-  static const String BaseApiUrl = "https://b0159cfbfcdf.ngrok.io/api/v1";
+  static const String BaseApiUrl = "https://2c06e4f2b54e.ngrok.io/api/v1";
 
   static final Api _instacne = Api._internal();
 
@@ -49,10 +49,30 @@ class Api {
       {Function(AuthResponse) onSuccess,
       Function(ErrorResponse) onError}) async {
     var url = "$BaseApiUrl/auth/login/facebook?access_token=$accessToken";
-    var response =
-        await client.get(url, headers: headers);
+    var response = await client.get(url, headers: headers);
     var json = jsonDecode(response.body);
     if (response.statusCode == 200) {
+      onSuccess.call(AuthResponse.fromJson(json));
+    } else {
+      onError.call(ErrorResponse.fromJson(json));
+    }
+  }
+
+  Future<void> loginApple(
+      String identityToken, String familyName, String givenName,
+      {Function(AuthResponse) onSuccess,
+      Function(ErrorResponse) onError}) async {
+    Map<String, dynamic> body = {
+      "identityToken": identityToken,
+      "familyName": familyName,
+      "givenName": givenName
+    };
+    var url = "$BaseApiUrl/auth/login/apple";
+    var response =
+        await client.post(url, headers: headers, body: jsonEncode(body));
+
+    var json = jsonDecode(response.body);
+    if (response.statusCode == 201) {
       onSuccess.call(AuthResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
