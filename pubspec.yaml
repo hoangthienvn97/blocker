@@ -21,6 +21,9 @@ dependencies:
   intl_phone_number_input: ^0.5.2+2
   shared_preferences: ^0.5.12+4
   rate_my_app: ^0.7.1+1
+  apple_sign_in: ^0.1.0
+  flutter_secure_storage: ^3.3.5
+  provider: ^4.0.1
 
 
   cupertino_icons: ^1.0.0
