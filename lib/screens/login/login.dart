@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/preferences_keys.dart';
 import 'package:phone_blocker/core/common/preferences_util.dart';
@@ -29,7 +30,7 @@ class _LoginState extends State<Login> {
       _googleSignIn.signIn().then((result) {
         result.authentication.then((googleKey) {
           print(googleKey.idToken);
-          _login(googleKey.idToken);
+          _loginGoogle(googleKey.idToken);
         }).catchError((err) {
           print('inner error');
         });
@@ -41,8 +42,8 @@ class _LoginState extends State<Login> {
     }
   }
 
-  Future<void> _login(String googleIdToken) async {
-    Api().login(googleIdToken,
+  Future<void> _loginGoogle(String googleIdToken) async {
+    Api().loginGoogle(googleIdToken,
         onSuccess: (authResponse) => {
               print(1),
               saveString(
@@ -51,6 +52,43 @@ class _LoginState extends State<Login> {
               navigatorPush(context, Home())
             },
         onError: (errorResponse) => {print(errorResponse.data.message)});
+  }
+
+  static final FacebookLogin facebookSignIn = new FacebookLogin();
+
+  String _message = 'Log in/out by pressing the buttons below.';
+
+  Future<Null> _loginFB() async {
+    final FacebookLoginResult result =
+        await facebookSignIn.logIn(['email']);
+  print(result);
+    switch (result.status) {
+      case FacebookLoginStatus.loggedIn:
+        final FacebookAccessToken accessToken = result.accessToken;
+       Api().loginFacebook(accessToken.token,
+        onSuccess: (authResponse) => {
+              print(1),
+              saveString(
+                  key: PreferencesKeys.AccessToken,
+                  value: authResponse.data.accessToken),
+              navigatorPush(context, Home())
+            },
+        onError: (errorResponse) => {print(errorResponse.data.message)});
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        _showMessage('Login cancelled by the user.');
+        break;
+      case FacebookLoginStatus.error:
+        _showMessage('Something went wrong with the login process.\n'
+            'Here\'s the error Facebook gave us: ${result.errorMessage}');
+        break;
+    }
+  }
+
+  void _showMessage(String message) {
+    setState(() {
+      _message = message;
+    });
   }
 
   @override
@@ -163,7 +201,7 @@ class _LoginState extends State<Login> {
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
                           child: GestureDetector(
-                              onTap: () => print("bbbb"),
+                              onTap: () => _loginFB(),
                               child: Image.asset(Assets.ICON_FACEBOOK_LOGIN)),
                         ),
                         Padding(
