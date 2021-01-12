@@ -7,6 +7,7 @@ import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/preferences_keys.dart';
 import 'package:phone_blocker/core/common/preferences_util.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/policy/policy.dart';
 import '../../core/common/commons.dart';
@@ -98,9 +99,11 @@ class _LoginState extends State<Login> {
     switch (result.status) {
       case AuthorizationStatus.authorized:
         final appleIdCredential = result.credential;
-        var identifyToken = String.fromCharCodes(appleIdCredential.identityToken);
+        var identifyToken =
+            String.fromCharCodes(appleIdCredential.identityToken);
 
-        Api().loginApple(identifyToken, appleIdCredential.fullName.familyName, appleIdCredential.fullName.givenName,
+        Api().loginApple(identifyToken, appleIdCredential.fullName.familyName,
+            appleIdCredential.fullName.givenName,
             onSuccess: (authResponse) => {
                   saveString(
                       key: PreferencesKeys.AccessToken,
@@ -148,7 +151,7 @@ class _LoginState extends State<Login> {
                 Expanded(
                     flex: 1,
                     child: Text(
-                      "Project Your Phone Call".toUpperCase(),
+                      Localized.get.loginTitle.toUpperCase(),
                       style: TextStyles.Button.apply(color: AppColors.PRIMARY),
                     )),
               ],
@@ -187,7 +190,7 @@ class _LoginState extends State<Login> {
                                 text: TextSpan(
                                   children: <InlineSpan>[
                                     TextSpan(
-                                      text: 'By logging in, you agree with',
+                                      text: Localized.get.loginDescription1,
                                       style: TextStyles.Subtitle1.apply(
                                           color: AppColors.COLOR0),
                                     ),
@@ -201,24 +204,28 @@ class _LoginState extends State<Login> {
                                   text: TextSpan(
                                     children: <InlineSpan>[
                                       TextSpan(
-                                        text: 'our',
+                                        text: Localized.get.loginDescription2,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.COLOR0),
                                       ),
                                       TextSpan(
-                                        recognizer: new TapGestureRecognizer()..onTap = () => navigatorPush(context, Policy()),
-                                        text: ' Term of Service',
+                                        recognizer: new TapGestureRecognizer()
+                                          ..onTap = () =>
+                                              navigatorPush(context, Policy()),
+                                        text: Localized.get.loginDescription3,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),
                                       ),
                                       TextSpan(
-                                        text: ' and',
+                                        text: Localized.get.loginDescription4,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.COLOR0),
                                       ),
                                       TextSpan(
-                                        recognizer: new TapGestureRecognizer()..onTap = () => navigatorPush(context, Policy()),
-                                        text: ' Privacy Policy',
+                                        recognizer: new TapGestureRecognizer()
+                                          ..onTap = () =>
+                                              navigatorPush(context, Policy()),
+                                        text: Localized.get.loginDescription5,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),
                                       ),

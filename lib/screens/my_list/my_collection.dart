@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/models/phone_data_detail.dart';
 import 'package:phone_blocker/core/models/responses/phone_detail_response.dart';
@@ -12,7 +13,6 @@ class MyCollection extends StatefulWidget {
 }
 
 class _MyCollectionState extends State<MyCollection> {
-  
   PhoneDetailResponse phoneDetailResponse;
 
   TextEditingController searchController = TextEditingController();
@@ -29,6 +29,8 @@ class _MyCollectionState extends State<MyCollection> {
               })
             },
         onError: (error) => {print(error)});
+
+        _blockedNumbers();
   }
 
   _unblocked(PhoneDataDetail phoneDataDetail) {
@@ -41,9 +43,21 @@ class _MyCollectionState extends State<MyCollection> {
   void search(String query) {
     setState(() {
       phoneDetail.clear();
-      var x = phoneDetail.where((element) => element.phone.toString().contains(query.toLowerCase()));
+      var x = phoneDetail.where(
+          (element) => element.phone.toString().contains(query.toLowerCase()));
       phoneDetail.addAll(x);
     });
+  }
+
+  static const platform =
+      const MethodChannel('co.vacsolutions.secretbox/callBlocking');
+  Future<void> _blockedNumbers() async {
+    try {
+      final result = await platform.invokeMethod('blockedNumbers');
+      print(result.toString());
+    } on PlatformException catch (e) {
+      //batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
   }
 
   @override

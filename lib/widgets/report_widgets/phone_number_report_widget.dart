@@ -81,7 +81,8 @@ class _PhoneNumberReportState extends State<PhoneNumberReport> {
                                 onSuccess: (numberResponse) => {
                                       this.setState(() {
                                         reportsCount = numberResponse
-                                            .data.reportedBy?.length ?? 0;
+                                                .data.reportedBy?.length ??
+                                            0;
                                         isHideNumberPeople = false;
                                       }),
                                     },

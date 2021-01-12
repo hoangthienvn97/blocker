@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/core/models/model_common.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/community/community.dart';
 import 'package:phone_blocker/screens/more/more_screen.dart';
@@ -24,7 +25,7 @@ class _HomeState extends State<Home> {
   int _selectedTabIndex = 0;
   _changeIndex(int index) {
     if (index == 1) {
-      popToRootAndPushReplacement(context , Report());
+      popToRootAndPushReplacement(context, Report());
     } else {
       setState(
         () {
@@ -48,28 +49,28 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Image.asset(Assets.ICON_COMMUNITY),
             title: Text(
-              "Community",
+              Localized.get.homeCommunity,
               style: TextStyles.Body2,
             ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(Assets.ICON_REPORT),
             title: Text(
-              "Report",
+              Localized.get.homeReport,
               style: TextStyles.Body2,
             ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(Assets.ICON_LIST),
             title: Text(
-              "My List",
+              Localized.get.homeMyList,
               style: TextStyles.Body2,
             ),
           ),
           BottomNavigationBarItem(
             icon: Image.asset(Assets.ICON_MORE),
             title: Text(
-              "More",
+              Localized.get.homeMore,
               style: TextStyles.Body2,
             ),
           ),

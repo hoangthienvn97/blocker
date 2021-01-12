@@ -55,48 +55,48 @@ class _FeedBackState extends State<FeedBack> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-            leading: Transform.translate(
-              offset: Offset(-5, 0),
-              child: IconButton(
-                  icon: Image.asset(Assets.ICON_DISCARD,
-                      color: AppColors.PLACE_HOLDER),
-                  onPressed: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                            backgroundColor: Colors.white,
-                            title: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "Data will not be saved if you want to leave, please confirm",
-                                  style: TextStyles.Subtitle1,
-                                )),
-                            actions: <Widget>[
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text(
-                                  "STAY",
-                                  style: TextStyle(
-                                      color: Colors.blue, fontSize: 15),
-                                ),
+          leading: Transform.translate(
+            offset: Offset(-5, 0),
+            child: IconButton(
+                icon: Image.asset(Assets.ICON_DISCARD,
+                    color: AppColors.PLACE_HOLDER),
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                          backgroundColor: Colors.white,
+                          title: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Data will not be saved if you want to leave, please confirm",
+                                style: TextStyles.Subtitle1,
+                              )),
+                          actions: <Widget>[
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                "STAY",
+                                style:
+                                    TextStyle(color: Colors.blue, fontSize: 15),
                               ),
-                              FlatButton(
-                                onPressed: () {
-                                  navigatorPush(context, Home());
-                                },
-                                child: Text(
-                                  "LEAVE",
-                                  style: TextStyle(
-                                      color: Colors.red, fontSize: 15),
-                                ),
+                            ),
+                            FlatButton(
+                              onPressed: () {
+                                navigatorPush(context, Home());
+                              },
+                              child: Text(
+                                "LEAVE",
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 15),
                               ),
-                            ]);
-                      })),
-            ),
-            titleSpacing: -10,
-            centerTitle: false,
+                            ),
+                          ]);
+                    })),
+          ),
+          titleSpacing: -10,
+          centerTitle: false,
           brightness: Brightness.light,
           backgroundColor: Colors.white,
           title: Align(

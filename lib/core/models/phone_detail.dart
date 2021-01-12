@@ -17,7 +17,8 @@ class PhoneDetail {
       this.createdAt,
       this.updatedAt,
       this.collection,
-      this.numberOfReporters, this.reported});
+      this.numberOfReporters,
+      this.reported});
   factory PhoneDetail.fromJson(Map<String, dynamic> json) =>
       _$PhoneDetailFromJson(json);
   Map<String, dynamic> toJson() => _$PhoneDetailToJson(this);

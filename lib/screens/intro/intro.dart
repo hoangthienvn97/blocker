@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/login/login.dart';
 import 'package:phone_blocker/widgets/intro_widgets/intro_setting_widget.dart';
@@ -26,7 +27,7 @@ class _IntroBlockState extends State<IntroBlock> {
                   child: Padding(
                       padding: const EdgeInsets.only(top: 84.0),
                       child: Text(
-                        "Turn on Spam Protection",
+                        Localized.get.introTitle,
                         style: TextStyles.Headline2.apply(
                             color: AppColors.PRIMARY),
                       )),
@@ -36,7 +37,7 @@ class _IntroBlockState extends State<IntroBlock> {
                   child: Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        "This will block numbers in your blocking list",
+                        Localized.get.introText,
                         style: TextStyles.Body2,
                       )),
                 ),
@@ -63,7 +64,8 @@ class _IntroBlockState extends State<IntroBlock> {
                         children: [
                           Row(
                             children: [
-                              IntroSetting("1.", "Open", " iPhone Settings"),
+                              IntroSetting("1.", Localized.get.introSetupStep11,
+                                  Localized.get.introSetupStep12),
                               Padding(
                                 padding: const EdgeInsets.only(left: 5),
                                 child: Image.asset(Assets.ICON_SETTING_INTRO),
@@ -74,7 +76,10 @@ class _IntroBlockState extends State<IntroBlock> {
                             padding: const EdgeInsets.only(top: 12.0),
                             child: Row(
                               children: [
-                                IntroSetting("2.", "Tap on", " Phone"),
+                                IntroSetting(
+                                    "2.",
+                                    Localized.get.introSetupStep21,
+                                    Localized.get.introSetupStep22),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Image.asset(Assets.ICON_PHONE_INTRO),
@@ -86,8 +91,10 @@ class _IntroBlockState extends State<IntroBlock> {
                             padding: const EdgeInsets.only(top: 12.0),
                             child: Row(
                               children: [
-                                IntroSetting("3.", "Turn on ",
-                                    " Call Blocking & Identification"),
+                                IntroSetting(
+                                    "3.",
+                                    Localized.get.introSetupStep31,
+                                    Localized.get.introSetupStep32),
                               ],
                             ),
                           ),
@@ -96,7 +103,9 @@ class _IntroBlockState extends State<IntroBlock> {
                             child: Row(
                               children: [
                                 IntroSetting(
-                                    "4.", "Turn on all", " [App Name] options"),
+                                    "4.",
+                                    Localized.get.introSetupStep41,
+                                    Localized.get.introSetupStep42),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Image.asset(Assets.ICON_SWITCH_INTRO),

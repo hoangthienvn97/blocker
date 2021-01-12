@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import '../../core/api/api.dart';
 import '../../core/models/model_common.dart';
@@ -86,7 +87,7 @@ class _CommunityState extends State<Community> {
           title: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Search".toUpperCase(),
+              Localized.get.communityTitle.toUpperCase(),
               style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
             ),
           ),
@@ -111,7 +112,6 @@ class _CommunityState extends State<Community> {
                     child: TextField(
                       onTap: () {
                         FocusScopeNode currentFocus = FocusScope.of(context);
-
                         if (!currentFocus.hasPrimaryFocus) {
                           currentFocus.unfocus();
                         }
@@ -124,7 +124,7 @@ class _CommunityState extends State<Community> {
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           suffixIcon: Icon(Icons.search, color: Colors.black38),
-                          hintText: "Enter phone or name",
+                          hintText: Localized.get.communitySearchTitle,
                           hintStyle: TextStyles.Caption.apply(
                               color: AppColors.PLACE_HOLDER)),
                     ),

@@ -5,6 +5,7 @@ import 'package:phone_blocker/core/models/responses/collections_response.dart';
 import 'package:phone_blocker/core/models/responses/collections_without_pagination_response.dart';
 import 'package:phone_blocker/core/models/responses/reported_phone_numbers_response.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/my_list/my_collection.dart';
@@ -105,8 +106,8 @@ class _MyListState extends State<MyList> {
   @override
   Widget build(BuildContext context) {
     var title = collectedCollections != null
-        ? "My List (${this.collectedCollections.data.length})"
-        : "My List";
+        ? "${Localized.get.mylistTitle} (${this.collectedCollections.data.length})"
+        : Localized.get.mylistTitle;
     var progressWidget = new Container(
       child: Center(
         child: CircularProgressIndicator(strokeWidth: 5),
@@ -156,7 +157,7 @@ class _MyListState extends State<MyList> {
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         suffixIcon: Icon(Icons.search, color: Colors.black38),
-                        hintText: "Enter phone or name",
+                        hintText: Localized.get.mylistSearch,
                         hintStyle: TextStyles.Caption.apply(
                             color: AppColors.PLACE_HOLDER)),
                   ),
@@ -181,7 +182,7 @@ class _MyListState extends State<MyList> {
                         Padding(
                           padding: const EdgeInsets.only(top: 24.0),
                           child: Text(
-                            "You don't have any collection in list",
+                            Localized.get.mylistNoItems,
                             style: TextStyles.Body1,
                           ),
                         )

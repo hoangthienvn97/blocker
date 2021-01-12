@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/report/success_report.dart';
 import 'package:rate_my_app/rate_my_app.dart';
@@ -19,7 +20,7 @@ class _ReportState extends State<Report> {
   static const platform =
       const MethodChannel('co.vacsolutions.secretbox/callBlocking');
 
-  Future<void> _blockedNumbers(phoneNumber) async {
+  Future<void> _blockNumbers(phoneNumber) async {
     try {
       final result = await platform.invokeMethod('blockNumbers', {
         'numbers': [phoneNumber]
@@ -57,7 +58,7 @@ class _ReportState extends State<Report> {
   _report() {
     Api().postReport(phone, description, id,
         onSuccess: (numberRespone) => {
-              _blockedNumbers(
+              _blockNumbers(
                   int.parse(numberRespone.data.phone.replaceAll("+", ""))),
               _rateMyApp.init().then((_) {
                 if (_rateMyApp.shouldOpenDialog) {
@@ -138,7 +139,7 @@ class _ReportState extends State<Report> {
                             title: Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  "Data will not be saved if you want to leave, please confirm",
+                                  Localized.get.reportDialogTitle,
                                   style: TextStyles.Subtitle1,
                                 )),
                             actions: <Widget>[
@@ -147,7 +148,7 @@ class _ReportState extends State<Report> {
                                   Navigator.pop(context);
                                 },
                                 child: Text(
-                                  "STAY",
+                                  Localized.get.reportDialogStay,
                                   style: TextStyle(
                                       color: Colors.blue, fontSize: 15),
                                 ),
@@ -157,7 +158,7 @@ class _ReportState extends State<Report> {
                                   navigatorPush(context, Home());
                                 },
                                 child: Text(
-                                  "LEAVE",
+                                  Localized.get.reportDialogLeave,
                                   style: TextStyle(
                                       color: Colors.red, fontSize: 15),
                                 ),
@@ -168,7 +169,7 @@ class _ReportState extends State<Report> {
             titleSpacing: -10,
             centerTitle: false,
             title: Text(
-              "Discard",
+              Localized.get.reportDiscard,
               style: TextStyles.Subtitle2,
             ),
             backgroundColor: Colors.white,
@@ -182,7 +183,7 @@ class _ReportState extends State<Report> {
                       height: 30,
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Report a New Phone Number",
+                        Localized.get.reportTitle,
                         style: TextStyles.Headline2.apply(
                             color: AppColors.PRIMARY),
                       )),

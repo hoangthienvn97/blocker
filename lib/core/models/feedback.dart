@@ -10,7 +10,12 @@ class Feedback {
   final DateTime createdAt;
   final DateTime updatedAt;
   Feedback(
-      {this.email, this.id, this.updatedAt, this.content, this.createdAt, this.deletedAt});
+      {this.email,
+      this.id,
+      this.updatedAt,
+      this.content,
+      this.createdAt,
+      this.deletedAt});
   factory Feedback.fromJson(Map<String, dynamic> json) =>
       _$FeedbackFromJson(json);
   Map<String, dynamic> toJson() => _$FeedbackToJson(this);

@@ -32,7 +32,7 @@ class _MoreState extends State<More> {
                 color: Colors.white,
                 width: double.infinity,
                 child: SingleChildScrollView(
-                                  child: Column(
+                  child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 90.0),
@@ -70,7 +70,8 @@ class _MoreState extends State<More> {
                 MoreWidget(
                   image: Image.asset(Assets.ICON_FEEDBACK),
                   name: "feedback",
-                  onPress: () => popToRootAndPushReplacement(context, FeedBack()),
+                  onPress: () =>
+                      popToRootAndPushReplacement(context, FeedBack()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(

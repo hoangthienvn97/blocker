@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/widgets/post_button.dart';
 import '../../core/common/commons.dart';
 import '../post_header.dart';
@@ -114,7 +115,8 @@ class _PostStats extends StatelessWidget {
                   ? Assets.ICON_LIKE_FULL
                   : Assets.ICON_LIKE,
             ),
-            label: "${this.collection.favoritedCount} likes",
+            label:
+                "${this.collection.favoritedCount} ${Localized.get.communityLikes}",
             textColor: this.collection.favorited
                 ? AppColors.PRIMARY
                 : AppColors.BLACK_TEXT,
@@ -129,7 +131,9 @@ class _PostStats extends StatelessWidget {
             image: Image.asset(this.collection.collected
                 ? Assets.ICON_TICK
                 : Assets.ICON_SHIELD),
-            label: collection.collected ? 'Added' : 'Add to list',
+            label: collection.collected
+                ? Localized.get.communityAdded
+                : Localized.get.communityAddToList,
             textColor: this.collection.collected
                 ? AppColors.PRIMARY
                 : AppColors.BLACK_TEXT,

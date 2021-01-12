@@ -40,7 +40,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
           title: Align(
               alignment: Alignment.center,
               child: Text(
-                "Are you sure that  you want to unblock FE Credit Collection",
+                "Are you sure that  you want to unblock ?",
                 style: TextStyles.Subtitle1,
               )),
           actions: <Widget>[

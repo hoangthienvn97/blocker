@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import '../../core/common/commons.dart';
 
@@ -16,7 +17,7 @@ class SortCommunity extends StatelessWidget {
             child: Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  "Community",
+                  Localized.get.communityCommunityTitle,
                   style: TextStyles.Headline3.apply(color: AppColors.PRIMARY),
                 )),
           ),
@@ -32,5 +33,4 @@ class SortCommunity extends StatelessWidget {
       ),
     );
   }
-  
 }

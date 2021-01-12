@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/common/assets.dart';
 import 'package:phone_blocker/core/models/model_common.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/widgets/post_button.dart';
 
 class CollectionActionsView extends StatelessWidget {
@@ -55,7 +56,7 @@ class CollectionActionsView extends StatelessWidget {
                   ? Assets.ICON_LIKE_FULL
                   : Assets.ICON_LIKE,
             ),
-            label: "${this.collection.favoritedCount} likes",
+            label: "${this.collection.favoritedCount} ${Localized.get.communityLikes}",
             textColor: this.collection.favorited
                 ? AppColors.PRIMARY
                 : AppColors.BLACK_TEXT,
