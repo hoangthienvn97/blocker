@@ -24,12 +24,7 @@ class _HomeState extends State<Home> {
   int _selectedTabIndex = 0;
   _changeIndex(int index) {
     if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Report(),
-        ),
-      );
+      popToRootAndPushReplacement(context , Report());
     } else {
       setState(
         () {

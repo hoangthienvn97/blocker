@@ -49,7 +49,7 @@ class _PolicyState extends State<Policy> {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 1,
             child: GestureDetector(
               onTap: () => navigatorPush(context, Login()),
               child: Image.asset(Assets.IMAGE_GOTIT),

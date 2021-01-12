@@ -31,27 +31,29 @@ class _MoreState extends State<More> {
               child: Container(
                 color: Colors.white,
                 width: double.infinity,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 90.0),
-                      child: Image.asset(Assets.IMAGE_AVATAR),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: Text(
-                        "Hoang Thien",
-                        style: TextStyles.Headline2,
+                child: SingleChildScrollView(
+                                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 90.0),
+                        child: Image.asset(Assets.IMAGE_AVATAR),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        "hoangthienvn97@gmail.com",
-                        style: TextStyles.Caption,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Text(
+                          "Hoang Thien",
+                          style: TextStyles.Headline2,
+                        ),
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          "hoangthienvn97@gmail.com",
+                          style: TextStyles.Caption,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -68,7 +70,7 @@ class _MoreState extends State<More> {
                 MoreWidget(
                   image: Image.asset(Assets.ICON_FEEDBACK),
                   name: "feedback",
-                  onPress: () => navigatorPush(context, FeedBack()),
+                  onPress: () => popToRootAndPushReplacement(context, FeedBack()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(

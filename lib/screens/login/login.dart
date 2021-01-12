@@ -1,4 +1,5 @@
 import 'package:apple_sign_in/apple_sign_in.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
@@ -7,7 +8,7 @@ import 'package:phone_blocker/core/common/preferences_keys.dart';
 import 'package:phone_blocker/core/common/preferences_util.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
-import 'package:provider/provider.dart';
+import 'package:phone_blocker/screens/policy/policy.dart';
 import '../../core/common/commons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -48,11 +49,10 @@ class _LoginState extends State<Login> {
   Future<void> _loginGoogle(String googleIdToken) async {
     Api().loginGoogle(googleIdToken,
         onSuccess: (authResponse) => {
-              print(1),
               saveString(
                   key: PreferencesKeys.AccessToken,
                   value: authResponse.data.accessToken),
-              navigatorPush(context, Home())
+              popToRootAndPushReplacement(context, Home())
             },
         onError: (errorResponse) => {print(errorResponse.data.message)});
   }
@@ -68,11 +68,10 @@ class _LoginState extends State<Login> {
         final FacebookAccessToken accessToken = result.accessToken;
         Api().loginFacebook(accessToken.token,
             onSuccess: (authResponse) => {
-                  print(1),
                   saveString(
                       key: PreferencesKeys.AccessToken,
                       value: authResponse.data.accessToken),
-                  navigatorPush(context, Home())
+                  popToRootAndPushReplacement(context, Home())
                 },
             onError: (errorResponse) => {print(errorResponse.data.message)});
         break;
@@ -106,7 +105,7 @@ class _LoginState extends State<Login> {
                   saveString(
                       key: PreferencesKeys.AccessToken,
                       value: authResponse.data.accessToken),
-                  navigatorPush(context, Home())
+                  popToRootAndPushReplacement(context, Home())
                 },
             onError: (errorResponse) => {print(errorResponse.data.message)});
         break;
@@ -207,6 +206,7 @@ class _LoginState extends State<Login> {
                                             color: AppColors.COLOR0),
                                       ),
                                       TextSpan(
+                                        recognizer: new TapGestureRecognizer()..onTap = () => navigatorPush(context, Policy()),
                                         text: ' Term of Service',
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),
@@ -217,6 +217,7 @@ class _LoginState extends State<Login> {
                                             color: AppColors.COLOR0),
                                       ),
                                       TextSpan(
+                                        recognizer: new TapGestureRecognizer()..onTap = () => navigatorPush(context, Policy()),
                                         text: ' Privacy Policy',
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),

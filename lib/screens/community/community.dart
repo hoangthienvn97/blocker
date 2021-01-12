@@ -52,7 +52,8 @@ class _CommunityState extends State<Community> {
   void search(String query) {
     setState(() {
       collections.clear();
-      var x = collectionsResponse.data.items.where((element) => element.name.toLowerCase().contains(query.toLowerCase()));
+      var x = collectionsResponse.data.items.where((element) =>
+          element.name.toLowerCase().contains(query.toLowerCase()));
       collections.addAll(x);
     });
   }
@@ -68,74 +69,86 @@ class _CommunityState extends State<Community> {
     if (isLoading) {
       return progressWidget;
     }
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        brightness: Brightness.light,
-        backgroundColor: AppColors.PRIMARY_LIGHT,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(32),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          brightness: Brightness.light,
+          backgroundColor: AppColors.PRIMARY_LIGHT,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(32),
+            ),
           ),
-        ),
-        title: Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "Search".toUpperCase(),
-            style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
+          title: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Search".toUpperCase(),
+              style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
+            ),
           ),
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(70.0),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 15.0),
-            child: Center(
-              child: Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.rectangle,
-                  borderRadius: new BorderRadius.all(
-                    Radius.circular(32),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: TextField(
-                    controller: searchController,
-                    onChanged: (value) => search(value),
-                    style: new TextStyle(
-                      color: Colors.black,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(70.0),
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 15.0),
+              child: Center(
+                child: Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    borderRadius: new BorderRadius.all(
+                      Radius.circular(32),
                     ),
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        suffixIcon: Icon(Icons.search, color: Colors.black38),
-                        hintText: "Enter phone or name",
-                        hintStyle: TextStyles.Caption.apply(
-                            color: AppColors.PLACE_HOLDER)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: TextField(
+                      onTap: () {
+                        FocusScopeNode currentFocus = FocusScope.of(context);
+
+                        if (!currentFocus.hasPrimaryFocus) {
+                          currentFocus.unfocus();
+                        }
+                      },
+                      controller: searchController,
+                      onChanged: (value) => search(value),
+                      style: new TextStyle(
+                        color: Colors.black,
+                      ),
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          suffixIcon: Icon(Icons.search, color: Colors.black38),
+                          hintText: "Enter phone or name",
+                          hintStyle: TextStyles.Caption.apply(
+                              color: AppColors.PLACE_HOLDER)),
+                    ),
                   ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-      body: Column(
-        children: [
-          SortCommunity(),
-          Expanded(
-            child: Scrollbar(
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: collections.length,
-                itemBuilder: (context, index) =>
-                    PostCommunity(collections[index]),
+        body: Column(
+          children: [
+            SortCommunity(),
+            Expanded(
+              child: Scrollbar(
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  itemCount: collections.length,
+                  itemBuilder: (context, index) =>
+                      PostCommunity(collections[index]),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
