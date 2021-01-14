@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/common/commons.dart';
+import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/report/report.dart';
+import 'package:phone_blocker/widgets/button.dart/button.dart';
 
 class SuccessReport extends StatefulWidget {
   @override
@@ -31,34 +33,36 @@ class _SuccessReportState extends State<SuccessReport> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Column(
-                    children: [
-                      RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          children: <InlineSpan>[
-                            TextSpan(
-                              text: 'Thanks for reporting',
-                              style: TextStyles.Body1,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: RichText(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
                             children: <InlineSpan>[
                               TextSpan(
-                                text: 'a spam phone number',
+                                text: 'Thanks for reporting',
                                 style: TextStyles.Body1,
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: <InlineSpan>[
+                                TextSpan(
+                                  text: 'a spam phone number',
+                                  style: TextStyles.Body1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -72,15 +76,21 @@ class _SuccessReportState extends State<SuccessReport> {
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    GestureDetector(
+                    ButtonSecondary(
                       onTap: () => navigatorPush(context, Report()),
-                      child: Image.asset(Assets.IMAGE_REPORT_OTHER_PHONE),
+                      background: AppColors.PRIMARY,
+                      label: "report another number",
+                      textColor: Colors.white,
+                      borderColor: AppColors.PRIMARY,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16.0),
-                      child: GestureDetector(
-                        onTap: () => navigatorPush(context, Home()),
-                        child: Image.asset(Assets.IMAGE_BACK_HOME),
+                      child: ButtonSecondary(
+                      onTap: () => navigatorPush(context, Home()),
+                      background: Colors.white,
+                      label: "Back home",
+                      textColor: AppColors.PRIMARY,
+                      borderColor: AppColors.PRIMARY,
                       ),
                     ),
                   ],

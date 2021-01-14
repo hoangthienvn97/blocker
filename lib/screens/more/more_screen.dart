@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/login/login.dart';
 import 'package:phone_blocker/screens/more/about_us.dart';
@@ -16,6 +17,23 @@ class _MoreState extends State<More> {
   void logoutUser() async {
     await removeKey(PreferencesKeys.AccessToken);
     await popToRootAndPushReplacement(context, Login());
+  }
+
+  String name = "";
+  String email = "";
+  String avatarUrl;
+
+  _getLocalData() async {
+    name = await readString(PreferencesKeys.Name) ?? "";
+    email = await readString(PreferencesKeys.Email) ?? "";
+    avatarUrl = await readString(PreferencesKeys.AvatarUrl);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getLocalData();
   }
 
   @override
@@ -36,19 +54,21 @@ class _MoreState extends State<More> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 90.0),
-                        child: Image.asset(Assets.IMAGE_AVATAR),
+                        child: avatarUrl != null
+                            ? Image.network(avatarUrl)
+                            : Image.asset(Assets.IMAGE_AVATAR),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0),
                         child: Text(
-                          "Hoang Thien",
+                          name,
                           style: TextStyles.Headline2,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
                         child: Text(
-                          "hoangthienvn97@gmail.com",
+                          email,
                           style: TextStyles.Caption,
                         ),
                       )
@@ -63,26 +83,26 @@ class _MoreState extends State<More> {
               child: Column(children: [
                 MoreWidget(
                   image: Image.asset(Assets.ICON_ABOUT_US),
-                  name: "about us",
+                  name: Localized.get.moreAboutUs,
                   onPress: () => navigatorPush(context, AboutUs()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(
                   image: Image.asset(Assets.ICON_FEEDBACK),
-                  name: "feedback",
+                  name: Localized.get.moreFeedback,
                   onPress: () =>
-                      popToRootAndPushReplacement(context, FeedBack()),
+                      navigatorPush(context, FeedBack()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(
                   image: Image.asset(Assets.ICON_RATE),
-                  name: "rate the app",
+                  name: Localized.get.moreRateTheApp,
                   onPress: null,
                 ),
                 SizedBox(height: 8),
                 MoreWidget(
                   image: Image.asset(Assets.ICON_LOGOUT),
-                  name: "log out",
+                  name: Localized.get.moreLogOut,
                   onPress: () => logoutUser(),
                 ),
               ]),
@@ -97,17 +117,17 @@ class _MoreState extends State<More> {
                       text: TextSpan(
                         children: <InlineSpan>[
                           TextSpan(
-                            text: ' Term of Service',
+                            text: Localized.get.loginDescription3,
                             style: TextStyles.Subtitle1.apply(
                                 color: AppColors.PRIMARY),
                           ),
                           TextSpan(
-                            text: ' and',
+                            text: Localized.get.loginDescription4,
                             style: TextStyles.Subtitle1.apply(
                                 color: AppColors.COLOR0),
                           ),
                           TextSpan(
-                            text: ' Privacy Policy',
+                            text: Localized.get.loginDescription5,
                             style: TextStyles.Subtitle1.apply(
                                 color: AppColors.PRIMARY),
                           ),
@@ -117,7 +137,7 @@ class _MoreState extends State<More> {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        "Version 1.0",
+                        Localized.get.moreVersion,
                         style: TextStyles.Body2.apply(
                             color: AppColors.PLACE_HOLDER),
                       ),

@@ -64,11 +64,65 @@ abstract class BaseLocalized {
 
   String get reportDialogLeave;
 
+  String get reportAddToCollection;
+
+  String get reportDescription;
+
+  String get reportCharacters;
+
+  String get reportAddDescription;
+
+  String get reportPhoneNumber;
+
   String get mylistTitle;
 
   String get mylistSearch;
 
   String get mylistNoItems;
+
+  String get mylistUnblock;
+
+  String get mylistViewDetail;
+
+  String get moreAboutUs;
+
+  String get moreFeedback;
+
+  String get moreRateTheApp;
+
+  String get moreLogOut;
+
+  String get moreVersion;
+
+  String get feedbackTitle;
+
+  String get feedbackText;
+
+  String get feedbackRequied;
+
+  String get feedbackEnterEmail;
+
+  String get feedbackEnterFeedback;
+
+  String get feedbackBack;
+
+  String get myCollectionPeopleReport;
+
+  String get myCollectionMyCollection;
+
+  String get myCollectionText;
+
+  String get myCollectionDialogTitle;
+
+  String get myCollectionDialogCancel;
+
+  String get update;
+
+  String get updateMinutes;
+
+  String get updateHours;
+
+  String get updateDays;
 }
 
 class VILocalized extends BaseLocalized {
@@ -101,7 +155,7 @@ class VILocalized extends BaseLocalized {
   String get introSetupStep41 => 'Bật tất cả';
 
   @override
-  String get introSetupStep42 => ' lựa chọn [Tên App]';
+  String get introSetupStep42 => ' lựa chọn [Tên ứng dụng]';
 
   @override
   String get loginTitle => 'Kế hoạch cho cuộc gọi của bạn';
@@ -125,7 +179,7 @@ class VILocalized extends BaseLocalized {
   String get communityTitle => 'TÌM KIẾM';
 
   @override
-  String get communitySearchTitle => 'Enter tên';
+  String get communitySearchTitle => 'Nhập tên';
 
   @override
   String get communityCommunityTitle => 'Cộng đồng';
@@ -137,7 +191,7 @@ class VILocalized extends BaseLocalized {
   String get communityAdded => 'Đã thêm';
 
   @override
-  String get communityAddToList => 'Thêm vào danh sách';
+  String get communityAddToList => 'Thêm danh sách';
 
   @override
   String get homeCommunity => 'Cộng đồng';
@@ -162,10 +216,25 @@ class VILocalized extends BaseLocalized {
       'Dữ liệu sẽ không được lưu lại nếu bạn thoát, bạn có xác nhận thoát?';
 
   @override
-  String get reportDialogStay => 'Ở LẠI';
+  String get reportDialogStay => 'Tiếp tục';
 
   @override
-  String get reportDialogLeave => 'RỜI ĐI';
+  String get reportDialogLeave => 'Thoát';
+
+  @override
+  String get reportAddToCollection => 'Thêm vào danh sách';
+
+  @override
+  String get reportDescription => 'Mô tả';
+
+  @override
+  String get reportCharacters => 'Kí tự';
+
+  @override
+  String get reportAddDescription => 'Nhập mô tả';
+
+  @override
+  String get reportPhoneNumber => 'Số điện thoại';
 
   @override
   String get mylistTitle => 'Danh Sách';
@@ -175,6 +244,75 @@ class VILocalized extends BaseLocalized {
 
   @override
   String get mylistNoItems => 'Bạn chưa có danh sách chặn nào';
+
+  @override
+  String get mylistUnblock => 'Bỏ chặn';
+
+  @override
+  String get mylistViewDetail => 'Danh sách chặn chi tiết';
+
+  @override
+  String get moreAboutUs => 'Thông tin về chúng tôi';
+
+  @override
+  String get moreFeedback => 'Phản hồi';
+
+  @override
+  String get moreRateTheApp => 'Đánh giá ứng dụng';
+
+  @override
+  String get moreLogOut => 'Thoát';
+
+  @override
+  String get moreVersion => 'Phiên bản 1.0';
+
+  @override
+  String get feedbackTitle => 'Phản Hồi';
+
+  @override
+  String get feedbackText =>
+      'Chúng tôi không ngừng phát triển ứng dụng hoàn thiện hơn';
+
+  @override
+  String get feedbackRequied => 'Bắt buộc';
+
+  @override
+  String get feedbackEnterEmail => 'Nhập Email';
+
+  @override
+  String get feedbackEnterFeedback => 'Nhập phản hồi';
+
+  @override
+  String get feedbackBack => 'Quay lại';
+
+  @override
+  String get myCollectionPeopleReport => 'người đã bị chặn';
+
+  @override
+  String get myCollectionMyCollection => 'Danh sách của tôi';
+
+  @override
+  String get myCollectionText =>
+      'Đây là danh sách các số điện thoại bạn đã báo cáo là spam';
+
+  @override
+  String get myCollectionDialogTitle =>
+      'Bạn có chắc rằng bạn muốn bỏ chặn không?';
+
+  @override
+  String get myCollectionDialogCancel => 'huỷ';
+
+  @override
+  String get update => 'Cập nhật';
+
+  @override
+  String get updateMinutes => 'phút trước';
+
+  @override
+  String get updateHours => 'giờ trước';
+
+  @override
+  String get updateDays => 'ngày trước';
 }
 
 class ENLocalized extends BaseLocalized {
@@ -273,6 +411,21 @@ class ENLocalized extends BaseLocalized {
   String get reportDialogLeave => 'LEAVE';
 
   @override
+  String get reportAddToCollection => 'Add to collection';
+
+  @override
+  String get reportDescription => 'Description';
+
+  @override
+  String get reportCharacters => 'characters';
+
+  @override
+  String get reportAddDescription => 'Type to add description';
+
+  @override
+  String get reportPhoneNumber => 'Phone Number';
+
+  @override
   String get mylistTitle => 'My List';
 
   @override
@@ -280,6 +433,75 @@ class ENLocalized extends BaseLocalized {
 
   @override
   String get mylistNoItems => 'You don’t have any collection in list';
+
+  @override
+  String get mylistUnblock => 'UnBlock';
+
+  @override
+  String get mylistViewDetail => 'View Details';
+
+  @override
+  String get moreAboutUs => 'about us';
+
+  @override
+  String get moreFeedback => 'feedback';
+
+  @override
+  String get moreRateTheApp => 'rate the app';
+
+  @override
+  String get moreLogOut => 'log out';
+
+  @override
+  String get moreVersion => 'Version 1.0';
+
+  @override
+  String get feedbackTitle => 'Feedback';
+
+  @override
+  String get feedbackText =>
+      'Data will not be saved if you want to leave, please confirm';
+
+  @override
+  String get feedbackRequied => 'required';
+
+  @override
+  String get feedbackEnterEmail => 'Enter Your Email';
+
+  @override
+  String get feedbackEnterFeedback => 'Type to add feedback';
+
+  @override
+  String get feedbackBack => 'Back';
+
+  @override
+  String get myCollectionPeopleReport => 'people has reported';
+
+  @override
+  String get myCollectionMyCollection => 'My Collection';
+
+  @override
+  String get myCollectionText =>
+      'This is a list of your reported spam phone numbers';
+
+  @override
+  String get myCollectionDialogTitle =>
+      'Are you sure that  you want to unblock ?';
+
+  @override
+  String get myCollectionDialogCancel => 'CANCEL';
+
+  @override
+  String get update => 'update';
+
+  @override
+  String get updateMinutes => 'minutes ago';
+
+  @override
+  String get updateHours => 'hours ago';
+
+  @override
+  String get updateDays => 'days ago';
 }
 
 class Localized {

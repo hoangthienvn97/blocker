@@ -117,76 +117,81 @@ class _MyListState extends State<MyList> {
     if (isLoading) {
       return progressWidget;
     }
-    return Scaffold(
-      appBar: AppBar(
-        brightness: Brightness.light,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            title,
-            style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          brightness: Brightness.light,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          title: Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              title,
+              style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
+            ),
           ),
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(70.0),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 15.0),
-            child: Center(
-              child: Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.PLACE_HOLDER),
-                  color: Colors.white,
-                  shape: BoxShape.rectangle,
-                  borderRadius: new BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: TextField(
-                    controller: searchController,
-                    onChanged: (value) => search(value),
-                    style: new TextStyle(
-                      color: Colors.black,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(70.0),
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 15.0),
+              child: Center(
+                child: Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.PLACE_HOLDER),
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    borderRadius: new BorderRadius.all(
+                      Radius.circular(8),
                     ),
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        suffixIcon: Icon(Icons.search, color: Colors.black38),
-                        hintText: Localized.get.mylistSearch,
-                        hintStyle: TextStyles.Caption.apply(
-                            color: AppColors.PLACE_HOLDER)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: TextField(
+                      controller: searchController,
+                      onChanged: (value) => search(value),
+                      style: new TextStyle(
+                        color: Colors.black,
+                      ),
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          suffixIcon: Icon(Icons.search, color: Colors.black38),
+                          hintText: Localized.get.mylistSearch,
+                          hintStyle: TextStyles.Caption.apply(
+                              color: AppColors.PLACE_HOLDER)),
+                    ),
                   ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: _isNothingToShow()
+        body: _isNothingToShow()
             ? Container(
                 child: Column(children: [
                   Expanded(
                     flex: 1,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 64.0),
-                          child: Image.asset(Assets.IMAGE_CHECK_LIST),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 24.0),
-                          child: Text(
-                            Localized.get.mylistNoItems,
-                            style: TextStyles.Body1,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 64.0),
+                            child: Image.asset(Assets.IMAGE_CHECK_LIST),
                           ),
-                        )
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 24.0),
+                            child: Text(
+                              Localized.get.mylistNoItems,
+                              style: TextStyles.Body1,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
@@ -228,6 +233,11 @@ class _MyListState extends State<MyList> {
                           data: CollectionWithPagination(items: collections),
                         ),
                         onItemCountChanged: () => {this.setState(() {})},
+                        onCollectionUnBlocked: (index) => {
+                          this.setState(() {
+                            collectedCollections.data.removeAt(index);
+                          })
+                        },
                       ),
                     )
                   ].where((element) => element != null).toList(),

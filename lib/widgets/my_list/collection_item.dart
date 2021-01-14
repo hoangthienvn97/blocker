@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/models/model_common.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/widgets/collections/collection_actions_view.dart';
 import 'package:phone_blocker/widgets/collections/collection_info_view.dart';
@@ -68,7 +69,7 @@ class _CollectionItemState extends State<CollectionItem> {
           title: Align(
               alignment: Alignment.center,
               child: Text(
-                "Are you sure that  you want to unblock FE Credit Collection",
+                Localized.get.myCollectionDialogTitle,
                 style: TextStyles.Subtitle1,
               )),
           actions: <Widget>[
@@ -77,7 +78,7 @@ class _CollectionItemState extends State<CollectionItem> {
                 Navigator.pop(context);
               },
               child: Text(
-                "CANCEL",
+                Localized.get.myCollectionDialogCancel,
                 style: TextStyle(color: Colors.blue, fontSize: 15),
               ),
             ),
@@ -89,7 +90,7 @@ class _CollectionItemState extends State<CollectionItem> {
                 Navigator.pop(context);
               },
               child: Text(
-                "UNBLOCK",
+                Localized.get.mylistUnblock,
                 style: TextStyle(color: Colors.red, fontSize: 15),
               ),
             ),

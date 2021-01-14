@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/commons.dart';
+import 'package:phone_blocker/core/common/convert_time.dart';
 import 'package:phone_blocker/core/models/phone_data_detail.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/widgets/post_button.dart';
 
@@ -40,7 +42,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
           title: Align(
               alignment: Alignment.center,
               child: Text(
-                "Are you sure that  you want to unblock ?",
+                Localized.get.myCollectionDialogTitle,
                 style: TextStyles.Subtitle1,
               )),
           actions: <Widget>[
@@ -49,7 +51,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
                 Navigator.pop(context);
               },
               child: Text(
-                "CANCEL",
+                Localized.get.myCollectionDialogCancel,
                 style: TextStyle(color: Colors.blue, fontSize: 15),
               ),
             ),
@@ -61,7 +63,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
                 Navigator.pop(context);
               },
               child: Text(
-                "UNBLOCK",
+                Localized.get.mylistUnblock,
                 style: TextStyle(color: Colors.red, fontSize: 15),
               ),
             ),
@@ -104,7 +106,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
                           child: Padding(
                             padding: const EdgeInsets.only(right: 16.0),
                             child: Text(
-                              "Update ${DateTime.now().hour - widget.phoneDataDetail.updatedAt.hour} hours ago",
+                              diffTimeToNow(widget.phoneDataDetail.updatedAt),
                               style: TextStyles.Caption.apply(
                                   color: AppColors.PLACE_HOLDER),
                             ),
@@ -134,7 +136,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
                         children: [
                           Image.asset(Assets.ICON_COMMUNITY_PEOPLE),
                           Text(
-                            " ${widget.phoneDataDetail.phone.numberOfReporters} people has reported",
+                            " ${widget.phoneDataDetail.phone.numberOfReporters} ${Localized.get.myCollectionPeopleReport}",
                             style: TextStyles.Caption.apply(
                                 color: AppColors.Orange),
                           )
@@ -145,7 +147,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
                   Divider(),
                   PostButton(
                     image: Image.asset(Assets.ICON_TRASH),
-                    label: "Unblock",
+                    label: Localized.get.mylistUnblock,
                     onTap: () => _unblock(widget.phoneDataDetail),
                     background: Colors.white,
                   )

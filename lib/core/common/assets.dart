@@ -6,9 +6,9 @@ class Assets {
   static const String ICON_SETTING = './assets/community/ic_setting.png';
   static const String ICON_LOGO_LOGIN = './assets/login/logo.png';
   static const String ICON_ELLIPSE_LOGIN = './assets/login/ellipse.png';
-  static const String ICON_GOOGLE_LOGIN = './assets/login/google.png';
-  static const String ICON_FACEBOOK_LOGIN = './assets/login/facebook.png';
-  static const String ICON_APPLE_LOGIN = './assets/login/apple.png';
+  static const String ICON_GOOGLE_LOGIN = './assets/login/ic_google.png';
+  static const String ICON_FACEBOOK_LOGIN = './assets/login/ic_facebook.png';
+  static const String ICON_APPLE_LOGIN = './assets/login/ic_apple.png';
   static const String ICON_DISCARD = './assets/report/ic_discard.png';
   static const String ICON_LIKE_FULL = './assets/community/ic_like_full.png';
   static const String ICON_LIKE = './assets/community/ic_like.png';

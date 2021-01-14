@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:phone_blocker/resources/localizations.dart';
@@ -37,8 +38,11 @@ class _MyAppState extends State<MyApp> {
         localizationsDelegates: [
           const CustomLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          DefaultCupertinoLocalizations.delegate
         ],
         home: SplashScreen());
   }
 }
+

@@ -5,8 +5,9 @@ import 'package:phone_blocker/core/common/navigator_push.dart';
 import 'package:phone_blocker/core/common/toast.dart';
 import 'package:phone_blocker/core/models/responses/feedback_response.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
-import 'package:phone_blocker/screens/more/more_screen.dart';
+import 'package:phone_blocker/widgets/button.dart/button.dart';
 
 import '../home.dart';
 
@@ -68,7 +69,7 @@ class _FeedBackState extends State<FeedBack> {
                           title: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "Data will not be saved if you want to leave, please confirm",
+                                Localized.get.reportDialogTitle,
                                 style: TextStyles.Subtitle1,
                               )),
                           actions: <Widget>[
@@ -77,17 +78,17 @@ class _FeedBackState extends State<FeedBack> {
                                 Navigator.pop(context);
                               },
                               child: Text(
-                                "STAY",
+                                Localized.get.reportDialogStay,
                                 style:
                                     TextStyle(color: Colors.blue, fontSize: 15),
                               ),
                             ),
                             FlatButton(
                               onPressed: () {
-                                navigatorPush(context, Home());
+                                popToRootAndPushReplacement(context, Home());
                               },
                               child: Text(
-                                "LEAVE",
+                                Localized.get.reportDialogLeave,
                                 style:
                                     TextStyle(color: Colors.red, fontSize: 15),
                               ),
@@ -102,7 +103,7 @@ class _FeedBackState extends State<FeedBack> {
           title: Align(
               alignment: Alignment.topLeft,
               child: Text(
-                "back",
+                Localized.get.feedbackBack,
                 style: TextStyles.Subtitle2,
               )),
           bottom: PreferredSize(
@@ -114,7 +115,7 @@ class _FeedBackState extends State<FeedBack> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                    "Feedback",
+                    Localized.get.feedbackTitle,
                     style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
                   ),
                 ),
@@ -136,7 +137,7 @@ class _FeedBackState extends State<FeedBack> {
                       child: Column(
                         children: [
                           Text(
-                            "By collecting your feedback, we can keep improving our app.",
+                            Localized.get.feedbackText,
                             style: TextStyles.Body2,
                           ),
                           Padding(
@@ -160,7 +161,9 @@ class _FeedBackState extends State<FeedBack> {
                                           style: new TextStyle(
                                               fontWeight: FontWeight.w500),
                                         ),
-                                        new TextSpan(text: '(required)'),
+                                        new TextSpan(
+                                            text:
+                                                '(${Localized.get.feedbackRequied})'),
                                       ],
                                     ),
                                   ),
@@ -176,7 +179,8 @@ class _FeedBackState extends State<FeedBack> {
                                     },
                                     autocorrect: true,
                                     decoration: InputDecoration(
-                                      hintText: 'Enter Your Email ',
+                                      hintText:
+                                          Localized.get.feedbackEnterEmail,
                                       hintStyle: TextStyle(color: Colors.grey),
                                       filled: true,
                                       fillColor: Colors.white70,
@@ -206,11 +210,14 @@ class _FeedBackState extends State<FeedBack> {
                                         ),
                                         children: <TextSpan>[
                                           new TextSpan(
-                                            text: 'Feedback ',
+                                            text:
+                                                '${Localized.get.feedbackTitle} ',
                                             style: new TextStyle(
                                                 fontWeight: FontWeight.w500),
                                           ),
-                                          new TextSpan(text: '(required)'),
+                                          new TextSpan(
+                                              text:
+                                                  '(${Localized.get.feedbackRequied})'),
                                         ],
                                       ),
                                     ),
@@ -231,7 +238,7 @@ class _FeedBackState extends State<FeedBack> {
                                 })
                               },
                               decoration: InputDecoration(
-                                hintText: 'Type to add feedback',
+                                hintText: Localized.get.feedbackEnterFeedback,
                                 hintStyle: TextStyle(color: Colors.grey),
                                 filled: true,
                                 fillColor: Colors.white70,
@@ -250,41 +257,17 @@ class _FeedBackState extends State<FeedBack> {
                       ),
                     ),
                   ),
-                  Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                          child: GestureDetector(
-                            onTap: () => _isAllValid() ? _feedback() : null,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: _isAllValid()
-                                      ? AppColors.PRIMARY
-                                      : AppColors.LIGHT_BLUE,
-                                  style: BorderStyle.solid,
-                                  width: 1.0,
-                                ),
-                                color: _isAllValid()
-                                    ? AppColors.PRIMARY
-                                    : AppColors.LIGHT_BLUE,
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Center(
-                                    child: Text("Send Feedback".toUpperCase(),
-                                        style: TextStyles.Button.apply(
-                                            color: Colors.white)),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      )),
+                  ButtonSecondary(
+                    onTap: () => _isAllValid() ? _feedback() : null,
+                    background: _isAllValid()
+                        ? AppColors.PRIMARY
+                        : AppColors.LIGHT_BLUE,
+                    label: "send feedback",
+                    textColor: Colors.white,
+                    borderColor: _isAllValid()
+                        ? AppColors.PRIMARY
+                        : AppColors.LIGHT_BLUE,
+                  ),
                 ],
               ),
             ),

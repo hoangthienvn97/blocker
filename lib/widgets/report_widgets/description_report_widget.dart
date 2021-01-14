@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 
 class DescriptionReport extends StatefulWidget {
@@ -36,7 +37,8 @@ class _DescriptionReportState extends State<DescriptionReport> {
               flex: 1,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Description", style: TextStyles.Subtitle2),
+                child: Text(Localized.get.reportDescription,
+                    style: TextStyles.Subtitle2),
               ),
             ),
             Expanded(
@@ -46,7 +48,7 @@ class _DescriptionReportState extends State<DescriptionReport> {
                 child: Padding(
                     padding: const EdgeInsets.only(right: 25),
                     child: Text(
-                      "$charLength/100 characters",
+                      "$charLength/100 ${Localized.get.reportCharacters}",
                       style: TextStyles.Caption.apply(
                           color: AppColors.PLACE_HOLDER),
                     )),
@@ -70,7 +72,7 @@ class _DescriptionReportState extends State<DescriptionReport> {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
               ),
-              hintText: "Type to add description",
+              hintText: Localized.get.reportAddDescription,
             ),
           ),
         ),

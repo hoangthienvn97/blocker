@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
+import 'package:phone_blocker/core/common/convert_time.dart';
 
 class PostHeader extends StatelessWidget {
   final Collection collection;
@@ -40,7 +41,7 @@ class PostHeader extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Text(
-                      "Update ${DateTime.now().difference(this.collection.updatedAt).inDays} days ago",
+                      diffTimeToNow(this.collection.updatedAt),
                       style: TextStyles.Caption.apply(
                           color: AppColors.PLACE_HOLDER),
                     ),

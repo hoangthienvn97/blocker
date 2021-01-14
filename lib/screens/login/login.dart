@@ -53,6 +53,17 @@ class _LoginState extends State<Login> {
               saveString(
                   key: PreferencesKeys.AccessToken,
                   value: authResponse.data.accessToken),
+              saveString(
+                key: PreferencesKeys.Name,
+                value:
+                    "${authResponse.data.user.lastName} ${authResponse.data.user.firstName}",
+              ),
+              saveString(
+                  key: PreferencesKeys.Email,
+                  value: authResponse.data.user.email),
+              saveString(
+                  key: PreferencesKeys.AvatarUrl,
+                  value: authResponse.data.user.avatar),
               popToRootAndPushReplacement(context, Home())
             },
         onError: (errorResponse) => {print(errorResponse.data.message)});

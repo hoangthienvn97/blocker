@@ -3,6 +3,7 @@ import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/assets.dart';
 import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/core/models/responses/collections_response.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 
 class AddToCollectionReport extends StatefulWidget {
   Function(bool, int) onOptionChanged;
@@ -44,7 +45,7 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            "Add to collection",
+            Localized.get.reportAddToCollection,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),

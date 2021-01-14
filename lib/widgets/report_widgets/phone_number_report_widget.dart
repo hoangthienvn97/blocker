@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/assets.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 
 class PhoneNumberReport extends StatefulWidget {
@@ -48,10 +49,10 @@ class _PhoneNumberReportState extends State<PhoneNumberReport> {
               ),
               children: <TextSpan>[
                 new TextSpan(
-                  text: 'Phone Number ',
+                  text: '${Localized.get.reportPhoneNumber} ',
                   style: new TextStyle(fontWeight: FontWeight.w500),
                 ),
-                new TextSpan(text: '(required)'),
+                new TextSpan(text: '(${Localized.get.feedbackRequied})'),
               ],
             ),
           ),

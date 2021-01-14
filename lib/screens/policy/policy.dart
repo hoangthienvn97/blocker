@@ -3,6 +3,7 @@ import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/login/login.dart';
+import 'package:phone_blocker/widgets/button.dart/button.dart';
 
 class Policy extends StatefulWidget {
   @override
@@ -48,13 +49,16 @@ class _PolicyState extends State<Policy> {
               ),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: GestureDetector(
+          Padding(
+            padding: const EdgeInsets.only(bottom : 16.0),
+            child: ButtonSecondary(
               onTap: () => navigatorPush(context, Login()),
-              child: Image.asset(Assets.IMAGE_GOTIT),
+              background: AppColors.PRIMARY,
+              label: "GOT IT",
+              textColor: Colors.white,
+              borderColor: AppColors.PRIMARY
             ),
-          ),
+          )
         ],
       ),
     );

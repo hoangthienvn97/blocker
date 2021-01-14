@@ -6,7 +6,10 @@ class CollectionsView extends StatefulWidget {
   CollectionsResponse collectedCollections;
   Function onItemCountChanged;
 
-  CollectionsView(this.collectedCollections, {this.onItemCountChanged});
+  Function(int) onCollectionUnBlocked;
+
+  CollectionsView(this.collectedCollections,
+      {this.onItemCountChanged, this.onCollectionUnBlocked});
 
   @override
   _CollectionsViewState createState() => _CollectionsViewState();
@@ -16,6 +19,11 @@ class _CollectionsViewState extends State<CollectionsView> {
   _onCollectionUnblocked(Collection collection) {
     var index = widget.collectedCollections.data.items
         .indexWhere((item) => item.id == collection.id);
+
+    if (widget.onCollectionUnBlocked != null) {
+      widget.onCollectionUnBlocked.call(index);
+    }
+
     setState(() {
       widget.collectedCollections.data.items.removeAt(index);
       if (widget.onItemCountChanged != null) {

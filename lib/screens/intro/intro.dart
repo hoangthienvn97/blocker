@@ -3,6 +3,7 @@ import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/login/login.dart';
+import 'package:phone_blocker/widgets/button.dart/button.dart';
 import 'package:phone_blocker/widgets/intro_widgets/intro_setting_widget.dart';
 import '../../core/common/commons.dart';
 
@@ -121,10 +122,16 @@ class _IntroBlockState extends State<IntroBlock> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () => navigatorPush(context, Login()),
-            child: Image.asset(Assets.IMAGE_OPEN_SETTING_INTRO),
-          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom : 16.0),
+            child: ButtonSecondary(
+              onTap: () => navigatorPush(context, Login()),
+              background: AppColors.PRIMARY,
+              label: "OPEN SETTING",
+              textColor: Colors.white,
+              borderColor: AppColors.PRIMARY,
+            ),
+          )
         ],
       ),
     );

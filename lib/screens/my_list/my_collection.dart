@@ -4,6 +4,7 @@ import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/models/phone_data_detail.dart';
 import 'package:phone_blocker/core/models/responses/phone_detail_response.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/widgets/my_collection_widgets/my_collection_widget.dart';
 
@@ -17,7 +18,7 @@ class _MyCollectionState extends State<MyCollection> {
 
   TextEditingController searchController = TextEditingController();
 
-  List<PhoneDataDetail> phoneDetail = List();
+  List<PhoneDataDetail> phoneDetails = List();
 
   @override
   void initState() {
@@ -26,26 +27,27 @@ class _MyCollectionState extends State<MyCollection> {
         onSuccess: (response) => {
               this.setState(() {
                 this.phoneDetailResponse = response;
+                phoneDetails.clear();
+                phoneDetails.addAll(phoneDetailResponse.data);
               })
             },
         onError: (error) => {print(error)});
 
-        _blockedNumbers();
+    _blockedNumbers();
   }
 
   _unblocked(PhoneDataDetail phoneDataDetail) {
     setState(() {
-      phoneDetailResponse.data
-          .removeWhere((element) => element.id == phoneDataDetail.id);
+      phoneDetails.removeWhere((element) => element.id == phoneDataDetail.id);
     });
   }
 
   void search(String query) {
     setState(() {
-      phoneDetail.clear();
-      var x = phoneDetail.where(
-          (element) => element.phone.toString().contains(query.toLowerCase()));
-      phoneDetail.addAll(x);
+      phoneDetails.clear();
+      var x = phoneDetailResponse.data.where((element) =>
+          element.phone.phone.toString().contains(query.toLowerCase()));
+      phoneDetails.addAll(x);
     });
   }
 
@@ -62,65 +64,69 @@ class _MyCollectionState extends State<MyCollection> {
 
   @override
   Widget build(BuildContext context) {
-    var title = phoneDetailResponse != null
-        ? "My Collection (${this.phoneDetailResponse.data.length})"
-        : "My Collection";
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        brightness: Brightness.light,
-        backgroundColor: Colors.white,
-        title: Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            title,
-            style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
+    var title = phoneDetails.length > 0
+        ? "${Localized.get.myCollectionMyCollection} (${this.phoneDetails.length})"
+        : "${Localized.get.myCollectionMyCollection}";
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          brightness: Brightness.light,
+          backgroundColor: Colors.white,
+          title: Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              title,
+              style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
+            ),
           ),
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(70.0),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 15.0),
-            child: Center(
-              child: Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.PLACE_HOLDER),
-                  color: Colors.white,
-                  shape: BoxShape.rectangle,
-                  borderRadius: new BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: TextField(
-                    onChanged: (value) => search(value),
-                    controller: searchController,
-                    style: new TextStyle(
-                      color: Colors.black,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(70.0),
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 15.0),
+              child: Center(
+                child: Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.PLACE_HOLDER),
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    borderRadius: new BorderRadius.all(
+                      Radius.circular(8),
                     ),
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        suffixIcon: Icon(Icons.search, color: Colors.black38),
-                        hintText: "Enter phone or name",
-                        hintStyle: TextStyles.Caption.apply(
-                            color: AppColors.PLACE_HOLDER)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: TextField(
+                      onChanged: (value) => search(value),
+                      controller: searchController,
+                      style: new TextStyle(
+                        color: Colors.black,
+                      ),
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          suffixIcon: Icon(Icons.search, color: Colors.black38),
+                          hintText: Localized.get.communitySearchTitle,
+                          hintStyle: TextStyles.Caption.apply(
+                              color: AppColors.PLACE_HOLDER)),
+                    ),
                   ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-      body: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemCount:
-            phoneDetailResponse != null ? phoneDetailResponse.data.length : 0,
-        itemBuilder: (context, index) =>
-            MyCollectionWidget(phoneDetailResponse.data[index], _unblocked),
+        body: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          itemCount: phoneDetails.length,
+          itemBuilder: (context, index) =>
+              MyCollectionWidget(phoneDetails[index], _unblocked),
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/core/common/convert_time.dart';
 import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
@@ -11,7 +12,7 @@ class CollectionInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var lastUpdateTime = collection.updatedAt != null
-        ? "Update ${DateTime.now().hour - this.collection.updatedAt.hour} hours ago"
+        ? diffTimeToNow(this.collection.updatedAt)
         : "";
     return Row(
       children: [
