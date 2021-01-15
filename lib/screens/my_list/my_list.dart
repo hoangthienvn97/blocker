@@ -9,6 +9,7 @@ import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/my_list/my_collection.dart';
+import 'package:phone_blocker/widgets/button.dart/button.dart';
 import 'package:phone_blocker/widgets/my_list/collections_view.dart';
 import 'package:phone_blocker/widgets/my_list/my_collection_view.dart';
 
@@ -175,7 +176,7 @@ class _MyListState extends State<MyList> {
             ? Container(
                 child: Column(children: [
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -187,7 +188,8 @@ class _MyListState extends State<MyList> {
                             padding: const EdgeInsets.only(top: 24.0),
                             child: Text(
                               Localized.get.mylistNoItems,
-                              style: TextStyles.Body1,
+                              style:
+                                  TextStyles.Body1,
                             ),
                           )
                         ],
@@ -195,14 +197,17 @@ class _MyListState extends State<MyList> {
                     ),
                   ),
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 40.0),
-                        child: GestureDetector(
+                        padding: const EdgeInsets.only(top: 40.0, right: 20 , left: 20),
+                        child: ButtonSecondary(
                           onTap: () => navigatorPush(context, Home()),
-                          child: Image.asset(Assets.IMAGE_BROWSER),
+                          background: AppColors.PRIMARY,
+                          label: "Browser",
+                          textColor: Colors.white,
+                          borderColor: AppColors.PRIMARY,
                         ),
                       ),
                     ),
@@ -211,36 +216,39 @@ class _MyListState extends State<MyList> {
               )
             : Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: Column(
-                  children: [
-                    _hasMyCollection()
-                        ? MyCollectionView(
-                            lastUpdateTime: _lastUpdateTime(),
-                            onViewDetailsClick: () => {
-                              Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => MyCollection()))
-                                  .then((value) => {_refresh()})
-                            },
-                          )
-                        : null,
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: CollectionsView(
-                        CollectionsResponse(
-                          success: true,
-                          data: CollectionWithPagination(items: collections),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      _hasMyCollection()
+                          ? MyCollectionView(
+                              lastUpdateTime: _lastUpdateTime(),
+                              onViewDetailsClick: () => {
+                                Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                MyCollection()))
+                                    .then((value) => {_refresh()})
+                              },
+                            )
+                          : null,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: CollectionsView(
+                          CollectionsResponse(
+                            success: true,
+                            data: CollectionWithPagination(items: collections),
+                          ),
+                          onItemCountChanged: () => {this.setState(() {})},
+                          onCollectionUnBlocked: (index) => {
+                            this.setState(() {
+                              collectedCollections.data.removeAt(index);
+                            })
+                          },
                         ),
-                        onItemCountChanged: () => {this.setState(() {})},
-                        onCollectionUnBlocked: (index) => {
-                          this.setState(() {
-                            collectedCollections.data.removeAt(index);
-                          })
-                        },
-                      ),
-                    )
-                  ].where((element) => element != null).toList(),
+                      )
+                    ].where((element) => element != null).toList(),
+                  ),
                 ),
               ),
       ),

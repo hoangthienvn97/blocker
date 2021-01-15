@@ -19,7 +19,7 @@ class Api {
   void close() => client.close();
   openClient() => client = http.Client();
 
-  static const String BaseApiUrl = "https://1afbf422c16e.ngrok.io/api/v1";
+  static const String BaseApiUrl = "https://callblocker.novahub.vn/api/v1";
 
   static final Api _instacne = Api._internal();
 

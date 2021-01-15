@@ -10,6 +10,7 @@ import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/policy/policy.dart';
+import 'package:phone_blocker/widgets/button.dart/button.dart';
 import '../../core/common/commons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -249,21 +250,36 @@ class _LoginState extends State<Login> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 24),
-                          child: GestureDetector(
-                              onTap: () => _handleSignIn(),
-                              child: Image.asset(Assets.ICON_GOOGLE_LOGIN)),
+                          child: ButtonLogin(
+                            label: "LOGIN WITH GOOGLE",
+                            onTap: () => _handleSignIn(),
+                            textColor: Colors.black,
+                            background: Colors.white,
+                            borderColor: Colors.white,
+                            image: Image.asset(Assets.ICON_GOOGLE_LOGIN),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
-                          child: GestureDetector(
-                              onTap: () => _loginFB(),
-                              child: Image.asset(Assets.ICON_FACEBOOK_LOGIN)),
+                          child: ButtonLogin(
+                            label: "LOGIN WITH FACEBOOK",
+                            onTap: () => _loginFB(),
+                            textColor: Colors.white,
+                            background: AppColors.FACEBOOK,
+                            borderColor: AppColors.FACEBOOK,
+                            image: Image.asset(Assets.ICON_FACEBOOK_LOGIN),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
-                          child: GestureDetector(
-                              onTap: () => _signInWithApple(context),
-                              child: Image.asset(Assets.ICON_APPLE_LOGIN)),
+                          child: ButtonLogin(
+                            label: "LOGIN WITH APPLE",
+                            onTap: () => _signInWithApple(context),
+                            textColor: Colors.white,
+                            background: AppColors.APPLE,
+                            borderColor: AppColors.APPLE,
+                            image: Image.asset(Assets.ICON_APPLE_LOGIN),
+                          ),
                         ),
                       ],
                     ),

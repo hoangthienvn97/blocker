@@ -13,4 +13,6 @@ class AppColors {
   static const Color Grey = Color(0xff4f4f4f);
   static const Color Orange = Color(0xffEC6F00);
   static const Color LIGHT_BLUE = Color(0xffB7CDEA);
+  static const Color FACEBOOK = Color(0xff3B5998);
+  static const Color APPLE = Color(0xff000000);
 }

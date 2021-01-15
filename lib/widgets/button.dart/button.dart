@@ -48,6 +48,7 @@ class ButtonLogin extends StatelessWidget {
   final Color textColor;
   final String label;
   final Color borderColor;
+  final Image image;
 
   const ButtonLogin(
       {Key key,
@@ -55,37 +56,30 @@ class ButtonLogin extends StatelessWidget {
       @required this.background,
       this.label,
       this.textColor,
-      this.borderColor})
+      this.borderColor, this.image})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16, left: 16),
-      child: SizedBox(
-        height: 48,
-        child: FlatButton(
-          minWidth: double.infinity,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32.0),
-              side: BorderSide(color: borderColor)),
-          color: background,
-          textColor: textColor,
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: Padding(
+        padding: const EdgeInsets.only(right : 32.0 , left: 32),
+        child: RaisedButton.icon(
+          highlightColor: Colors.transparent,
           onPressed: onTap,
-          child: Align(
-            alignment: Alignment.center,
-            child: Row(
-              children: [
-                Image.asset(Assets.ICON_GOOGLE_LOGIN),
-                SizedBox(
-                  width: 16,
-                ),
-                Text(label.toUpperCase(),
-                    style: TextStyles.Button.apply(color: textColor),
-                    textAlign: TextAlign.center),
-              ],
-            ),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(32.0)),
+              side: BorderSide(color: borderColor) ),
+          icon: image,
+          label: Text(
+            label,
+            style: TextStyles.Button.apply(color: textColor),
           ),
+          textColor: Colors.white,
+          splashColor: Colors.transparent,
+          color: background,
         ),
       ),
     );
