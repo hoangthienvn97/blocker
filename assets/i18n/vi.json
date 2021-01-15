@@ -15,9 +15,6 @@
   "login.description.3": " Điều khoản Dịch vụ",
   "login.description.4": " và",
   "login.description.5": " Chính sách Riêng tư",
-  "login.google": "ĐĂNG NHẬP BẰNG GOOGLE",
-  "login.facebook": "ĐĂNG NHẬP BẰNG FACEBOOK",
-  "login.apple": "ĐĂNG NHẬP BẰNG APPLE",
   "community.title": "TÌM KIẾM",
   "community.search.title": "Nhập tên",
   "community.community.title": "Cộng đồng",
@@ -62,5 +59,13 @@
   "update":"Cập nhật",
   "update.minutes" : "phút trước",
   "update.hours" : "giờ trước",
-  "update.days" : "ngày trước"
+  "update.days" : "ngày trước",
+  "hello" : "hello",
+  "login.google" : "đăng nhập bằng google",
+  "login.facebook" : "đăng nhập bằng facebook",
+  "login.apple" : "đăng nhập bằng apple",
+  "intro.open.setting" : "MỞ CÀI ĐẶT",
+  "intro.login" : "ĐĂNG NHẬP",
+  "button.report": "CHẶN",
+  "button.feedback" : "GỬI PHẢN HỒI"
 }

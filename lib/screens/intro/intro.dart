@@ -127,7 +127,7 @@ class _IntroBlockState extends State<IntroBlock> {
             child: ButtonSecondary(
               onTap: () => navigatorPush(context, Login()),
               background: AppColors.PRIMARY,
-              label: "OPEN SETTING",
+              label: Localized.get.introOpenSetting,
               textColor: Colors.white,
               borderColor: AppColors.PRIMARY,
             ),

@@ -103,6 +103,7 @@ class _MyCollectionState extends State<MyCollection> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: TextField(
+                      keyboardType: TextInputType.phone,
                       onChanged: (value) => search(value),
                       controller: searchController,
                       style: new TextStyle(

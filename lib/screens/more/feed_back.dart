@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/assets.dart';
+import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/core/common/navigator_push.dart';
+import 'package:phone_blocker/core/common/preferences_util.dart';
 import 'package:phone_blocker/core/common/toast.dart';
 import 'package:phone_blocker/core/models/responses/feedback_response.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
@@ -30,7 +32,15 @@ class _FeedBackState extends State<FeedBack> {
   @override
   void initState() {
     super.initState();
-    _feedback();
+    _getEmail();
+  }
+
+  _getEmail() {
+    readString(PreferencesKeys.Email).then((value) => {
+      this.setState(() {
+        email = value;
+      })
+    });
   }
 
   _isAllValid() {
@@ -65,34 +75,36 @@ class _FeedBackState extends State<FeedBack> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
                           backgroundColor: Colors.white,
                           title: Align(
-                              alignment: Alignment.center,
+                            alignment: Alignment.center,
+                            child: Center(
                               child: Text(
                                 Localized.get.reportDialogTitle,
                                 style: TextStyles.Subtitle1,
-                              )),
+                              ),
+                            ),
+                          ),
                           actions: <Widget>[
-                            FlatButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text(
-                                Localized.get.reportDialogStay,
-                                style:
-                                    TextStyle(color: Colors.blue, fontSize: 15),
-                              ),
+                            ButtonAction(
+                                onTap: () => Navigator.pop(context),
+                                label: Localized.get.reportDialogStay,
+                                background: Colors.white,
+                                borderColor: AppColors.PRIMARY,
+                                textColor: AppColors.PRIMARY),
+                            SizedBox(
+                              width: 10,
                             ),
-                            FlatButton(
-                              onPressed: () {
-                                popToRootAndPushReplacement(context, Home());
-                              },
-                              child: Text(
-                                Localized.get.reportDialogLeave,
-                                style:
-                                    TextStyle(color: Colors.red, fontSize: 15),
-                              ),
-                            ),
+                            ButtonAction(
+                                onTap: () => popToRootAndPushReplacement(
+                                    context, Home()),
+                                label: Localized.get.reportDialogLeave,
+                                background: AppColors.PRIMARY,
+                                borderColor: AppColors.PRIMARY,
+                                textColor: Colors.white),
                           ]);
                     })),
           ),
@@ -170,14 +182,14 @@ class _FeedBackState extends State<FeedBack> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 17.0),
-                                  child: TextField(
+                                  child: TextFormField(
+                                    controller: TextEditingController(text: email),
                                     onChanged: (text) => {
                                       this.setState(() {
                                         email = text;
                                         isEmailValid = text.isNotEmpty;
                                       })
                                     },
-                                    autocorrect: true,
                                     decoration: InputDecoration(
                                       hintText:
                                           Localized.get.feedbackEnterEmail,
@@ -262,7 +274,7 @@ class _FeedBackState extends State<FeedBack> {
                     background: _isAllValid()
                         ? AppColors.PRIMARY
                         : AppColors.LIGHT_BLUE,
-                    label: "send feedback",
+                    label: Localized.get.buttonFeedback,
                     textColor: Colors.white,
                     borderColor: _isAllValid()
                         ? AppColors.PRIMARY

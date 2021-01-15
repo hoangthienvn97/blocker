@@ -34,12 +34,6 @@ abstract class BaseLocalized {
 
   String get loginDescription5;
 
-  String get loginGoogle;
-
-  String get loginFacebook;
-
-  String get loginApple;
-
   String get communityTitle;
 
   String get communitySearchTitle;
@@ -129,6 +123,20 @@ abstract class BaseLocalized {
   String get updateHours;
 
   String get updateDays;
+
+  String get loginGoogle;
+
+  String get loginFacebook;
+
+  String get loginApple;
+
+  String get introOpenSetting;
+
+  String get introLogin;
+
+  String get buttonReport;
+
+  String get buttonFeedback;
  }
 
 class ENLocalized extends BaseLocalized {
@@ -179,15 +187,6 @@ class ENLocalized extends BaseLocalized {
 
   @override
   String get loginDescription5 => ' Privacy Policy';
-
-  @override
-  String get loginGoogle => 'LOGIN WITH GOOGLE';
-
-  @override
-  String get loginFacebook => 'LOGIN WITH FACEBOOK';
-
-  @override
-  String get loginApple => 'LOGIN WITH APPLE';
 
   @override
   String get communityTitle => 'SEARCH';
@@ -323,6 +322,27 @@ class ENLocalized extends BaseLocalized {
 
   @override
   String get updateDays => 'days ago';
+
+  @override
+  String get loginGoogle => 'login with goole';
+
+  @override
+  String get loginFacebook => 'login with apple';
+
+  @override
+  String get loginApple => 'login with apple';
+
+  @override
+  String get introOpenSetting => 'OPEN SETTING';
+
+  @override
+  String get introLogin => 'LOGIN';
+
+  @override
+  String get buttonReport => 'REPORT';
+
+  @override
+  String get buttonFeedback => 'SEND FEEDBACK';
  }
 
 class VILocalized extends BaseLocalized {
@@ -373,15 +393,6 @@ class VILocalized extends BaseLocalized {
 
   @override
   String get loginDescription5 => ' Chính sách Riêng tư';
-
-  @override
-  String get loginGoogle => 'ĐĂNG NHẬP BẰNG GOOGLE';
-
-  @override
-  String get loginFacebook => 'ĐĂNG NHẬP BẰNG FACEBOOK';
-
-  @override
-  String get loginApple => 'ĐĂNG NHẬP BẰNG APPLE';
 
   @override
   String get communityTitle => 'TÌM KIẾM';
@@ -517,6 +528,30 @@ class VILocalized extends BaseLocalized {
 
   @override
   String get updateDays => 'ngày trước';
+
+  @override
+  String get hello => 'hello';
+
+  @override
+  String get loginGoogle => 'đăng nhập bằng google';
+
+  @override
+  String get loginFacebook => 'đăng nhập bằng facebook';
+
+  @override
+  String get loginApple => 'đăng nhập bằng apple';
+
+  @override
+  String get introOpenSetting => 'MỞ CÀI ĐẶT';
+
+  @override
+  String get introLogin => 'ĐĂNG NHẬP';
+
+  @override
+  String get buttonReport => 'CHẶN';
+
+  @override
+  String get buttonFeedback => 'GỬI PHẢN HỒI';
  }
 
 class Localized {

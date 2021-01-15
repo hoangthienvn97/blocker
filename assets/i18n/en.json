@@ -15,9 +15,6 @@
   "login.description.3" : " Term of Service",
   "login.description.4" : " and",
   "login.description.5" : " Privacy Policy",
-  "login.google": "LOGIN WITH GOOGLE",
-  "login.facebook": "LOGIN WITH FACEBOOK",
-  "login.apple": "LOGIN WITH APPLE",
   "community.title": "SEARCH",
   "community.search.title":"Enter name",
   "community.community.title":"Community",
@@ -62,5 +59,12 @@
   "update":"update",
   "update.minutes" : "minutes ago",
   "update.hours" : "hours ago",
-  "update.days" : "days ago"
+  "update.days" : "days ago",
+  "login.google" : "login with goole",
+  "login.facebook" : "login with apple",
+  "login.apple" : "login with apple",
+  "intro.open.setting" : "OPEN SETTING",
+  "intro.login" : "LOGIN",
+  "button.report": "REPORT",
+  "button.feedback" : "SEND FEEDBACK"
 }

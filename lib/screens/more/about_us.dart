@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 
 class AboutUs extends StatefulWidget {
@@ -18,7 +19,7 @@ class _AboutUsState extends State<AboutUs> {
         title: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "back",
+              Localized.get.feedbackBack,
               style: TextStyles.Subtitle2,
             )),
         bottom: PreferredSize(
@@ -30,7 +31,7 @@ class _AboutUsState extends State<AboutUs> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                    "About Us",
+                    Localized.get.moreAboutUs,
                     style: TextStyles.Headline2.apply(color: AppColors.PRIMARY),
                   ),
                 )),

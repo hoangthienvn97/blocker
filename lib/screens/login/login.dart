@@ -33,16 +33,11 @@ class _LoginState extends State<Login> {
 
   Future<void> _handleSignIn() async {
     try {
-      _googleSignIn.signIn().then((result) {
-        result.authentication.then((googleKey) {
-          print(googleKey.idToken);
-          _loginGoogle(googleKey.idToken);
-        }).catchError((err) {
-          print('inner error');
-        });
-      }).catchError((err) {
-        print('error occured');
-      });
+      var x = await _googleSignIn.signIn();
+      var y = await x.authentication;
+      _loginGoogle(y.idToken);
+    } on PlatformException catch (error) {
+      print(error);
     } catch (error) {
       print(error);
     }
@@ -84,6 +79,17 @@ class _LoginState extends State<Login> {
                   saveString(
                       key: PreferencesKeys.AccessToken,
                       value: authResponse.data.accessToken),
+                  saveString(
+                    key: PreferencesKeys.Name,
+                    value:
+                        "${authResponse.data.user.lastName} ${authResponse.data.user.firstName}",
+                  ),
+                  saveString(
+                      key: PreferencesKeys.Email,
+                      value: authResponse.data.user.email),
+                  saveString(
+                      key: PreferencesKeys.AvatarUrl,
+                      value: authResponse.data.user.avatar),
                   popToRootAndPushReplacement(context, Home())
                 },
             onError: (errorResponse) => {print(errorResponse.data.message)});
@@ -120,6 +126,17 @@ class _LoginState extends State<Login> {
                   saveString(
                       key: PreferencesKeys.AccessToken,
                       value: authResponse.data.accessToken),
+                  saveString(
+                    key: PreferencesKeys.Name,
+                    value:
+                        "${authResponse.data.user.lastName} ${authResponse.data.user.firstName}",
+                  ),
+                  saveString(
+                      key: PreferencesKeys.Email,
+                      value: authResponse.data.user.email),
+                  saveString(
+                      key: PreferencesKeys.AvatarUrl,
+                      value: authResponse.data.user.avatar),
                   popToRootAndPushReplacement(context, Home())
                 },
             onError: (errorResponse) => {print(errorResponse.data.message)});
@@ -187,7 +204,7 @@ class _LoginState extends State<Login> {
                     child: Column(
                       children: [
                         Text(
-                          "Login".toUpperCase(),
+                          Localized.get.introLogin.toUpperCase(),
                           style: TextStyles.Headline1.apply(
                               color: AppColors.PRIMARY),
                         ),
@@ -251,7 +268,7 @@ class _LoginState extends State<Login> {
                         Padding(
                           padding: const EdgeInsets.only(top: 24),
                           child: ButtonLogin(
-                            label: "LOGIN WITH GOOGLE",
+                            label: Localized.get.loginGoogle,
                             onTap: () => _handleSignIn(),
                             textColor: Colors.black,
                             background: Colors.white,
@@ -262,7 +279,7 @@ class _LoginState extends State<Login> {
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
                           child: ButtonLogin(
-                            label: "LOGIN WITH FACEBOOK",
+                            label: Localized.get.loginFacebook,
                             onTap: () => _loginFB(),
                             textColor: Colors.white,
                             background: AppColors.FACEBOOK,
@@ -273,7 +290,7 @@ class _LoginState extends State<Login> {
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
                           child: ButtonLogin(
-                            label: "LOGIN WITH APPLE",
+                            label: Localized.get.loginApple,
                             onTap: () => _signInWithApple(context),
                             textColor: Colors.white,
                             background: AppColors.APPLE,

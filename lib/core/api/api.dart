@@ -38,7 +38,7 @@ class Api {
     var response =
         await client.post(url, headers: headers, body: jsonEncode(body));
     var json = jsonDecode(response.body);
-    if (response.statusCode == 201) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(AuthResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -51,7 +51,7 @@ class Api {
     var url = "$BaseApiUrl/auth/login/facebook?access_token=$accessToken";
     var response = await client.get(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(AuthResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -72,7 +72,7 @@ class Api {
         await client.post(url, headers: headers, body: jsonEncode(body));
 
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300)  {
       onSuccess.call(AuthResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -87,7 +87,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.get(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(CollectionsResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -102,7 +102,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.post(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 201) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(CollectionResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -117,7 +117,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.delete(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       if (onSuccess != null) {
         onSuccess.call(CollectionResponse.fromJson(json));
       }
@@ -134,7 +134,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.post(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 201) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       if (onSuccess != null) {
         onSuccess.call(CollectionResponse.fromJson(json));
       }
@@ -151,7 +151,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.get(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(NumberResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -172,7 +172,7 @@ class Api {
     var response =
         await client.post(url, headers: headers, body: jsonEncode(body));
     var json = jsonDecode(response.body);
-    if (response.statusCode == 201) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(NumberResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -187,7 +187,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.get(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(ReportedPhoneNumbersResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -202,7 +202,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.get(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(CollectionsWithoutPaginationResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -217,7 +217,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.delete(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       if (onSuccess != null) {
         onSuccess.call(CollectionResponse.fromJson(json));
       }
@@ -234,7 +234,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.get(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(PhoneDetailResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
@@ -249,7 +249,7 @@ class Api {
         "Bearer ${await readString(PreferencesKeys.AccessToken)}";
     var response = await client.delete(url, headers: headers);
     var json = jsonDecode(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       if (onSuccess != null) {
         onSuccess.call(SpamNumberResponse.fromJson(json));
       }
@@ -271,7 +271,7 @@ class Api {
     var response =
         await client.post(url, headers: headers, body: jsonEncode(body));
     var json = jsonDecode(response.body);
-    if (response.statusCode == 201) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess.call(FeedbackResponse.fromJson(json));
     } else {
       onError.call(ErrorResponse.fromJson(json));
