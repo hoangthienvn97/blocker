@@ -49,4 +49,8 @@ class Assets {
   static const String ICON_RATE = './assets/more/ic_rate.png';
   static const String ICON_LOGOUT = './assets/more/ic_logout.png';
   static const String IMAGE_FEEDBACK = './assets/feedback/feedback.png';
+  static const String ICON_COM =
+      './assets/icon_bottom_navigation/ic_community.png';
+  static const String ICON_LI = './assets/icon_bottom_navigation/ic_list.png';
+  static const String ICON_MO = './assets/icon_bottom_navigation/ic_more.png';
 }

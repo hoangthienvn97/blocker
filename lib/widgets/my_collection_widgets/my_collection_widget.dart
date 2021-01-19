@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/core/common/convert_time.dart';
@@ -19,15 +20,35 @@ class MyCollectionWidget extends StatefulWidget {
 }
 
 class _MyCollectionWidgetState extends State<MyCollectionWidget> {
+
+  static const platform =
+      const MethodChannel('co.vacsolutions.secretbox/callBlocking');
+
+  Future<void> _unblockNumbers(phoneNumber) async {
+    try {
+      final result = await platform.invokeMethod('unblockNumbers', {
+        'numbers': [phoneNumber]
+      });
+      if (result == true) {
+        print("unBlock " + phoneNumber.toString());
+      } else {
+        print(result);
+      }
+    } on PlatformException catch (e) {
+    }
+  }
+
   void _unblock(PhoneDataDetail dataDetail) {
     dialog(
       context,
       onOk: () => {
         Api().deleteSpamNumber(dataDetail.id,
             onSuccess: (response) => {
+                _unblockNumbers(int.parse(dataDetail.phone.phone.replaceAll("+", ""))),
                   if (this.widget.onUnblocked != null)
-                    {this.widget.onUnblocked.call(widget.phoneDataDetail)}
+                    {this.widget.onUnblocked.call(widget.phoneDataDetail)},
                 },
+                
             onError: (_) => {})
       },
     );

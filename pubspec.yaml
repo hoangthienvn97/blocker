@@ -51,5 +51,6 @@ flutter:
     - assets/my_list/
     - assets/more/
     - assets/feedback/
+    - assets/icon_bottom_navigation/
     
 

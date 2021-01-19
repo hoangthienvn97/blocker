@@ -32,8 +32,6 @@ class _MyCollectionState extends State<MyCollection> {
               })
             },
         onError: (error) => {print(error)});
-
-    _blockedNumbers();
   }
 
   _unblocked(PhoneDataDetail phoneDataDetail) {
@@ -49,17 +47,6 @@ class _MyCollectionState extends State<MyCollection> {
           element.phone.phone.toString().contains(query.toLowerCase()));
       phoneDetails.addAll(x);
     });
-  }
-
-  static const platform =
-      const MethodChannel('co.vacsolutions.secretbox/callBlocking');
-  Future<void> _blockedNumbers() async {
-    try {
-      final result = await platform.invokeMethod('blockedNumbers');
-      print(result.toString());
-    } on PlatformException catch (e) {
-      //batteryLevel = "Failed to get battery level: '${e.message}'.";
-    }
   }
 
   @override

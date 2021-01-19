@@ -8,7 +8,7 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.co.vacsolutions.secretbox</string>
+		<string>group.co.vacsolutions.callblocker</string>
 	</array>
 </dict>
 </plist>

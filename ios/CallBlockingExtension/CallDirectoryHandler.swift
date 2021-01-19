@@ -17,32 +17,24 @@ class CallDirectoryHandler: CXCallDirectoryProvider {
     }
 
     private func addAllBlockingPhoneNumbers(to context: CXCallDirectoryExtensionContext) {
-        let uniqueBlockedNumbers = Array(Set(CallerDataManager.shared.blockedCallers().sorted(by: { $0.number < $1.number }).map({$0.number})))
+        let uniqueBlockedNumbers = Array(Set(CallerDataManager.shared.blockedCallers().map { $0.number })).sorted{ $0 < $1 }
         for number in uniqueBlockedNumbers {
-            context.addBlockingEntry(withNextSequentialPhoneNumber: number)
+          context.addBlockingEntry(withNextSequentialPhoneNumber: number)
         }
-    }
+      }
 
     private func addOrRemoveIncrementalBlockingPhoneNumbers(to context: CXCallDirectoryExtensionContext, since date: Date) {
-        var uniqueUpdatedCallers: [Caller] = []
-        CallerDataManager.shared.updatedCallers(since: date).sorted(by: { $0.number < $1.number }).forEach { (caller) in
-            if !uniqueUpdatedCallers.contains(where: { (e) -> Bool in
-                uniqueUpdatedCallers.map({$0.number}).contains(e.number)
-            }) {
-                uniqueUpdatedCallers.append(caller)
-            }
-        }
-        for caller in uniqueUpdatedCallers {
-            if !caller.isRemoved, caller.isBlocked {
-                context.addBlockingEntry(withNextSequentialPhoneNumber: caller.number)
-            } else {
-                context.removeBlockingEntry(withPhoneNumber: caller.number)
-            }
+        for caller in CallerDataManager.shared.updatedCallers(since: date) {
+          if !caller.isRemoved, caller.isBlocked {
+            context.addBlockingEntry(withNextSequentialPhoneNumber: caller.number)
+          } else {
+            context.removeBlockingEntry(withPhoneNumber: caller.number)
             if caller.isRemoved {
-                CallerDataManager.shared.removeCallerFromDatabase(caller)
+              CallerDataManager.shared.removeCallerFromDatabase(caller)
             }
+          }
         }
-    }
+      }
 }
 
 extension CallDirectoryHandler: CXCallDirectoryExtensionContextDelegate {

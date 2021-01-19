@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
@@ -17,8 +18,26 @@ class _MoreState extends State<More> {
   void logoutUser() async {
     await removeKey(PreferencesKeys.AccessToken);
     await popToRootAndPushReplacement(context, Login());
+    await _unblockAndClearAllNumbers();
   }
 
+
+  static const platform =
+      const MethodChannel('co.vacsolutions.secretbox/callBlocking');
+
+  Future<void> _unblockAndClearAllNumbers() async {
+    try {
+      final result = await platform.invokeMethod('unblockAndClearAllNumbers', {
+      });
+      if (result == true) {
+        print("Clear and Blocked ");
+      } else {
+        print(result);
+      }
+    } on PlatformException catch (e) {
+      //batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+  }
   String name = "";
   String email = "";
   String avatarUrl;
