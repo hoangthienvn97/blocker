@@ -7,6 +7,7 @@ import 'package:phone_blocker/core/models/phone_data_detail.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
+import 'package:phone_blocker/widgets/button.dart/button.dart';
 import 'package:phone_blocker/widgets/post_button.dart';
 
 class MyCollectionWidget extends StatefulWidget {
@@ -20,7 +21,6 @@ class MyCollectionWidget extends StatefulWidget {
 }
 
 class _MyCollectionWidgetState extends State<MyCollectionWidget> {
-
   static const platform =
       const MethodChannel('co.vacsolutions.secretbox/callBlocking');
 
@@ -34,8 +34,7 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
       } else {
         print(result);
       }
-    } on PlatformException catch (e) {
-    }
+    } on PlatformException catch (e) {}
   }
 
   void _unblock(PhoneDataDetail dataDetail) {
@@ -44,11 +43,11 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
       onOk: () => {
         Api().deleteSpamNumber(dataDetail.id,
             onSuccess: (response) => {
-                _unblockNumbers(int.parse(dataDetail.phone.phone.replaceAll("+", ""))),
+                  _unblockNumbers(
+                      int.parse(dataDetail.phone.phone.replaceAll("+", ""))),
                   if (this.widget.onUnblocked != null)
                     {this.widget.onUnblocked.call(widget.phoneDataDetail)},
                 },
-                
             onError: (_) => {})
       },
     );
@@ -59,35 +58,40 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
           backgroundColor: Colors.white,
           title: Align(
-              alignment: Alignment.center,
+            alignment: Alignment.center,
+            child: Center(
               child: Text(
                 Localized.get.myCollectionDialogTitle,
                 style: TextStyles.Subtitle1,
-              )),
+              ),
+            ),
+          ),
           actions: <Widget>[
-            FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                Localized.get.myCollectionDialogCancel,
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
+            ButtonAction(
+                onTap: () => Navigator.pop(context),
+                label: Localized.get.myCollectionDialogCancel,
+                background: Colors.white,
+                borderColor: AppColors.PRIMARY,
+                textColor: AppColors.PRIMARY),
+            SizedBox(
+              width: 10,
             ),
-            FlatButton(
-              onPressed: () {
-                if (onOk != null) {
-                  onOk.call();
-                }
-                Navigator.pop(context);
-              },
-              child: Text(
-                Localized.get.mylistUnblock,
-                style: TextStyle(color: Colors.red, fontSize: 15),
-              ),
-            ),
+            ButtonAction(
+                onTap: () {
+                  if (onOk != null) {
+                    onOk.call();
+                  }
+                  Navigator.pop(context);
+                },
+                label: Localized.get.mylistUnblock,
+                background: AppColors.PRIMARY,
+                borderColor: AppColors.PRIMARY,
+                textColor: Colors.white),
           ],
         );
       },

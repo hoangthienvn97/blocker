@@ -198,7 +198,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: Align(
                     alignment: Alignment.center,
                     child: Column(
@@ -239,8 +239,8 @@ class _LoginState extends State<Login> {
                                       ),
                                       TextSpan(
                                         recognizer: new TapGestureRecognizer()
-                                          ..onTap = () =>
-                                              navigatorPush(context, Policy()),
+                                          ..onTap = () => navigatorPush(
+                                              context, Policy()),
                                         text: Localized.get.loginDescription3,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),
@@ -252,8 +252,8 @@ class _LoginState extends State<Login> {
                                       ),
                                       TextSpan(
                                         recognizer: new TapGestureRecognizer()
-                                          ..onTap = () =>
-                                              navigatorPush(context, Policy()),
+                                          ..onTap = () => navigatorPush(
+                                              context, Policy()),
                                         text: Localized.get.loginDescription5,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),
