@@ -92,7 +92,7 @@ public final class CallerDataManager {
 
 internal extension UIApplication {
     static func reloadCallKitExtension() {
-        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "co.vacsolutions.secretbox.CallBlockingExtension", completionHandler: { error in
+        CXCallDirectoryManager.sharedInstance.reloadExtension(withIdentifier: "co.vacsolutions.callblocker.CallBlockingExtension", completionHandler: { error in
             if let error = error {
                 print("Error reloading extension: \(error.localizedDescription)")
             }

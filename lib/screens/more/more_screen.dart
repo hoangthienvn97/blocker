@@ -23,7 +23,7 @@ class _MoreState extends State<More> {
 
 
   static const platform =
-      const MethodChannel('co.vacsolutions.secretbox/callBlocking');
+      const MethodChannel('co.vacsolutions.callblocker/callBlocking');
 
   Future<void> _unblockAndClearAllNumbers() async {
     try {

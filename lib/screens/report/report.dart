@@ -19,7 +19,7 @@ class Report extends StatefulWidget {
 class _ReportState extends State<Report> {
   String dialCode = "84";
   static const platform =
-      const MethodChannel('co.vacsolutions.secretbox/callBlocking');
+      const MethodChannel('co.vacsolutions.callblocker/callBlocking');
 
   Future<void> _blockNumbers(phoneNumber) async {
     try {
@@ -115,7 +115,7 @@ class _ReportState extends State<Report> {
         remindDays: 2,
         remindLaunches: 2,
         googlePlayIdentifier: '',
-        appStoreIdentifier: 'co.vacsolutions.secretbox');
+        appStoreIdentifier: 'co.vacsolutions.callblocker');
   }
 
   @override

@@ -3,7 +3,7 @@ import Foundation
 import RealmSwift
 
 internal final class RealmHelper {
-    private static let applicationGroupIdentifier = "group.co.vacsolutions.secretbox"
+    private static let applicationGroupIdentifier = "group.co.vacsolutions.callblocker"
     static let shared = RealmHelper()
     private let sharedUserDefaults = UserDefaults(suiteName: RealmHelper.applicationGroupIdentifier)
     private let lastUpdatedDateKey = "lastUpdatedDateKey"

@@ -9,7 +9,7 @@ import UIKit
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         let controller: FlutterViewController = window?.rootViewController as! FlutterViewController
-        let batteryChannel = FlutterMethodChannel(name: "co.vacsolutions.secretbox/callBlocking",
+        let batteryChannel = FlutterMethodChannel(name: "co.vacsolutions.callblocker/callBlocking",
                                                   binaryMessenger: controller.binaryMessenger)
         batteryChannel.setMethodCallHandler { [weak self]
             (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in

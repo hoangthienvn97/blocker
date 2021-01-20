@@ -22,7 +22,7 @@ class MyCollectionWidget extends StatefulWidget {
 
 class _MyCollectionWidgetState extends State<MyCollectionWidget> {
   static const platform =
-      const MethodChannel('co.vacsolutions.secretbox/callBlocking');
+      const MethodChannel('co.vacsolutions.callblocker/callBlocking');
 
   Future<void> _unblockNumbers(phoneNumber) async {
     try {
