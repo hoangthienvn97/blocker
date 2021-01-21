@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/api/api.dart';
 import 'package:phone_blocker/core/models/model_common.dart';
+import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
+import 'package:phone_blocker/widgets/button.dart/button.dart';
 import 'package:phone_blocker/widgets/collections/collection_actions_view.dart';
 import 'package:phone_blocker/widgets/collections/collection_info_view.dart';
 
@@ -65,35 +67,40 @@ class _CollectionItemState extends State<CollectionItem> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
           backgroundColor: Colors.white,
           title: Align(
-              alignment: Alignment.center,
+            alignment: Alignment.center,
+            child: Center(
               child: Text(
                 Localized.get.myCollectionDialogTitle,
                 style: TextStyles.Subtitle1,
-              )),
+              ),
+            ),
+          ),
           actions: <Widget>[
-            FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                Localized.get.myCollectionDialogCancel,
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
+            ButtonAction(
+                onTap: () => Navigator.pop(context),
+                label: Localized.get.myCollectionDialogCancel,
+                background: Colors.white,
+                borderColor: AppColors.PRIMARY,
+                textColor: AppColors.PRIMARY),
+            SizedBox(
+              width: 10,
             ),
-            FlatButton(
-              onPressed: () {
-                if (onOk != null) {
-                  onOk.call();
-                }
-                Navigator.pop(context);
-              },
-              child: Text(
-                Localized.get.mylistUnblock,
-                style: TextStyle(color: Colors.red, fontSize: 15),
-              ),
-            ),
+            ButtonAction(
+                onTap: () {
+                  if (onOk != null) {
+                    onOk.call();
+                  }
+                  Navigator.pop(context);
+                },
+                label: Localized.get.mylistUnblock,
+                background: AppColors.PRIMARY,
+                borderColor: AppColors.PRIMARY,
+                textColor: Colors.white),
           ],
         );
       },

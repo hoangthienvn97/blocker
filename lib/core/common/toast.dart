@@ -9,7 +9,7 @@ class Utils {
     FToast fToast = FToast();
     fToast.init(context);
     Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 50.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 30.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
         color: AppColors.TOAST,
@@ -17,11 +17,10 @@ class Utils {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(Assets.ICON_TICK_BLACK, color: AppColors.PLACE_HOLDER),
-          SizedBox(
-            width: 20.0,
-          ),
-          Text(message),
+          Expanded(
+            flex: 1,
+            child: Image.asset(Assets.ICON_TICK_BLACK, color: AppColors.PLACE_HOLDER)),
+          Expanded(flex: 9, child: Text(message)),
         ],
       ),
     );

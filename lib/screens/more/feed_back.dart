@@ -50,6 +50,7 @@ class _FeedBackState extends State<FeedBack> {
   _feedback() {
     Api().postFeedBack(email, content,
         onSuccess: (feedbackResponse) => {
+            Utils.showToast(context, "Thanks a lot for feedback! We will be in touch shortly"),
               Navigator.pop(context)
             },
         onError: (errorResponse) => {});
