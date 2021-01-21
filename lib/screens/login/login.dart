@@ -239,8 +239,9 @@ class _LoginState extends State<Login> {
                                       ),
                                       TextSpan(
                                         recognizer: new TapGestureRecognizer()
-                                          ..onTap = () => navigatorPush(
-                                              context, Policy()),
+                                          ..onTap = () => null,
+                                          // navigatorPush(
+                                          //     context, Policy()),
                                         text: Localized.get.loginDescription3,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),
@@ -252,8 +253,9 @@ class _LoginState extends State<Login> {
                                       ),
                                       TextSpan(
                                         recognizer: new TapGestureRecognizer()
-                                          ..onTap = () => navigatorPush(
-                                              context, Policy()),
+                                          ..onTap = () => null,
+                                          // navigatorPush(
+                                          //     context, Policy()),
                                         text: Localized.get.loginDescription5,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),

@@ -73,7 +73,7 @@ class _AddToCollectionReportState extends State<AddToCollectionReport> {
                               });
                             },
                           ),
-                          trailing: Image.asset(Assets.ICON_AVA),
+                          trailing: (e.logo?.isNotEmpty ?? false) ? Image.network(e.logo) : Image.asset(Assets.ICON_LOGO),
                         ),
                       ),
                     ),

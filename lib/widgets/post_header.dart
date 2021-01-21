@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_blocker/core/common/assets.dart';
 import 'package:phone_blocker/core/models/collection.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
@@ -17,10 +18,7 @@ class PostHeader extends StatelessWidget {
           flex: 1,
           child: Container(
             margin: new EdgeInsets.all(16),
-            child: Icon(
-              Icons.account_circle_outlined,
-              size: 40,
-            ),
+            child: (collection.logo?.isNotEmpty ?? false) ? Image.network(collection.logo) : Image.asset(Assets.ICON_LOGO)
           ),
         ),
         const SizedBox(width: 8.0),

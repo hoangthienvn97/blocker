@@ -377,7 +377,7 @@ class VILocalized extends BaseLocalized {
   String get introSetupStep42 => ' lựa chọn [Tên ứng dụng]';
 
   @override
-  String get loginTitle => 'Kế hoạch cho cuộc gọi của bạn';
+  String get loginTitle => 'BẢO VỆ CUỘC GỌI CỦA BẠN';
 
   @override
   String get loginDescription1 => 'Bằng cách đăng nhập, bạn đã đồng ý với';
@@ -410,25 +410,25 @@ class VILocalized extends BaseLocalized {
   String get communityAdded => 'Đã thêm';
 
   @override
-  String get communityAddToList => 'Thêm danh sách';
+  String get communityAddToList => 'Thêm';
 
   @override
   String get homeCommunity => 'Cộng đồng';
 
   @override
-  String get homeReport => 'Thêm chặn';
+  String get homeReport => 'Báo cáo';
 
   @override
-  String get homeMyList => 'Danh sách';
+  String get homeMyList => 'Bộ sưu tập của tôi';
 
   @override
-  String get homeMore => 'Khác';
+  String get homeMore => 'Thêm';
 
   @override
   String get reportDiscard => 'Huỷ';
 
   @override
-  String get reportTitle => 'Chặn 1 số điện thoại mới';
+  String get reportTitle => 'Báo cáo số điện thoại mới';
 
   @override
   String get reportDialogTitle => 'Dữ liệu sẽ không được lưu lại nếu bạn thoát, bạn có xác nhận thoát?';
@@ -455,7 +455,7 @@ class VILocalized extends BaseLocalized {
   String get reportPhoneNumber => 'Số điện thoại';
 
   @override
-  String get mylistTitle => 'Danh Sách';
+  String get mylistTitle => 'Danh Sách của tôi';
 
   @override
   String get mylistSearch => 'Nhập Tên';
@@ -467,7 +467,7 @@ class VILocalized extends BaseLocalized {
   String get mylistUnblock => 'Bỏ chặn';
 
   @override
-  String get mylistViewDetail => 'Danh sách chặn chi tiết';
+  String get mylistViewDetail => 'Xem chi tiết';
 
   @override
   String get moreAboutUs => 'Thông tin về chúng tôi';
@@ -503,13 +503,13 @@ class VILocalized extends BaseLocalized {
   String get feedbackBack => 'Quay lại';
 
   @override
-  String get myCollectionPeopleReport => 'người đã bị chặn';
+  String get myCollectionPeopleReport => 'người đã báo cáo';
 
   @override
-  String get myCollectionMyCollection => 'Danh sách của tôi';
+  String get myCollectionMyCollection => 'Bộ sưu tập của tôi';
 
   @override
-  String get myCollectionText => 'Đây là danh sách các số điện thoại bạn đã báo cáo là spam';
+  String get myCollectionText => 'Đây là bộ sưu tập các số điện thoại làm phiền của bạn';
 
   @override
   String get myCollectionDialogTitle => 'Bạn có chắc rằng bạn muốn bỏ chặn không?';
@@ -548,7 +548,7 @@ class VILocalized extends BaseLocalized {
   String get introLogin => 'ĐĂNG NHẬP';
 
   @override
-  String get buttonReport => 'CHẶN';
+  String get buttonReport => 'BÁO CÁO';
 
   @override
   String get buttonFeedback => 'GỬI PHẢN HỒI';

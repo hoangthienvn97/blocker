@@ -5,7 +5,6 @@ import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/login/login.dart';
-import 'package:phone_blocker/screens/more/about_us.dart';
 import 'package:phone_blocker/screens/more/feed_back.dart';
 import 'package:phone_blocker/widgets/more_widgets/more_widget.dart';
 
@@ -103,7 +102,8 @@ class _MoreState extends State<More> {
                 MoreWidget(
                   image: Image.asset(Assets.ICON_ABOUT_US),
                   name: Localized.get.moreAboutUs,
-                  onPress: () => navigatorPush(context, AboutUs()),
+                  onPress: () => null,
+                  //  navigatorPush(context, AboutUs()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(

@@ -53,4 +53,5 @@ class Assets {
       './assets/icon_bottom_navigation/ic_community.png';
   static const String ICON_LI = './assets/icon_bottom_navigation/ic_list.png';
   static const String ICON_MO = './assets/icon_bottom_navigation/ic_more.png';
+  static const String ICON_LOGO = './assets/my_list/logo.png';
 }

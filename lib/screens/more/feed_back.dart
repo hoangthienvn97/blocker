@@ -4,7 +4,6 @@ import 'package:phone_blocker/core/common/assets.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/core/common/navigator_push.dart';
 import 'package:phone_blocker/core/common/preferences_util.dart';
-import 'package:phone_blocker/core/common/toast.dart';
 import 'package:phone_blocker/core/models/responses/feedback_response.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
@@ -39,6 +38,7 @@ class _FeedBackState extends State<FeedBack> {
     readString(PreferencesKeys.Email).then((value) => {
       this.setState(() {
         email = value;
+        isEmailValid = true;
       })
     });
   }
@@ -50,8 +50,6 @@ class _FeedBackState extends State<FeedBack> {
   _feedback() {
     Api().postFeedBack(email, content,
         onSuccess: (feedbackResponse) => {
-              Utils.showToast(context,
-                  "Thanks a lot for feedback! We will be in touch shortly"),
               Navigator.pop(context)
             },
         onError: (errorResponse) => {});
