@@ -67,5 +67,14 @@
   "intro.open.setting" : "MỞ CÀI ĐẶT",
   "intro.login" : "ĐĂNG NHẬP",
   "button.report": "BÁO CÁO",
-  "button.feedback" : "GỬI PHẢN HỒI"
+  "button.feedback" : "GỬI PHẢN HỒI",
+  "rate.app.thanks" : "Cảm ơn đã báo cáo",
+  "rate.app.phone" : "một số điện thoại",
+  "rate.app.report" : "Báo cáo số điện thoại khác",
+  "rate.app.back" : "Trở về",
+  "rate.app.question" : "Bạn cảm thấy như thế nào về ứng dụng của chúng tôi",
+  "rate.app.leave" : "Vui lòng để lại đánh giá",
+  "rate.app.ok": "Tiếp tục",
+  "message" : "Đăng nhập / Đăng xuất bằng cách nhấn các nút bên dưới.",
+  "reported.list" : "đã được thêm vào danh sách của bạn"
 }

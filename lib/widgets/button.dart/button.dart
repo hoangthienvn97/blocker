@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phone_blocker/core/common/assets.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 
 class ButtonSecondary extends StatelessWidget {

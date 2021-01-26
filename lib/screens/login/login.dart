@@ -1,4 +1,3 @@
-import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,12 +8,11 @@ import 'package:phone_blocker/core/common/preferences_util.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
-import 'package:phone_blocker/screens/policy/policy.dart';
 import 'package:phone_blocker/widgets/button.dart/button.dart';
 import '../../core/common/commons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import '../home.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final GoogleSignIn gSignIn = GoogleSignIn();
 
@@ -36,6 +34,7 @@ class _LoginState extends State<Login> {
       var x = await _googleSignIn.signIn();
       var y = await x.authentication;
       _loginGoogle(y.idToken);
+      print(y.idToken);
     } on PlatformException catch (error) {
       print(error);
     } catch (error) {
@@ -67,7 +66,7 @@ class _LoginState extends State<Login> {
 
   static final FacebookLogin facebookSignIn = new FacebookLogin();
 
-  String _message = 'Log in/out by pressing the buttons below.';
+  String _message = Localized.get.message;
 
   Future<Null> _loginFB() async {
     final FacebookLoginResult result = await facebookSignIn.logIn(['email']);
@@ -111,51 +110,47 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> _signInWithApple(BuildContext context) async {
-    final result = await AppleSignIn.performRequests([
-      AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
-    ]);
-    switch (result.status) {
-      case AuthorizationStatus.authorized:
-        final appleIdCredential = result.credential;
-        var identifyToken =
-            String.fromCharCodes(appleIdCredential.identityToken);
+    final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      webAuthenticationOptions: WebAuthenticationOptions(
+        clientId: 'com.aboutyou.dart_packages.sign_in_with_apple.example',
+        redirectUri: Uri.parse(
+          'https://flutter-sign-in-with-apple-example.glitch.me/callbacks/sign_in_with_apple',
+        ),
+      ),
+      nonce: 'example-nonce',
+      state: 'example-state',
+    );
 
-        Api().loginApple(identifyToken, appleIdCredential.fullName.familyName,
-            appleIdCredential.fullName.givenName,
-            onSuccess: (authResponse) => {
-                  saveString(
-                      key: PreferencesKeys.AccessToken,
-                      value: authResponse.data.accessToken),
-                  saveString(
-                    key: PreferencesKeys.Name,
-                    value:
-                        "${authResponse.data.user.lastName} ${authResponse.data.user.firstName}",
-                  ),
-                  saveString(
-                      key: PreferencesKeys.Email,
-                      value: authResponse.data.user.email),
-                  saveString(
-                      key: PreferencesKeys.AvatarUrl,
-                      value: authResponse.data.user.avatar),
-                  popToRootAndPushReplacement(context, Home())
-                },
-            onError: (errorResponse) => {print(errorResponse.data.message)});
-        break;
+    print(credential);
 
-      case AuthorizationStatus.error:
-        throw PlatformException(
-          code: 'ERROR_AUTHORIZATION_DENIED',
-          message: result.error.toString(),
-        );
-
-      case AuthorizationStatus.cancelled:
-        throw PlatformException(
-          code: 'ERROR_ABORTED_BY_USER',
-          message: 'Sign in aborted by user',
-        );
-      default:
-        throw UnimplementedError();
-    }
+    Api().loginApple(
+      credential.identityToken,
+      credential.familyName,
+      credential.givenName,
+      onSuccess: (authResponse) => {
+        saveString(
+            key: PreferencesKeys.AccessToken,
+            value: authResponse.data.accessToken),
+        saveString(
+          key: PreferencesKeys.Name,
+          value:
+              "${authResponse.data.user.lastName} ${authResponse.data.user.firstName}",
+        ),
+        saveString(
+            key: PreferencesKeys.Email, value: authResponse.data.user.email),
+        saveString(
+            key: PreferencesKeys.AvatarUrl,
+            value: authResponse.data.user.avatar),
+        popToRootAndPushReplacement(context, Home())
+      },
+      onError: (errorResponse) => {
+        print(errorResponse.data.message),
+      },
+    );
   }
 
   @override
@@ -240,8 +235,8 @@ class _LoginState extends State<Login> {
                                       TextSpan(
                                         recognizer: new TapGestureRecognizer()
                                           ..onTap = () => null,
-                                          // navigatorPush(
-                                          //     context, Policy()),
+                                        // navigatorPush(
+                                        //     context, Policy()),
                                         text: Localized.get.loginDescription3,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),
@@ -254,8 +249,8 @@ class _LoginState extends State<Login> {
                                       TextSpan(
                                         recognizer: new TapGestureRecognizer()
                                           ..onTap = () => null,
-                                          // navigatorPush(
-                                          //     context, Policy()),
+                                        // navigatorPush(
+                                        //     context, Policy()),
                                         text: Localized.get.loginDescription5,
                                         style: TextStyles.Subtitle1.apply(
                                             color: AppColors.PRIMARY),

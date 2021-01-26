@@ -66,5 +66,14 @@
   "intro.open.setting" : "OPEN SETTING",
   "intro.login" : "LOGIN",
   "button.report": "REPORT",
-  "button.feedback" : "SEND FEEDBACK"
+  "button.feedback" : "SEND FEEDBACK",
+  "rate.app.thanks" : "Thanks for reporting",
+  "rate.app.phone" : "a spam phone number",
+  "rate.app.report" : "report another number",
+  "rate.app.back" : "Back home",
+  "rate.app.question" : "What do you think about Our App?",
+  "rate.app.leave" : "Please leave a rating",
+  "rate.app.ok": "OK",
+  "message" : "Log in/out by pressing the buttons below",
+  "reported.list" : "has been added to your list"
 }

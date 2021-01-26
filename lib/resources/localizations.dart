@@ -137,6 +137,24 @@ abstract class BaseLocalized {
   String get buttonReport;
 
   String get buttonFeedback;
+
+  String get rateAppThanks;
+
+  String get rateAppPhone;
+
+  String get rateAppReport;
+
+  String get rateAppBack;
+
+  String get rateAppQuestion;
+
+  String get rateAppLeave;
+
+  String get rateAppOk;
+
+  String get message;
+
+  String get reportedList;
  }
 
 class ENLocalized extends BaseLocalized {
@@ -343,6 +361,33 @@ class ENLocalized extends BaseLocalized {
 
   @override
   String get buttonFeedback => 'SEND FEEDBACK';
+
+  @override
+  String get rateAppThanks => 'Thanks for reporting';
+
+  @override
+  String get rateAppPhone => 'a spam phone number';
+
+  @override
+  String get rateAppReport => 'report another number';
+
+  @override
+  String get rateAppBack => 'Back home';
+
+  @override
+  String get rateAppQuestion => 'What do you think about Our App?';
+
+  @override
+  String get rateAppLeave => 'Please leave a rating';
+
+  @override
+  String get rateAppOk => 'OK';
+
+  @override
+  String get message => 'Log in/out by pressing the buttons below';
+
+  @override
+  String get reportedList => 'has been added to your list';
  }
 
 class VILocalized extends BaseLocalized {
@@ -552,6 +597,33 @@ class VILocalized extends BaseLocalized {
 
   @override
   String get buttonFeedback => 'GỬI PHẢN HỒI';
+
+  @override
+  String get rateAppThanks => 'Cảm ơn đã báo cáo';
+
+  @override
+  String get rateAppPhone => 'một số điện thoại';
+
+  @override
+  String get rateAppReport => 'Báo cáo số điện thoại khác';
+
+  @override
+  String get rateAppBack => 'Trở về';
+
+  @override
+  String get rateAppQuestion => 'Bạn cảm thấy như thế nào về ứng dụng của chúng tôi';
+
+  @override
+  String get rateAppLeave => 'Vui lòng để lại đánh giá';
+
+  @override
+  String get rateAppOk => 'Tiếp tục';
+
+  @override
+  String get message => 'Đăng nhập / Đăng xuất bằng cách nhấn các nút bên dưới.';
+
+  @override
+  String get reportedList => 'đã được thêm vào danh sách của bạn';
  }
 
 class Localized {

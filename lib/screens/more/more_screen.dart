@@ -20,14 +20,13 @@ class _MoreState extends State<More> {
     await _unblockAndClearAllNumbers();
   }
 
-
   static const platform =
       const MethodChannel('co.vacsolutions.callblocker/callBlocking');
 
   Future<void> _unblockAndClearAllNumbers() async {
     try {
-      final result = await platform.invokeMethod('unblockAndClearAllNumbers', {
-      });
+      final result =
+          await platform.invokeMethod('unblockAndClearAllNumbers', {});
       if (result == true) {
         print("Clear and Blocked ");
       } else {
@@ -37,6 +36,7 @@ class _MoreState extends State<More> {
       //batteryLevel = "Failed to get battery level: '${e.message}'.";
     }
   }
+
   String name = "";
   String email = "";
   String avatarUrl;
@@ -67,31 +67,37 @@ class _MoreState extends State<More> {
               child: Container(
                 color: Colors.white,
                 width: double.infinity,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 90.0),
-                        child: avatarUrl != null
-                            ? Image.network(avatarUrl)
-                            : Image.asset(Assets.IMAGE_AVATAR),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    avatarUrl != null
+                        ? Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: new BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: new NetworkImage(avatarUrl),
+                              ),
+                            ),
+                          )
+                        : Icon(Icons.person),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: Text(
+                        name,
+                        style: TextStyles.Headline2,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: Text(
-                          name,
-                          style: TextStyles.Headline2,
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        email,
+                        style: TextStyles.Caption,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          email,
-                          style: TextStyles.Caption,
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
             ),
@@ -109,8 +115,7 @@ class _MoreState extends State<More> {
                 MoreWidget(
                   image: Image.asset(Assets.ICON_FEEDBACK),
                   name: Localized.get.moreFeedback,
-                  onPress: () =>
-                      navigatorPush(context, FeedBack()),
+                  onPress: () => navigatorPush(context, FeedBack()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(

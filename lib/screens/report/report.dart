@@ -31,9 +31,7 @@ class _ReportState extends State<Report> {
       } else {
         print(result);
       }
-    } on PlatformException catch (e) {
-      //batteryLevel = "Failed to get battery level: '${e.message}'.";
-    }
+    } on PlatformException catch (e) {}
   }
 
   bool isAllValid = false;
@@ -65,18 +63,13 @@ class _ReportState extends State<Report> {
                 if (_rateMyApp.shouldOpenDialog) {
                   _rateMyApp.showStarRateDialog(
                     context,
-                    title: 'What do you think about Our App?',
-                    message: 'Please leave a rating',
+                    title: Localized.get.rateAppQuestion,
+                    message: Localized.get.rateAppLeave,
                     actionsBuilder: (_, stars) {
                       return [
                         FlatButton(
-                          child: Text('OK'),
+                          child: Text(Localized.get.rateAppOk),
                           onPressed: () async {
-                            print('Thanks for the ' +
-                                (stars == null
-                                    ? '0'
-                                    : stars.round().toString()) +
-                                ' star(s) !');
                             if (stars != null && (stars == 4 || stars == 5)) {
                             } else {}
                             await _rateMyApp.callEvent(

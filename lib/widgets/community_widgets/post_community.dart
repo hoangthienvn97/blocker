@@ -44,7 +44,7 @@ class _PostCommunityState extends State<PostCommunity> {
     if (!widget.collection.collected) {
       Api().postCollected(widget.collection.id,
           onSuccess: (response) => {
-                Utils.showToast(context, "${widget.collection.name} has been added to your list" ),
+                Utils.showToast(context, "${widget.collection.name} ${Localized.get.reportedList}" ),
                 this.setState(() {
                   widget.collection = response.data;
                 })

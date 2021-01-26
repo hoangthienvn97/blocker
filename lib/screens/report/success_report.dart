@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/core/common/commons.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
+import 'package:phone_blocker/resources/localizations.dart';
 import 'package:phone_blocker/resources/text_styles.dart';
 import 'package:phone_blocker/screens/home.dart';
 import 'package:phone_blocker/screens/report/report.dart';
@@ -41,7 +42,7 @@ class _SuccessReportState extends State<SuccessReport> {
                           text: TextSpan(
                             children: <InlineSpan>[
                               TextSpan(
-                                text: 'Thanks for reporting',
+                                text: Localized.get.rateAppThanks,
                                 style: TextStyles.Body1,
                               ),
                             ],
@@ -54,7 +55,7 @@ class _SuccessReportState extends State<SuccessReport> {
                             text: TextSpan(
                               children: <InlineSpan>[
                                 TextSpan(
-                                  text: 'a spam phone number',
+                                  text: Localized.get.rateAppPhone,
                                   style: TextStyles.Body1,
                                 ),
                               ],
@@ -79,7 +80,7 @@ class _SuccessReportState extends State<SuccessReport> {
                     ButtonSecondary(
                       onTap: () => navigatorPush(context, Report()),
                       background: AppColors.PRIMARY,
-                      label: "report another number",
+                      label: Localized.get.rateAppReport,
                       textColor: Colors.white,
                       borderColor: AppColors.PRIMARY,
                     ),
@@ -88,7 +89,7 @@ class _SuccessReportState extends State<SuccessReport> {
                       child: ButtonSecondary(
                       onTap: () => navigatorPush(context, Home()),
                       background: Colors.white,
-                      label: "Back home",
+                      label: Localized.get.rateAppBack,
                       textColor: AppColors.PRIMARY,
                       borderColor: AppColors.PRIMARY,
                       ),
