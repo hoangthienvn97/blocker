@@ -270,7 +270,7 @@ class _LoginState extends State<Login> {
                             textColor: Colors.black,
                             background: Colors.white,
                             borderColor: Colors.white,
-                            image: Image.asset(Assets.ICON_GOOGLE_LOGIN),
+                            image: Image.asset(Assets.ICON_GOOGLE_LOGIN , width: 16 , height: 16,),
                           ),
                         ),
                         Padding(
@@ -281,7 +281,7 @@ class _LoginState extends State<Login> {
                             textColor: Colors.white,
                             background: AppColors.FACEBOOK,
                             borderColor: AppColors.FACEBOOK,
-                            image: Image.asset(Assets.ICON_FACEBOOK_LOGIN),
+                            image: Image.asset(Assets.ICON_FACEBOOK_LOGIN, height: 32, width: 32,),
                           ),
                         ),
                         Padding(

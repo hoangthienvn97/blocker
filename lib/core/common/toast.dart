@@ -19,7 +19,7 @@ class Utils {
         children: [
           Expanded(
             flex: 1,
-            child: Image.asset(Assets.ICON_TICK_BLACK, color: AppColors.PLACE_HOLDER)),
+            child: Image.asset(Assets.ICON_TICK_BLACK, color: AppColors.PLACE_HOLDER , height: 16 , width: 16,)),
           Expanded(flex: 9, child: Text(message)),
         ],
       ),

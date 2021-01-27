@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
         items: [
           BottomNavigationBarItem(
             icon: (_selectedTabIndex == 0)
-                ? Image.asset(Assets.ICON_COM)
+                ? Image.asset(Assets.ICON_COM , width: 20 , height: 20, )
                 : Image.asset(
                     Assets.ICON_COMMUNITY,
                     width: 20,
@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: (_selectedTabIndex == 2)
-                ? Image.asset(Assets.ICON_LI)
+                ? Image.asset(Assets.ICON_LI , width: 20 , height: 20,)
                 : Image.asset(
                     Assets.ICON_LIST,
                     width: 20,
@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: (_selectedTabIndex == 3)
-                ? Image.asset(Assets.ICON_MO)
+                ? Image.asset(Assets.ICON_MO, width: 20 , height: 20,)
                 : Image.asset(
                     Assets.ICON_MORE,
                     width: 20,
