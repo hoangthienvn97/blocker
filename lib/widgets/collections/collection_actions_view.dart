@@ -29,7 +29,11 @@ class CollectionActionsView extends StatelessWidget {
           flex: 1,
           child: PostButton(
             background: AppColors.TOAST,
-            image: Image.asset(Assets.ICON_LIST_VIEW),
+            image: Image.asset(
+              Assets.ICON_LIST_VIEW,
+              width: 20,
+              height: 20,
+            ),
             label: Localized.get.mylistViewDetail,
             textColor: AppColors.BLACK_TEXT,
             onTap: () => {
@@ -55,6 +59,8 @@ class CollectionActionsView extends StatelessWidget {
               this.collection.favorited
                   ? Assets.ICON_LIKE_FULL
                   : Assets.ICON_LIKE,
+              width: 20,
+              height: 20,
             ),
             label:
                 "${this.collection.favoritedCount} ${Localized.get.communityLikes}",
@@ -74,7 +80,11 @@ class CollectionActionsView extends StatelessWidget {
           flex: 1,
           child: PostButton(
             background: Colors.white,
-            image: Image.asset(Assets.ICON_TRASH),
+            image: Image.asset(
+              Assets.ICON_TRASH,
+              width: 20,
+              height: 20,
+            ),
             label: Localized.get.mylistUnblock,
             textColor: AppColors.BLACK_TEXT,
             onTap: () => {

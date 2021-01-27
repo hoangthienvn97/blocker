@@ -155,6 +155,8 @@ abstract class BaseLocalized {
   String get message;
 
   String get reportedList;
+
+  String get browser;
  }
 
 class ENLocalized extends BaseLocalized {
@@ -345,7 +347,7 @@ class ENLocalized extends BaseLocalized {
   String get loginGoogle => 'login with goole';
 
   @override
-  String get loginFacebook => 'login with apple';
+  String get loginFacebook => 'login with facebook';
 
   @override
   String get loginApple => 'login with apple';
@@ -388,6 +390,9 @@ class ENLocalized extends BaseLocalized {
 
   @override
   String get reportedList => 'has been added to your list';
+
+  @override
+  String get browser => 'Browser';
  }
 
 class VILocalized extends BaseLocalized {
@@ -624,6 +629,9 @@ class VILocalized extends BaseLocalized {
 
   @override
   String get reportedList => 'đã được thêm vào danh sách của bạn';
+
+  @override
+  String get browser => 'Cộng đồng';
  }
 
 class Localized {

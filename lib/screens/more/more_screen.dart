@@ -105,27 +105,35 @@ class _MoreState extends State<More> {
             Expanded(
               flex: 5,
               child: Column(children: [
+                // MoreWidget(
+                //   image: Image.asset(Assets.ICON_ABOUT_US),
+                //   name: Localized.get.moreAboutUs,
+                //   onPress: () => null,
+                //   //  navigatorPush(context, AboutUs()),
+                // ),
+                // SizedBox(height: 8),
                 MoreWidget(
-                  image: Image.asset(Assets.ICON_ABOUT_US),
-                  name: Localized.get.moreAboutUs,
-                  onPress: () => null,
-                  //  navigatorPush(context, AboutUs()),
-                ),
-                SizedBox(height: 8),
-                MoreWidget(
-                  image: Image.asset(Assets.ICON_FEEDBACK),
+                  image: Image.asset(
+                    Assets.ICON_FEEDBACK,
+                    width: 24,
+                    height: 24,
+                  ),
                   name: Localized.get.moreFeedback,
                   onPress: () => navigatorPush(context, FeedBack()),
                 ),
                 SizedBox(height: 8),
                 MoreWidget(
-                  image: Image.asset(Assets.ICON_RATE),
+                  image: Image.asset(Assets.ICON_RATE, width: 24, height: 24),
                   name: Localized.get.moreRateTheApp,
                   onPress: null,
                 ),
                 SizedBox(height: 8),
                 MoreWidget(
-                  image: Image.asset(Assets.ICON_LOGOUT),
+                  image: Image.asset(
+                    Assets.ICON_LOGOUT,
+                    height: 24,
+                    width: 24,
+                  ),
                   name: Localized.get.moreLogOut,
                   onPress: () => logoutUser(),
                 ),

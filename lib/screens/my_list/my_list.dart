@@ -205,7 +205,7 @@ class _MyListState extends State<MyList> {
                         child: ButtonSecondary(
                           onTap: () => navigatorPush(context, Home()),
                           background: AppColors.PRIMARY,
-                          label: "Browser",
+                          label: Localized.get.browser,
                           textColor: Colors.white,
                           borderColor: AppColors.PRIMARY,
                         ),

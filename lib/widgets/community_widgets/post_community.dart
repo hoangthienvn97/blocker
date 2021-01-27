@@ -44,7 +44,8 @@ class _PostCommunityState extends State<PostCommunity> {
     if (!widget.collection.collected) {
       Api().postCollected(widget.collection.id,
           onSuccess: (response) => {
-                Utils.showToast(context, "${widget.collection.name} ${Localized.get.reportedList}" ),
+                Utils.showToast(context,
+                    "${widget.collection.name} ${Localized.get.reportedList}"),
                 this.setState(() {
                   widget.collection = response.data;
                 })
@@ -115,6 +116,8 @@ class _PostStats extends StatelessWidget {
               this.collection.favorited
                   ? Assets.ICON_LIKE_FULL
                   : Assets.ICON_LIKE,
+              width: 20,
+              height: 20,
             ),
             label:
                 "${this.collection.favoritedCount} ${Localized.get.communityLikes}",
@@ -129,9 +132,11 @@ class _PostStats extends StatelessWidget {
           flex: 1,
           child: PostButton(
             background: Colors.white,
-            image: Image.asset(this.collection.collected
-                ? Assets.ICON_TICK
-                : Assets.ICON_SHIELD),
+            image: Image.asset(
+              this.collection.collected ? Assets.ICON_TICK : Assets.ICON_SHIELD,
+              width: 20,
+              height: 20,
+            ),
             label: collection.collected
                 ? Localized.get.communityAdded
                 : Localized.get.communityAddToList,

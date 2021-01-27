@@ -17,8 +17,8 @@ class Assets {
   static const String ICON_SORT = './assets/community/sort.png';
   static const String IMAGE_UNDRAW = './assets/intro/undraw_home_setting.png';
   static const String ICON_SETTING_INTRO =
-      './assets/intro/ic_setting_intro.png';
-  static const String ICON_PHONE_INTRO = './assets/intro/ic_phone_intro.png';
+      './assets/intro/icon_setting_intro.png';
+  static const String ICON_PHONE_INTRO = './assets/intro/icon_phone_intro.png';
   static const String ICON_SWITCH_INTRO =
       './assets/intro/icon_switch_intro.png';
   static const String IMAGE_OPEN_SETTING_INTRO =

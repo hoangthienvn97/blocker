@@ -47,39 +47,65 @@ class _HomeState extends State<Home> {
         unselectedItemColor: Colors.yellow,
         items: [
           BottomNavigationBarItem(
-            icon: (_selectedTabIndex == 0) ? Image.asset(Assets.ICON_COM) : Image.asset(Assets.ICON_COMMUNITY),
+            icon: (_selectedTabIndex == 0)
+                ? Image.asset(Assets.ICON_COM)
+                : Image.asset(
+                    Assets.ICON_COMMUNITY,
+                    width: 20,
+                    height: 20,
+                  ),
             title: Text(
               Localized.get.homeCommunity,
               style: TextStyles.Body2.apply(
-                color: (_selectedTabIndex == 0) ? AppColors.PRIMARY : AppColors.BLACK_TEXT
-              ),
+                  color: (_selectedTabIndex == 0)
+                      ? AppColors.PRIMARY
+                      : AppColors.BLACK_TEXT),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(Assets.ICON_REPORT),
+            icon: Image.asset(
+              Assets.ICON_REPORT,
+              width: 20,
+              height: 20,
+            ),
             title: Text(
               Localized.get.homeReport,
               style: TextStyles.Body2.apply(
-                color: (_selectedTabIndex == 1) ? AppColors.PRIMARY : AppColors.BLACK_TEXT
-              ),
+                  color: (_selectedTabIndex == 1)
+                      ? AppColors.PRIMARY
+                      : AppColors.BLACK_TEXT),
             ),
           ),
           BottomNavigationBarItem(
-            icon: (_selectedTabIndex == 2) ? Image.asset(Assets.ICON_LI) : Image.asset(Assets.ICON_LIST),
+            icon: (_selectedTabIndex == 2)
+                ? Image.asset(Assets.ICON_LI)
+                : Image.asset(
+                    Assets.ICON_LIST,
+                    width: 20,
+                    height: 20,
+                  ),
             title: Text(
               Localized.get.homeMyList,
               style: TextStyles.Body2.apply(
-                color: (_selectedTabIndex == 2) ? AppColors.PRIMARY : AppColors.BLACK_TEXT
-              ),
+                  color: (_selectedTabIndex == 2)
+                      ? AppColors.PRIMARY
+                      : AppColors.BLACK_TEXT),
             ),
           ),
           BottomNavigationBarItem(
-            icon: (_selectedTabIndex == 3) ? Image.asset(Assets.ICON_MO) : Image.asset(Assets.ICON_MORE),
+            icon: (_selectedTabIndex == 3)
+                ? Image.asset(Assets.ICON_MO)
+                : Image.asset(
+                    Assets.ICON_MORE,
+                    width: 20,
+                    height: 20,
+                  ),
             title: Text(
               Localized.get.homeMore,
               style: TextStyles.Body2.apply(
-                color: (_selectedTabIndex == 3) ? AppColors.PRIMARY : AppColors.BLACK_TEXT
-              ),
+                  color: (_selectedTabIndex == 3)
+                      ? AppColors.PRIMARY
+                      : AppColors.BLACK_TEXT),
             ),
           ),
         ],

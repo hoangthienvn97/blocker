@@ -61,7 +61,7 @@
   "update.hours" : "hours ago",
   "update.days" : "days ago",
   "login.google" : "login with goole",
-  "login.facebook" : "login with apple",
+  "login.facebook" : "login with facebook",
   "login.apple" : "login with apple",
   "intro.open.setting" : "OPEN SETTING",
   "intro.login" : "LOGIN",
@@ -75,5 +75,6 @@
   "rate.app.leave" : "Please leave a rating",
   "rate.app.ok": "OK",
   "message" : "Log in/out by pressing the buttons below",
-  "reported.list" : "has been added to your list"
+  "reported.list" : "has been added to your list",
+  "browser" : "Browser"
 }

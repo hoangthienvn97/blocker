@@ -171,7 +171,11 @@ class _MyCollectionWidgetState extends State<MyCollectionWidget> {
                   ),
                   Divider(),
                   PostButton(
-                    image: Image.asset(Assets.ICON_TRASH),
+                    image: Image.asset(
+                      Assets.ICON_TRASH,
+                      width: 20,
+                      height: 20,
+                    ),
                     label: Localized.get.mylistUnblock,
                     onTap: () => _unblock(widget.phoneDataDetail),
                     background: Colors.white,

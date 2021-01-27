@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_blocker/resources/app_colors.dart';
 import 'package:phone_blocker/resources/localizations.dart';
@@ -68,7 +69,7 @@ class _IntroBlockState extends State<IntroBlock> {
                                     Localized.get.introSetupStep12),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
-                                  child: Image.asset(Assets.ICON_SETTING_INTRO),
+                                  child: Image.asset(Assets.ICON_SETTING_INTRO, height: 24 , width: 24),
                                 ),
                               ],
                             ),
@@ -82,7 +83,7 @@ class _IntroBlockState extends State<IntroBlock> {
                                       Localized.get.introSetupStep22),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 5),
-                                    child: Image.asset(Assets.ICON_PHONE_INTRO),
+                                    child: Image.asset(Assets.ICON_PHONE_INTRO , height: 24 , width: 24,),
                                   ),
                                 ],
                               ),
@@ -109,7 +110,7 @@ class _IntroBlockState extends State<IntroBlock> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 5),
                                     child:
-                                        Image.asset(Assets.ICON_SWITCH_INTRO),
+                                        Image.asset(Assets.ICON_SWITCH_INTRO,height: 24 , width: 24),
                                   ),
                                 ],
                               ),
@@ -126,7 +127,10 @@ class _IntroBlockState extends State<IntroBlock> {
           Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
             child: ButtonSecondary(
-              onTap: () => navigatorPush(context, Login()),
+              onTap: () => {
+                popToRootAndPushReplacement(context, Login()),
+                AppSettings.openLocationSettings()
+              },
               background: AppColors.PRIMARY,
               label: Localized.get.introOpenSetting,
               textColor: Colors.white,

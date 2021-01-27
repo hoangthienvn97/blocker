@@ -3,12 +3,32 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>971058141344-ghk81obemcac8sesa5vao8fv3cq3d4ct.apps.googleusercontent.com</string>
+	<string>1023446827560-bnks398f978abcqvid6s65ke47kot873.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.971058141344-ghk81obemcac8sesa5vao8fv3cq3d4ct</string>
+	<string>com.googleusercontent.apps.1023446827560-bnks398f978abcqvid6s65ke47kot873</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCQSVrZ6eZv1kAwJ28H4sMCoWHTfta4uTo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1023446827560</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>co.vacsolutions.callblocker</string>
+	<key>PROJECT_ID</key>
+	<string>phone-blocker-123</string>
+	<key>STORAGE_BUCKET</key>
+	<string>phone-blocker-123.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1023446827560:ios:cffb4f930af7e7b2276b1d</string>
 </dict>
 </plist>
